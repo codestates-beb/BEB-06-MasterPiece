@@ -13,6 +13,7 @@
 * 김준섭 : 오전 10:00~11:00 , 14:00~ , ( 수요일 오전(x), 금요일 오후(x)), 19일 면접 ( 다음주 정신없을 수 …)
 * 정다운 : 면접시간만 피하면… 
 * 역할 : 김준섭 (회의록 서기 ) , 문지훈 (CTO) , 김나혜 (인턴2) , 정다운 ( 인턴 )
+* Overall Plan : 
 <img width="891" alt="image" src="https://user-images.githubusercontent.com/81156500/201584006-b20030bc-b1f8-4326-9c9d-9afbd334b72a.png">
 
 
