@@ -18,12 +18,22 @@ function Footer() {
       </section>
       <div class="footer-links">
         <div className="pop-box">
-          <p className="footer-subscription-heading">PoP</p>
-          <p className="pop-description">Piece of Puzzle</p>
+          <p className="footer-subscription-heading">
+            <img
+              src="Puzzle.jpg"
+              style={{ float: "left", height: "20px" }}
+            ></img>
+            PoP
+          </p>
+          <p
+            className="pop-description"
+            style={{ fontFamily: "'Italiana', serif" }}
+          >
+            Piece of Puzzle
+          </p>
           <p className="pop-description">
             The world’s first and largest digital marketplace for crypto
-            collections and non-fungible tokens (NFTs). Buy, sell, and discover
-            exclusive digital items.
+            collections and non-fungible tokens (NFTs).
           </p>
         </div>
 
