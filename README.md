@@ -64,3 +64,17 @@
 * Planning
     * 금주까지 기능 구현에 대한 플래닝 
     * 차주 정도 구현 시작 
+ 
+ 2022’Nov-18
+(10:00- )
+* 전체적인구조
+    * 조각 NFT 구조
+        * 조각 NFT 발행 : ERC- 20 - SBT. / SBT 만들지 ( 판매를 가능 / 불가능 )
+        * 악용될 사례 ( 51% , 참여하지 않는경우 ) …. 지속적인 생각
+    * BE
+        * Opensea API 에서 개인 주소별 등록된 NFT list 를 끌어와서, sell 의 true/false 경우를 나누어서 DB update
+        * DB - create / update / delete
+        * DB - 안건 에 대한 저장
+* SBT 의 의미를 생각해보기 
+    
+ 
