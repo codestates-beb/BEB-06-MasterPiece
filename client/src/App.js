@@ -7,6 +7,7 @@ import Mypage from "./component/pages/mypage/MyPage";
 import Fractionalnft from "./component/pages/fractionalnft/FractionalNft";
 import Agenda from "./component/pages/fractionalnft/Agenda";
 import Footer from "./component/common/footer/Footer";
+import Connectwallet from "./component/pages/connect/Connectwallet";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             <Route path="/mypage" element={<Mypage />}></Route>
             <Route path="/fractionalnft" element={<Fractionalnft />}></Route>
             <Route path="/agenda" element={<Agenda />}></Route>
+            <Route path="/connectwallet" element={<Connectwallet />}></Route>
           </Routes>
           <Footer />
         </div>

@@ -8,6 +8,7 @@
   text-decoration: none;
 }
 
+
 .background{
   width: 100vw;
   height: auto;
@@ -76,15 +77,17 @@ button:hover {
 .fa-user {
   cursor: pointer;
   font-size: 26px; 
-  margin-top: 2%;
-  margin-right: 5%; 
+  margin-top: 32%;
+  margin-right: 45px;
+  color: white; 
 }
 .fa-user:hover {
   color:black;
 }
 .fa-money-bill-1{
+  color: white;
   cursor: pointer;
-  margin-top:2%;
+  margin-top:57%;
   font-size:30px;
 }
 .fa-money-bill-1:hover{
@@ -305,6 +308,49 @@ input:focus {
 
 
 /*/////////////// main ///////////////*/
-.main {
-  flex:1;
+
+.main-image{
+  width: 100%;
+  margin-top: 9%;
+  margin-bottom: 20%;
+}
+
+.nft-ranking{
+  border-top:1px solid white;
+  border-bottom: 1px solid white;
+  display: flex;
+  margin-bottom: 27%;
+}
+
+.nft-left{
+ width: 50%;
+ margin-left: 1%;
+}
+
+.nft-right{
+ width:50%;
+ margin-left: 1%;
+}
+
+.ranking-img {
+  width: 38px;
+  margin-left: 41px;
+  margin-top: 11px;
+  margin-right: 33px;
+  border-radius: 7px;
+}
+
+.ranking-num {
+  display:inline-block;
+}
+.ranking-name{
+  display: inline-block;
+  margin-right: 200px;
+}
+.ranking-FP {
+  display: inline-block;
+  margin-right: 40px;
+}
+.ranking-Volume {
+  display: inline-block;
 }

@@ -22,8 +22,12 @@ function Header() {
           <Link to="/agenda">
             <button>Agenda</button>
           </Link>
-          <FontAwesomeIcon icon={faUser} />
-          <FontAwesomeIcon icon={faMoneyBill1} />
+          <Link to="/mypage">
+            <FontAwesomeIcon icon={faUser} />
+          </Link>
+          <Link to="/connectwallet">
+            <FontAwesomeIcon icon={faMoneyBill1} />
+          </Link>
         </div>
       </div>
     </div>
