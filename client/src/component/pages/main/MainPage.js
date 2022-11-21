@@ -1,5 +1,6 @@
 import Ranking from "./Ranking";
 import Gallery from "./Gallery";
+import About from "./About";
 
 function MainPage() {
   return (
@@ -7,6 +8,7 @@ function MainPage() {
       <img src="main.jpg" className="main-image"></img>
       <Ranking />
       <Gallery />
+      <About />
     </div>
   );
 }

@@ -5,7 +5,7 @@ function Gallery() {
       <h1 style={{ marginLeft: "46%", fontFamily: "Roboto, sans-serif" }}>
         <img src="Puzzle.jpg"></img>NFTs
       </h1>
-      <div style={{ margin: "48px 66px 10px 200px" }}>
+      <div style={{ margin: "200px 66px 10px 200px" }}>
         <img
           src="gallery2.jpg"
           style={{ width: "300px", marginRight: "23px" }}
