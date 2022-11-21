@@ -2,6 +2,7 @@ import { useState } from "react";
 
 function Ranking() {
   const [ranking, SetRanking] = useState([1, 2, 3, 4, 5]);
+  const [ranking2, SetRanking2] = useState([6, 7, 8, 9, 10]);
   return (
     <div>
       <h1 style={{ marginLeft: "8%", fontFamily: "Roboto, sans-serif" }}>
@@ -9,12 +10,19 @@ function Ranking() {
       </h1>
       <div className="nft-ranking">
         <div className="nft-left">
-          {ranking.map((a) => {
+          <div className="ranking-title">
+            COLLECTION
+            <a style={{ float: "right", marginRight: "3px" }}>FLOOR PRICE</a>
+            <a style={{ float: "right", marginRight: "56px" }}>VOLUME</a>
+          </div>
+
+          {ranking.map((a, idx) => {
             return (
-              <div style={{ marginBottom: "23px" }}>
-                <div className="ranking-num">1</div>
+              <div className="ranking">
+                <div className="ranking-num">{ranking[idx]}</div>
                 <img src="ranking.jpg" className="ranking-img"></img>{" "}
                 <div className="ranking-name">CryptoPunks</div>
+                <div className="ranking-chk"></div>
                 <div className="ranking-FP">60.95 ETH</div>
                 <div className="ranking-Volume">867 ETH</div>
               </div>
@@ -22,12 +30,19 @@ function Ranking() {
           })}
         </div>
         <div className="nft-right">
-          {ranking.map((a) => {
+          <div className="ranking-title">
+            {" "}
+            COLLECTION
+            <a style={{ float: "right", marginRight: "3px" }}>FLOOR PRICE</a>
+            <a style={{ float: "right", marginRight: "56px" }}>VOLUME</a>
+          </div>
+          {ranking.map((a, idx) => {
             return (
-              <div style={{ marginBottom: "23px" }}>
-                <div className="ranking-num">1</div>
+              <div className="ranking">
+                <div className="ranking-num">{ranking2[idx]}</div>
                 <img src="ranking.jpg" className="ranking-img"></img>{" "}
-                <div className="ranking-name">CryptoPunks</div>
+                <div className="ranking-name">Bored Ape Yacht Club </div>
+                <div className="ranking-chk"></div>
                 <div className="ranking-FP">60.95 ETH</div>
                 <div className="ranking-Volume">867 ETH</div>
               </div>
