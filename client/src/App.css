@@ -392,7 +392,7 @@ input:focus {
 .about-title{
   color:#CDFF00;
   margin-left: 35%;
-  font-family:'Jura', sans-serif;;
+  font-family:'Jura', sans-serif;
 }
 
 .about-img{
@@ -434,15 +434,92 @@ input:focus {
   height: 65px;
   display: block;
   margin: auto;
-  background-color: rgb(168, 168, 168);
   font-size: 20px;
 }
 
 .border-gradient {
-  background: linear-gradient(rgb(155, 155, 155), rgb(182, 182, 182)) padding-box,
+  background: linear-gradient(rgb(194, 194, 194), rgb(160, 146, 146)) padding-box,
   linear-gradient(to right, rgb(241, 120, 98), rgb(227, 219, 104)) border-box;
   border-radius: 50em;
   border: 6px solid transparent;
 }
 
 
+/*/////////////// Agenda ///////////////*/
+
+.agenda-box{
+  display: flex;
+  height: 300px;
+  width: 90%;
+  height: 1000px;
+}
+
+.vertical-line{
+  width:0.5px;
+  height: 100%;
+  background-color:rgb(255, 255, 255);
+  margin-left: 25%;
+  margin-top: 9%;
+}
+
+.agenda-img{
+  width: 100px; 
+  margin-top: 13%;
+  border-radius: 50px;
+  z-index: 1;
+}
+
+.agenda-title{
+  margin: 15% 0% 1% 7%;
+  font-size: 26px;
+  font-family:'Jura', sans-serif;
+}
+
+.agenda-write-btn{
+  margin-left: auto;
+  margin-top: 50px;
+  height: 27px;
+  width:80px;
+  text-align: center;
+  padding-top: 10px;
+  border-radius: 13px;
+  background-color: beige;
+  color: black;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  cursor: pointer;
+}
+
+.agenda-write-btn:hover{
+  color: tomato;
+}
+
+.agenda-single-box{
+  display: flex;
+  height: 71px;
+  margin-top: 80px;
+}
+
+.agenda-single{
+  display: inline-block;
+  margin-left: 22px;
+}
+
+.agenda-profile{
+  display: inline-block;
+  width: 73px;
+  border-radius: 50px;
+}
+
+.agenda-address{
+  display: inline-block;
+  font-size: 19px;
+}
+
+.agenda-single-title{
+  font-size: 19px;
+  margin-top: 12px;
+}
