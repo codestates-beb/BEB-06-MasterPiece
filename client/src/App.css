@@ -464,6 +464,7 @@ input:focus {
 
 .agenda-img{
   width: 100px; 
+  height: 100px;
   margin-top: 13%;
   border-radius: 50px;
   z-index: 1;
@@ -474,6 +475,11 @@ input:focus {
   font-size: 26px;
   font-family:'Jura', sans-serif;
 }
+
+.agenda-title > p{
+ cursor: pointer;
+}
+
 
 .agenda-write-btn{
   margin-left: auto;
@@ -503,9 +509,11 @@ input:focus {
   margin-top: 80px;
 }
 
+
 .agenda-single{
   display: inline-block;
   margin-left: 22px;
+  cursor: pointer;
 }
 
 .agenda-profile{
@@ -519,7 +527,35 @@ input:focus {
   font-size: 19px;
 }
 
+.agenda-type{
+  display: inline-block;
+  width: auto;
+  height: auto;
+  padding: 5px;
+  text-align: center;
+  border-radius: 50px;
+  margin-left: 12px;
+  font-size: 16px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  background-color: #CDFF00;
+  color: #191a19;
+}
+
 .agenda-single-title{
   font-size: 19px;
   margin-top: 12px;
+}
+
+.agenda-filter{
+  margin: 19% 1% 1% 4%;
+}
+
+select{
+  border: 0px;
+  cursor: pointer;
+  background-color: #f5f5dc;
+  border-radius: 6px;
+  margin-left: 9px;
+  padding:3px;
 }
