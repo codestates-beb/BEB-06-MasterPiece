@@ -15,11 +15,11 @@ function Agenda() {
   };
 
   const handleClickWrite = () => {
-    navigate("/agenda/write");
+    navigate("/write");
   };
 
   const handleClickAgenda = () => {
-    navigate("/agenda/detail");
+    navigate("/detail");
   };
 
   const handleClickFractional = () => {

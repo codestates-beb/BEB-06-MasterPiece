@@ -22,9 +22,9 @@ function App() {
             <Route path="/market" element={<Market />}></Route>
             <Route path="/mypage" element={<Mypage />}></Route>
             <Route path="/fractionalnft" element={<Fractionalnft />}></Route>
-            <Route path="/agenda/*" element={<Agenda />}></Route>
-            <Route path="/agenda/detail" element={<Detail />}></Route>
-            <Route path="/agenda/write" element={<Write />}></Route>
+            <Route path="/agenda/" element={<Agenda />}></Route>
+            <Route path="/detail" element={<Detail />}></Route>
+            <Route path="/write" element={<Write />}></Route>
             <Route path="/connectwallet" element={<Connectwallet />}></Route>
           </Routes>
           <Footer />
