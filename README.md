@@ -77,4 +77,34 @@
         * DB - 안건 에 대한 저장
 * SBT 의 의미를 생각해보기 
     
+  2022’Nov-23 
+  < 14:00~ >
+* FE ( css : 70% / 기능 : 구현중 )
+    * Mock up 대로 진행 
+* BE
+    * 일반 NFT 용 table
+        * 저장 : 최초 발행 시 저장
+        * Query - 판매등록이 true 경우 /  adress & 판매등록 true / address
+        * Update : 판매되면 주소 변경  / 판매등록 false -> true 
+      <img width="744" alt="image" src="https://user-images.githubusercontent.com/81156500/203484957-0fe21faa-8fb1-4618-99ca-0fa883b65f99.png">
+     * 조각 NFT 용 table
+       * 중개자 NFT/ SBT 민트 -> 지원자 받아서 -> soul drop
+       <img width="720" alt="image" src="https://user-images.githubusercontent.com/81156500/203485037-01b83e46-74c1-4ad2-8346-851e4e7338b1.png">
+     * DAO community 용 table
+       * 저장/ 업데이트
+       <img width="1090" alt="image" src="https://user-images.githubusercontent.com/81156500/203485142-7fe9d0ac-86fe-4984-833e-cfe293975eee.png">
+    * Event market 용 table ( advanced )
+* SM
+    * 일반 NFT -> 기존
+        * 등록 / 판매/ transfer
+    * 조각 NFT ->  ERC1155 ( ERC721 - ERC20 ( 판매 안되는거로  ) -> air drop
+        * NFT 발행 - ERC20 10개 발행
+        * 
+    * ERC- 20 : 투표 ( ) 
+   < 15:00 ~ >
+   1. 다음주에는 준비된 페이지들 구현된거 보여주면서 발표 
+   2. dummydata 많이 만들어서 넣어두기 (1주일 간격보다는 10초 1분) 
+   3. 컨트랙트 잘 되는지 체크 예외처리 상황만들면서 구현하기 
+   4. 기획문서 준비 (ppt)만들어서 다음주에는 발표하기
+    
  
