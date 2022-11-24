@@ -68,6 +68,7 @@ button {
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
   border: 0px;
   cursor: pointer;
+  transition: all 0.3s;
 }
 
 button:hover {
@@ -83,6 +84,7 @@ button:hover {
   margin-top: 32%;
   margin-right: 45px;
   color: white; 
+  transition: all 0.3s;
 }
 .fa-user:hover {
   color:black;
@@ -92,6 +94,7 @@ button:hover {
   cursor: pointer;
   margin-top:57%;
   font-size:30px;
+  transition: all 0.3s;
 }
 .fa-money-bill-1:hover{
   color:black;
@@ -371,7 +374,7 @@ input:focus {
   height: 12px;
   border-radius: 50px;
   background-color: #CDFF00;
-  background-image: url('');
+  background-image: url('../public/check.jpg');
 }
 .ranking-FP {
   display: inline-block;
@@ -417,6 +420,148 @@ input:focus {
   line-height: 250%;
 }
 
+.main-gallery-title{
+  display: flex;
+  justify-content: center;
+  font-family: 'Roboto',sans-serif;
+  
+}
+
+.main-gallery{
+	margin: 0;
+	color: white;
+	font-family: sans-serif;;
+	display: flex;
+	align-items: center;
+	min-height: 93vh;
+}
+.slider{width: 100%}
+.slider input{display: none;}
+.testimonials{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+	min-height: 350px;
+	perspective: 1000px;
+	overflow: hidden;
+}
+.testimonials .item{
+	width: 300px;
+  height: 300px;
+	padding: 1px;
+	border-radius: 8px;
+	position: absolute;
+	top: 0;
+	box-sizing: border-box;
+	text-align: center;
+	transition: transform 0.4s;
+	box-shadow: 20px 20px 20px rgba(0,0,0,0.3);
+	user-select: none;
+	cursor: pointer;
+}
+.item1{
+  background-image: url('../public/gallery1.jpg');
+  background-size: 300px;
+}
+
+.item2{
+  background-image: url('../public/gallery2.jpg');
+  background-size: 300px;
+}
+
+.item3{
+  background-image: url('../public/gallery3.jpg');
+  background-size: 300px;
+}
+
+.item4{
+  background-image: url('https://i.seadn.io/gae/jAoQs5ySwRUXYOb-04p7PVZwIVA1eALXZSpm1-MGXrzvly3SPAc5p4XemnayHIuhPtZTtyZjVQTXoPejnDkqcwLKANYDhEClKq5dlyA?auto=format&w=1000');
+  background-size: 300px;
+}
+
+.item5{
+  background-image: url('https://i.seadn.io/gae/7ow99LzUUqJmPFsj2XhHL6Mj1RrMeiGSShxR4e6nj1CYYMNkpLMFa9HDGHZWK5ZeV7-4wYY2XDdmJbWCfyBirPnNiFvBIVa2bmsOZXQ?auto=format&w=1000');
+  background-size: 300px;
+}
+
+.testimonials .item h1{font-size: 114px; color: #cdff0003;}
+.dots{display: flex; justify-content: center;align-items: center;}
+.dots label{
+	height: 5px;
+	width: 5px;
+	border-radius: 50%;
+	cursor: pointer;
+	background-color: #413B52;
+	margin: 7px;
+	transition-duration: 0.2s;
+}
+#t-1:checked ~ .dots label[for="t-1"],
+#t-2:checked ~ .dots label[for="t-2"],
+#t-3:checked ~ .dots label[for="t-3"],
+#t-4:checked ~ .dots label[for="t-4"],
+#t-5:checked ~ .dots label[for="t-5"]{
+	transform: scale(2);
+	background-color: #CDFF00;
+	box-shadow: 0px 0px 0px 3px #dddddd24;
+}
+
+#t-1:checked ~ .dots label[for="t-2"],
+#t-2:checked ~ .dots label[for="t-1"],
+#t-2:checked ~ .dots label[for="t-3"],
+#t-3:checked ~ .dots label[for="t-2"],
+#t-3:checked ~ .dots label[for="t-4"],
+#t-4:checked ~ .dots label[for="t-3"],
+#t-4:checked ~ .dots label[for="t-5"],
+#t-5:checked ~ .dots label[for="t-4"]{
+	transform: scale(1.5);
+}
+
+#t-1:checked ~ .testimonials label[for="t-3"],
+#t-2:checked ~ .testimonials label[for="t-4"],
+#t-3:checked ~ .testimonials label[for="t-5"],
+#t-4:checked ~ .testimonials label[for="t-1"],
+#t-5:checked ~ .testimonials label[for="t-2"]{
+	transform: translate3d(600px, 0, -180px) rotateY(-25deg);
+	z-index: 2;
+}
+
+#t-1:checked ~ .testimonials label[for="t-2"],
+#t-2:checked ~ .testimonials label[for="t-3"],
+#t-3:checked ~ .testimonials label[for="t-4"],
+#t-4:checked ~ .testimonials label[for="t-5"],
+#t-5:checked ~ .testimonials label[for="t-1"]{
+	transform: translate3d(300px, 0, -90px) rotateY(-15deg);
+	z-index: 3;
+}
+
+#t-2:checked ~ .testimonials label[for="t-1"],
+#t-3:checked ~ .testimonials label[for="t-2"],
+#t-4:checked ~ .testimonials label[for="t-3"],
+#t-5:checked ~ .testimonials label[for="t-4"],
+#t-1:checked ~ .testimonials label[for="t-5"]{
+	transform: translate3d(-300px, 0, -90px) rotateY(15deg);
+	z-index: 3;
+}
+
+#t-3:checked ~ .testimonials label[for="t-1"],
+#t-4:checked ~ .testimonials label[for="t-2"],
+#t-5:checked ~ .testimonials label[for="t-3"],
+#t-2:checked ~ .testimonials label[for="t-5"],
+#t-1:checked ~ .testimonials label[for="t-4"]{
+	transform: translate3d(-600px, 0, -180px) rotateY(25deg);
+	
+}
+
+#t-1:checked ~ .testimonials label[for="t-1"],
+#t-2:checked ~ .testimonials label[for="t-2"],
+#t-3:checked ~ .testimonials label[for="t-3"],
+#t-4:checked ~ .testimonials label[for="t-4"],
+#t-5:checked ~ .testimonials label[for="t-4"],
+#t-5:checked ~ .testimonials label[for="t-5"]{
+	
+	z-index: 4;
+}
 
 
 /*/////////////// connect wallet ///////////////*/
@@ -498,6 +643,7 @@ input:focus {
   text-transform: uppercase;
   letter-spacing: 2.5px;
   cursor: pointer;
+  transition: all 0.3s;
 }
 
 .agenda-write-btn:hover{
@@ -633,4 +779,74 @@ textarea:focus {
 .write-btn{
   margin-left: 39%;
   margin-top: 19%;
+}
+
+
+/*/////////////// BuyNftList ///////////////*/
+
+.nftlist{
+  margin-left: 5%;
+  margin-top: 3%;
+  margin-right: 5%;
+}
+
+.nftlist > h1 {
+  font-family: 'Roboto';
+}
+
+.nftlist-menu{
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.nftlist-menu > div {
+  width: 150px;
+  text-align: center;
+  margin-right: 16px;
+  margin-top: 32px;
+  font-size: 20px;
+  font-family: 'Jura';
+  padding: 10px;
+  color: black;
+  background-color: #bbbbb4;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.nftlist-menu > div:hover{
+  color: tomato;
+}
+
+.nftlist-res{
+  display:flex;
+  margin-top: 7%;
+  margin-bottom:2%;
+  font-size: 25px;
+}
+
+.nft-numbers{
+  margin-left:73%;
+  font-size: 16px;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-auto-rows: minmax(200px, auto);
+}
+
+
+.nft {
+  display: flex;
+  border: 1px solid white;
+  border-radius: 10px;
+  margin: 13px 25px 6px 13px;
+  height: 350px;
+}
+
+.nft-img{
+  display: flex;
+  width: 50px;
 }

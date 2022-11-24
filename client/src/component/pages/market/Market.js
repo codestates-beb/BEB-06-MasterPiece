@@ -1,5 +1,11 @@
+import BuyNftList from "./BuyNftList";
+
 function Market() {
-  return <div>market</div>;
+  return (
+    <div>
+      <BuyNftList />
+    </div>
+  );
 }
 
 export default Market;

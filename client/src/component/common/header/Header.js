@@ -16,9 +16,11 @@ function Header() {
             <button>Market</button>
           </Link>
 
-          <button>NFT</button>
-          <button>NFT</button>
-          <button>NFT</button>
+          <Link to="fractionalnft">
+            <button>BAYC</button>
+          </Link>
+          <button>comming</button>
+          <button>comming</button>
           <Link to="/agenda">
             <button>Agenda</button>
           </Link>
