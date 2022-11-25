@@ -785,13 +785,17 @@ textarea:focus {
 /*/////////////// BuyNftList ///////////////*/
 
 .nftlist{
-  margin-left: 5%;
-  margin-top: 3%;
-  margin-right: 5%;
+  margin-left: 4%;
+  margin-top: 6%;
+  margin-right: 4%;
 }
 
 .nftlist > h1 {
-  font-family: 'Roboto';
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  display: flex;
+  justify-content: center;
 }
 
 .nftlist-menu{
@@ -810,7 +814,7 @@ textarea:focus {
   padding: 10px;
   color: black;
   background-color: #bbbbb4;
-  border-radius: 5px;
+  border-radius: 10px;
   cursor: pointer;
   transition: all 0.3s;
 }
@@ -824,10 +828,12 @@ textarea:focus {
   margin-top: 7%;
   margin-bottom:2%;
   font-size: 25px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
 }
 
 .nft-numbers{
-  margin-left:73%;
+  margin-left:75%;
   font-size: 16px;
 }
 
@@ -839,14 +845,65 @@ textarea:focus {
 
 
 .nft {
-  display: flex;
+  display: inline-block;
   border: 1px solid white;
   border-radius: 10px;
-  margin: 13px 25px 6px 13px;
+  margin: 13px 4px 6px 13px;
   height: 350px;
 }
 
 .nft-img{
-  display: flex;
-  width: 50px;
+  display:flex;
+  height: 70%;
+  border: 1px solid white;
+  border-radius: 10px;
+}
+
+.nft-des{
+  margin: 13px;
+  line-height: 27px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.buy-btn {
+  display: inline-block;
+  float: right;
+  border-radius: 4px;
+  padding: 1px 8px;
+  color: #593029;
+  background-color: #CDFF00;
+  cursor: pointer;
+  font-size: 15px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.buy-btn:hover{
+  transform: scale(1.1);
+  transition-duration: 0.3s;
+}
+
+.viewmore{
+  border: 2px solid #CDFF00;
+  width: 175px;
+  height: 35px;
+  text-align: center;
+  padding-top: 5px;
+  justify-content: center;
+  margin-left: 44%;
+  margin-top: 8%;
+  border-radius: 6px;
+  color: #CDFF00;
+  font-size: 21px;
+  cursor:pointer;
+}
+
+.viewmore:hover{
+  transform: scale(1.05);
+  transition-duration: 0.3s;
 }
