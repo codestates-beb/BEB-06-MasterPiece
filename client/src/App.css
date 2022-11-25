@@ -857,6 +857,12 @@ textarea:focus {
   height: 70%;
   border: 1px solid white;
   border-radius: 10px;
+  cursor: pointer;
+}
+
+.nft-img:hover{
+  transform: scale(1.03);
+  transition-duration: 0.3s;
 }
 
 .nft-des{

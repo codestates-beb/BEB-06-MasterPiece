@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function BuyNftList() {
+function PieceNft() {
   const [nftList, setNftList] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]);
   const [viewMore, setViewMore] = useState(false);
   const nftListFirst = nftList.slice(0, 10); //첫 화면에서는 10개의 nftlist만
@@ -28,7 +28,7 @@ function BuyNftList() {
                 <div className="nft">
                   <div className="nft-img">
                     <img
-                      src="gallery1.jpg"
+                      src="gallery2.jpg"
                       style={{ borderRadius: "10px", width: "100%" }}
                     ></img>
                   </div>
@@ -53,7 +53,7 @@ function BuyNftList() {
                 <div className="nft">
                   <div className="nft-img">
                     <img
-                      src="gallery1.jpg"
+                      src="gallery2.jpg"
                       style={{ borderRadius: "10px", width: "100%" }}
                     ></img>
                   </div>
@@ -77,4 +77,4 @@ function BuyNftList() {
   );
 }
 
-export default BuyNftList;
+export default PieceNft;
