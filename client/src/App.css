@@ -1131,3 +1131,31 @@ textarea:focus {
   }
 }
 
+
+/*/////////////// Mint ///////////////*/
+
+.mint-info-box{
+  width: 90%;
+  display: flex;
+  margin-top:7%;
+}
+
+.mint-title{
+  display: flex;
+  justify-content: center;
+  margin-top: 5%;
+}
+
+.mint-img-box{
+  flex:1;
+}
+
+.mint-info{
+  flex:1;
+}
+
+.mint-img{
+  margin-left: 22%;
+  border-radius: 15px;
+  border: 1px solid yellow;
+}

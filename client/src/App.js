@@ -23,7 +23,6 @@ function App() {
             <Route path="/" element={<MainPage />}></Route>
             <Route path="/market" element={<Market />}></Route>
             <Route path="/mypage" element={<Mypage />}></Route>
-            <Route path="/fractionalnft" element={<Fractionalnft />}></Route>
             <Route path="/mint" element={<Mint />}></Route>
             <Route path="/roadmap" element={<Roadmap />}></Route>
             <Route path="/community" element={<Community />}></Route>

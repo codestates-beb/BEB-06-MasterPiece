@@ -17,12 +17,8 @@ function Header() {
             <button>Market</button>
           </Link>
 
-          <Link to="/fractionalnft">
+          <Link to="/mint">
             <button>Piece nft</button>
-          </Link>
-          <button>comming</button>
-          <Link to="/roadmap">
-            <button>Roadmap</button>
           </Link>
           <Link
             to="/community"
@@ -32,6 +28,10 @@ function Header() {
           >
             <button>community</button>
           </Link>
+          <Link to="/roadmap">
+            <button>Roadmap</button>
+          </Link>
+          <button>comming</button>
           <Link to="/mypage">
             <FontAwesomeIcon icon={faUser} />
           </Link>

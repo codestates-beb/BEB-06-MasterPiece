@@ -1,10 +1,12 @@
 import { useState } from "react";
+import useStore from "../../../store/store";
 
 function Write() {
   const selectList = ["sell", "staking"];
   const [type, setType] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const { account } = useStore();
 
   const handleChangeType = (e) => {
     setType(e.target.value);
@@ -31,7 +33,9 @@ function Write() {
           <div className="agenda-profile-box">
             <img src="profile.jpg" className="agenda-profile"></img>
             <div className="agenda-single">
-              <div className="agenda-address">0x256...132</div>
+              <div className="agenda-address">
+                {account.slice(0, 5)}...{account.slice(-3)}
+              </div>
               <div>
                 {" "}
                 <select
