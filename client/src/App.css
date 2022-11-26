@@ -590,6 +590,42 @@ input:focus {
   border: 6px solid transparent;
 }
 
+/*/////////////// Community ///////////////*/
+
+.community-box{
+  display:flex;
+  justify-content: center;
+}
+
+.community-title{
+  display: flex;
+  justify-content: center;
+  font-size: 29px;
+  font-family: 'Roboto',sans-serif;
+  font-weight: 700;
+  margin-top: 8%;
+}
+
+.community-nft{
+  margin: 10% 5% 0% 5%;
+  background-image: linear-gradient(140deg, #EADEDB 0%, #c87db0 100%);
+  color: black;
+  padding: 63px;
+  font-size: 26px;
+  border-radius: 11px;
+  border: 2px solid black;
+  font-family: 'Jura';
+  cursor: pointer;
+}
+
+
+.community-nft:hover{
+  color: #838383;
+  transform: scale(1.05);
+  transition-duration: 0.3s;
+}
+
+
 
 /*/////////////// Agenda ///////////////*/
 
@@ -913,3 +949,5 @@ textarea:focus {
   transform: scale(1.05);
   transition-duration: 0.3s;
 }
+
+/*/////////////// Roadmap ///////////////*/

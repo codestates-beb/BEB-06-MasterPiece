@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoneyBill1, faUser } from "@fortawesome/free-regular-svg-icons";
+import useStore from "../../../store/store";
 
 function Header() {
   return (
@@ -16,13 +17,20 @@ function Header() {
             <button>Market</button>
           </Link>
 
-          <Link to="fractionalnft">
-            <button>BAYC</button>
+          <Link to="/fractionalnft">
+            <button>Piece nft</button>
           </Link>
           <button>comming</button>
-          <button>comming</button>
-          <Link to="/agenda">
-            <button>Agenda</button>
+          <Link to="/roadmap">
+            <button>Roadmap</button>
+          </Link>
+          <Link
+            to="/community"
+            onClick={() => {
+              useStore.setState({ openCommunity: false });
+            }}
+          >
+            <button>community</button>
           </Link>
           <Link to="/mypage">
             <FontAwesomeIcon icon={faUser} />

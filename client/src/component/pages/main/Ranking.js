@@ -3,7 +3,7 @@ import axios from "axios";
 
 function Ranking() {
   const [ranking, SetRanking] = useState([]);
-  console.log(ranking);
+
   function getNft() {
     axios
       .get(
@@ -11,7 +11,6 @@ function Ranking() {
         { headers: { "Content-Type": "application/json" } }
       )
       .then((res) => {
-        console.log(res.data.slice(0, 10));
         SetRanking(res.data.slice(0, 10));
       });
   }
@@ -32,7 +31,7 @@ function Ranking() {
           {ranking.slice(0, 5).map((a, idx) => {
             return (
               <div className="ranking">
-                <div className="ranking-num">{idx}</div>
+                <div className="ranking-num">{idx + 1}</div>
                 <img src="ranking.jpg" className="ranking-img"></img>{" "}
                 <div className="ranking-name">{a.name}</div>
                 <div className="ranking-chk"></div>
@@ -52,7 +51,7 @@ function Ranking() {
           {ranking.slice(5, 10).map((a, idx) => {
             return (
               <div className="ranking">
-                <div className="ranking-num">{idx}</div>
+                <div className="ranking-num">{idx + 6}</div>
                 <img src="ranking.jpg" className="ranking-img"></img>{" "}
                 <div className="ranking-name">{a.name}</div>
                 <div className="ranking-chk"></div>
