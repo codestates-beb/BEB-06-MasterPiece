@@ -1,8 +1,21 @@
 import { useState } from "react";
+import axios from "axios";
 
 function Ranking() {
-  const [ranking, SetRanking] = useState([1, 2, 3, 4, 5]);
-  const [ranking2, SetRanking2] = useState([6, 7, 8, 9, 10]);
+  const [ranking, SetRanking] = useState([]);
+  console.log(ranking);
+  function getNft() {
+    axios
+      .get(
+        "https://api.coingecko.com/api/v3/nfts/list?order=market_cap_usd_desc",
+        { headers: { "Content-Type": "application/json" } }
+      )
+      .then((res) => {
+        console.log(res.data.slice(0, 10));
+        SetRanking(res.data.slice(0, 10));
+      });
+  }
+  getNft();
   return (
     <div>
       <h1 style={{ marginLeft: "8%", fontFamily: "Roboto, sans-serif" }}>
@@ -16,12 +29,12 @@ function Ranking() {
             <a style={{ float: "right", marginRight: "56px" }}>VOLUME</a>
           </div>
 
-          {ranking.map((a, idx) => {
+          {ranking.slice(0, 5).map((a, idx) => {
             return (
               <div className="ranking">
-                <div className="ranking-num">{ranking[idx]}</div>
+                <div className="ranking-num">{idx}</div>
                 <img src="ranking.jpg" className="ranking-img"></img>{" "}
-                <div className="ranking-name">CryptoPunks</div>
+                <div className="ranking-name">{a.name}</div>
                 <div className="ranking-chk"></div>
                 <div className="ranking-FP">60.95 ETH</div>
                 <div className="ranking-Volume">867 ETH</div>
@@ -36,12 +49,12 @@ function Ranking() {
             <a style={{ float: "right", marginRight: "3px" }}>FLOOR PRICE</a>
             <a style={{ float: "right", marginRight: "56px" }}>VOLUME</a>
           </div>
-          {ranking.map((a, idx) => {
+          {ranking.slice(5, 10).map((a, idx) => {
             return (
               <div className="ranking">
-                <div className="ranking-num">{ranking2[idx]}</div>
+                <div className="ranking-num">{idx}</div>
                 <img src="ranking.jpg" className="ranking-img"></img>{" "}
-                <div className="ranking-name">Bored Ape Yacht Club </div>
+                <div className="ranking-name">{a.name}</div>
                 <div className="ranking-chk"></div>
                 <div className="ranking-FP">60.95 ETH</div>
                 <div className="ranking-Volume">867 ETH</div>
