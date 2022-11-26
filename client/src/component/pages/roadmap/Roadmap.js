@@ -1,4 +1,11 @@
+import { useNavigate } from "react-router-dom";
+
 function Roadmap() {
+  const navigate = useNavigate();
+
+  const handleMint = () => {
+    navigate("/mint");
+  };
   return (
     <div>
       <h1 className="roadmap-title">Road Map for Piece of Nft</h1>
@@ -35,7 +42,11 @@ function Roadmap() {
             <span>#2658</span>
             <p style={{ fontSize: "31px" }}>Crypto Punks</p>
             <time style={{ color: "white" }}>December 05 2022</time>
-            <button className="roadmap-mint-btn">Go to mint</button>
+            <div style={{ width: "150px" }}>
+              <button className="roadmap-mint-btn" onClick={handleMint}>
+                Go to mint
+              </button>
+            </div>
             <span className="circle" />
           </div>
         </div>
