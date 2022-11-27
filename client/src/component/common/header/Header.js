@@ -13,8 +13,8 @@ function Header() {
           </div>
         </Link>
         <div className="menu-btn">
-          <Link to="/market">
-            <button>Market</button>
+          <Link to="/">
+            <button>Home</button>
           </Link>
 
           <Link to="/mint">
@@ -31,7 +31,10 @@ function Header() {
           <Link to="/roadmap">
             <button>Roadmap</button>
           </Link>
-          <button>comming</button>
+          <Link to="/market">
+            <button>Market</button>
+          </Link>
+
           <Link to="/mypage">
             <FontAwesomeIcon icon={faUser} />
           </Link>
