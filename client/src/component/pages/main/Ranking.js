@@ -1,20 +1,46 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
 function Ranking() {
   const [ranking, SetRanking] = useState([]);
-
+  useEffect(() => {
+    // if (ranking != []) {
+    //   return;
+    // } else {
+    //   getNft();
+    // }
+    getNft()
+  }, [])
   function getNft() {
     axios
       .get(
-        "https://api.coingecko.com/api/v3/nfts/list?order=market_cap_usd_desc",
+        "https://api.coingecko.com/api/v3/nfts/list?order=market_cap_usd_desc&per_page=10&page=1",
         { headers: { "Content-Type": "application/json" } }
       )
       .then((res) => {
-        SetRanking(res.data.slice(0, 10));
+        console.log(res)
+        SetRanking(res.data) //
+        let arr = [];
+        for (let i = 0; i < ranking.length; i++) {
+          arr.push(ranking[i].id)
+          console.log(arr[i])
+        }
+
+        for (let i = 0; i < arr.length; i++) {
+          axios.get(
+            `https://api.opensea.io/api/v1/collection/${arr[i]}/stats`,
+            { headers: { "Content-Type": "application/json" } }
+          ).then((res) => {
+            console.log(res.data.stats)
+
+          })
+
+
+        }
       });
   }
-  getNft();
+
+
   return (
     <div>
       <h1 style={{ marginLeft: "8%", fontFamily: "Roboto, sans-serif" }}>
@@ -30,7 +56,8 @@ function Ranking() {
 
           {ranking.slice(0, 5).map((a, idx) => {
             return (
-              <div className="ranking">
+
+              <div className="ranking" >
                 <div className="ranking-num">{idx + 1}</div>
                 <img src="ranking.jpg" className="ranking-img"></img>{" "}
                 <div className="ranking-name">{a.name}</div>

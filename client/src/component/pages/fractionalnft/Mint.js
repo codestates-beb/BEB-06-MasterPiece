@@ -102,7 +102,7 @@ function Mint() {
       </h1>
 
       {/* Todo: 해당 조각nft description  */}
-      <h3>Todo</h3>
+
       <div className="mint-info-box">
         <div className="mint-img-box">
           <img
@@ -113,11 +113,12 @@ function Mint() {
         <div className="mint-info">
           <h2>Crypto Punk</h2>
           <h3>#1123</h3>
+          <h4>CryptoPunks launched as a fixed set of 10,000 items in mid-2017 and became one of the inspirations for the ERC-721 standard. They have been featured in places like The New York Times, Christie’s of London, Art|Basel Miami, and The PBS NewsHour.</h4>
           <h3>Mint Price:</h3>
           <p>Now Blocknumber : #{nowblock}</p>
           <p>Start Blocknumber : #{startBlock}</p>
           <p>My wallet : {account}</p>
-          <p>MINT AMOUNT : 3</p>
+          <p>MAX MINT AMOUNT : 3</p>
           <p>
             <input type="number" min="1" max="3" onChange={handleAmount} />
           </p>
