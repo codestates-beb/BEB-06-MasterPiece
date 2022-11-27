@@ -4,7 +4,7 @@ import MainPage from "./component/pages/main/MainPage";
 import Market from "./component/pages/market/Market";
 import Header from "./component/common/header/Header";
 import Mypage from "./component/pages/mypage/MyPage";
-import Fractionalnft from "./component/pages/fractionalnft/FractionalNft";
+import Sellnft from "./component/pages/mypage/Sellnft";
 import Mint from "./component/pages/fractionalnft/Mint";
 import Community from "./component/pages/fractionalnft/Community";
 import Detail from "./component/pages/fractionalnft/Detail";
@@ -23,6 +23,7 @@ function App() {
             <Route path="/" element={<MainPage />}></Route>
             <Route path="/market" element={<Market />}></Route>
             <Route path="/mypage" element={<Mypage />}></Route>
+            <Route path="/sellnft" element={<Sellnft />}></Route>
             <Route path="/mint" element={<Mint />}></Route>
             <Route path="/roadmap" element={<Roadmap />}></Route>
             <Route path="/community" element={<Community />}></Route>
