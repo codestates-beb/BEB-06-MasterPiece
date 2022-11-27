@@ -1,24 +1,9 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import useStore from "../../../store/store";
 import axios from "axios";
 import Web3 from "web3";
 
 const MyNftList = () => {
   const [myNft, setMyNft] = useState([]);
-  const { account } = useStore();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    connectCheck();
-  }, []);
-
-  const connectCheck = () => {
-    if (account == 0) {
-      navigate("/connectwallet");
-    }
-  };
-
   const getMyNft = () => {
     try {
       axios
@@ -48,17 +33,33 @@ const MyNftList = () => {
   }, []);
 
   return (
-    <div>
-      {myNft.map((a, idx) => {
+    // <div>
+    //   {myNft.map((a, idx) => {
+    //     return (
+    //       <div key={idx}>
+    //         <div>
+    //           <img src={a.image_url}></img>
+    //         </div>
+    //         <div> </div>
+    //         <div>{a.collection.name}</div>
+    //         <div>{a.name}</div>
+    //         <button value={idx}>Sell</button>
+    //       </div>
+    //     );
+    //   })}
+    // </div>
+    <div className="fractionalnft-box">
+      {myNft.map((a) => {
         return (
-          <div>
-            <div>
-              <img src={a.image_url}></img>
+          <div className="my-nft">
+            <img className="my-pic" src={a.image_url} />
+            <div className="frac-des">
+              <div>{a.collection.name}</div>
+              <div>{a.name}</div>
+              <div style={{ color: "tomato" }}>
+                0.013 ETH <div className="sell-btn">sell</div>
+              </div>
             </div>
-            <div> </div>
-            <div>{a.collection.name}</div>
-            <div>{a.name}</div>
-            <button value={idx}>Sell</button>
           </div>
         );
       })}

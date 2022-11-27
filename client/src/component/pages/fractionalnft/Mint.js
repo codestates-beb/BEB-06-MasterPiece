@@ -36,6 +36,7 @@ function Mint() {
     }, 15000);
   }
 
+  //느리게 가져와짐 애초에 바로 시간 보일 수 있는 방법 생각하기
   const getBlockNumber = async () => {
     let web3 = new Web3(window.ethereum);
     const blockNumber = await web3.eth.getBlockNumber();

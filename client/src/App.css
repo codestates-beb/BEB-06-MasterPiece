@@ -1159,3 +1159,137 @@ textarea:focus {
   border-radius: 15px;
   border: 1px solid yellow;
 }
+
+
+/*/////////////// Mypage ///////////////*/
+
+.mypage-box{
+  display: flex;
+  width: 99%;
+  height: 100%;
+}
+
+.mypage-profile-box{
+  float: left;
+  width: 20%;
+  background-color: #b0b0b0c2;
+  height: 100vh;
+  border-radius:5px;
+}
+
+.mypage-nft-box{
+  float: right;
+  width: 67%;
+  margin: 9% 1% 1% 7%;
+}
+
+.mypage-nft-pic{
+  width: 126px;
+  border-radius: 50%;
+  margin-left: 26%;
+  margin-top: 55%;
+  border: 2px solid black;
+}
+
+.mypage-account{
+  word-break:break-all;
+  text-align: center;
+  margin-top: 44px;
+}
+
+.copy-btn{
+  cursor: pointer;
+}
+
+
+.mypage-menu1, .mypage-menu2{
+  text-align: center;
+  margin-top: 72px;
+  font-size: 22px;
+  font-family: 'Jura';
+  cursor: pointer;
+}
+
+.click-menu{
+  text-align: center;
+  margin-top: 72px;
+  font-size: 22px;
+  font-family: 'Jura';
+  cursor: pointer;
+  color:#CDFF00;
+}
+
+.mypage-menu1:hover, .mypage-menu2:hover{
+  color:#CDFF00;
+}
+
+.item{
+  border: 1px solid white;
+  border-radius: 11px;
+  margin: 5px 2px 2px 5px;
+}
+
+.fractionalnft-box{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 200px 200px 200px 200px;
+  gap: 125px 20px;
+}
+
+.frac-nft{
+  height:300px;
+  border: 1px solid #CDFF00;
+ border-radius: 7px;
+}
+
+.my-nft{
+  height:300px;
+  border: 1px solid #ffffff;
+ border-radius: 7px;
+}
+
+.frac-pic{
+  width:100%;
+  height:74%;
+  border-radius:7px;
+  border: 1px solid #CDFF00;
+  cursor:pointer;
+}
+
+.my-pic{
+  width:100%;
+  height:74%;
+  border-radius:7px;
+  border: 1px solid #ffffff;
+  cursor:pointer;
+}
+
+.frac-pic:hover, .my-pic:hover{
+  transform: scale(1.02);
+  transition-duration: 0.3s;
+}
+
+.frac-des{
+  margin:5px;
+}
+
+.sell-btn{
+  display: inline-block;
+    float: right;
+    border-radius: 4px;
+    padding: 1px 8px;
+    color: #593029;
+    background-color: #CDFF00;
+    cursor: pointer;
+    font-size: 15px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    box-shadow: 0px 8px 15px rgb(0 0 0 / 10%);
+}
+
+.sell-btn:hover{
+  transform: scale(1.1);
+  transition-duration: 0.3s;
+}
