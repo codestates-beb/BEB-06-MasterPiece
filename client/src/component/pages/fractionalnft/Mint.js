@@ -93,15 +93,72 @@ function Mint() {
   };
 
   return (
-    <div className="mint-box">
-      <h1 className="mint-title">
+    <div>
+      <div className="mint-box">
+        <section>
+          <h1 className="mint-title">
+            <div>
+              <img src="Puzzle.jpg" />
+            </div>{" "}
+            &nbsp; The Crypto Punk NFT
+          </h1>
+          <div className="verify-badge">
+            <div className="badge">1NFT</div>
+            <div className="badge" style={{ border: "2px solid #CDFF00" }}>
+              VERIFIED
+            </div>
+          </div>
+
+          <img
+            src="https://img.seadn.io/files/e52f773e06875799d22df815799460e9.png?fit=max&w=1000"
+            className="mint-img"
+          ></img>
+          <div className="mint-one">1 / 1</div>
+        </section>
+      </div>
+      <div className="mint-des-box">
+        <div className="mint-grid-1">
+          <span>Description</span>
+          <p>
+            {" "}
+            CryptoPunks launched as a fixed set of 10,000 items in mid-2017 and
+            became one of the inspirations for the ERC-721 standard. They have
+            been featured in places like The New York Times, Christie’s of
+            London, Art|Basel Miami, and The PBS NewsHour.
+          </p>
+          <div className="mint-col-sup">
+            <span>COLLECTION SUPPLY</span> <p>13.00%</p>
+          </div>
+          <div className="mint-uniq">
+            <span>UNIQUE OWNERS</span> <p>26 / 100</p>
+          </div>
+        </div>
+        <div className="mint-grid-2">
+          <span>MINT AMOUNT</span>
+          <div className="mint-input-div">
+            <input className="mint-input" type="text"></input>
+            <div>= 23 ETH</div>
+            <div>= 186,000 USD</div>
+            <button
+              style={{ width: "481px", height: "50px", marginTop: "12%" }}
+            >
+              Review transaction
+            </button>
+          </div>
+        </div>
+      </div>
+      {/* <h1 className="mint-title">
         <div>
           <img src="Puzzle.jpg" />
-        </div>
-        Mint Now for Piece of NFT
+        </div>{" "}
+        &nbsp; The Crypto Punk NFT
       </h1>
+      <div className="verify-badge">
+        <div>1NFT</div>
+        <div>VERIFIED</div>
+      </div>
 
-      {/* Todo: 해당 조각nft description  */}
+
 
       <div className="mint-info-box">
         <div className="mint-img-box">
@@ -109,23 +166,38 @@ function Mint() {
             src="https://img.seadn.io/files/e52f773e06875799d22df815799460e9.png?fit=max&w=1000"
             className="mint-img"
           ></img>
+          <div className="mint-description">
+            <h2>
+              <img src="Puzzle.jpg" />
+              Crypto Punk
+            </h2>
+            <h3>#1123</h3>
+            <span>
+              CryptoPunks launched as a fixed set of 10,000 items in mid-2017
+              and became one of the inspirations for the ERC-721 standard. They
+              have been featured in places like The New York Times, Christie’s
+              of London, Art|Basel Miami, and The PBS NewsHour.
+            </span>
+          </div>
         </div>
         <div className="mint-info">
-          <h2>Crypto Punk</h2>
-          <h3>#1123</h3>
-          <h4>CryptoPunks launched as a fixed set of 10,000 items in mid-2017 and became one of the inspirations for the ERC-721 standard. They have been featured in places like The New York Times, Christie’s of London, Art|Basel Miami, and The PBS NewsHour.</h4>
-          <h3>Mint Price:</h3>
-          <p>Now Blocknumber : #{nowblock}</p>
-          <p>Start Blocknumber : #{startBlock}</p>
-          <p>My wallet : {account}</p>
-          <p>MAX MINT AMOUNT : 3</p>
+          <div className="mint-label">Mint Price</div>
+          <p></p>
+          <div className="mint-label">Now Blocknumber</div>
+          <p>#{nowblock}</p>
+          <div className="mint-label">Start Blocknumber</div>
+          <p>#{startBlock}</p>
+          <div className="mint-label">My wallet</div>
+          <p>{account}</p>
+          <div className="mint-label">MAX MINT AMOUNT</div>
+          <p>3</p>
           <p>
             <input type="number" min="1" max="3" onChange={handleAmount} />
           </p>
-          <button>Mint</button>
+          <button className="mint-btn">Mint Now</button>
         </div>
       </div>
-      <About />
+      <About /> */}
     </div>
   );
 }

@@ -636,13 +636,10 @@ animation: arrow-wave 1s infinite; animation-direction: alternate;}
 }
 
 .community-nft{
-  margin: 10% 5% 0% 5%;
-  background-image: linear-gradient(140deg, #EADEDB 0%, #c87db0 100%);
+  margin: 4% 1% 0% -1%;
   color: black;
   padding: 63px;
   font-size: 26px;
-  border-radius: 11px;
-  border: 2px solid black;
   font-family: 'Jura';
   cursor: pointer;
 }
@@ -1163,6 +1160,14 @@ textarea:focus {
 
 /*/////////////// Mint ///////////////*/
 
+
+
+.mint-box{
+  background-color: #bfbfbf;
+  padding-top: 3%;
+  padding-bottom: 3% ;
+}
+
 .mint-info-box{
   width: 90%;
   display: flex;
@@ -1172,23 +1177,163 @@ textarea:focus {
 .mint-title{
   display: flex;
   justify-content: center;
-  margin-top: 5%;
+  color: black;
+  font-size: 34px;
 }
 
-.mint-img-box{
-  flex:1;
+.verify-badge{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  text-transform: uppercase;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700px;
 }
 
-.mint-info{
-  flex:1;
+.badge{
+  color: black;
+  background-color: #b1b1b1;
+  padding: 4px 7px;
+  font-weight: 600;
+  font-size: 13px;
+  border-radius: 5px;
 }
+
 
 .mint-img{
-  margin-left: 32%;
-  border-radius: 15px;
-  border: 1px solid yellow;
+  display: block;
+  width: 400px;
+  margin: 0px auto;
+  margin-top: 3%;
+  border-radius: 10px;
+  filter: drop-shadow(9px 15px 9px rgb(147, 147, 147));
 }
 
+.mint-one{
+  width: 150px;
+  height: 35px;
+  text-align: center;
+  padding-top: 10px;
+  border-radius: 40px;
+  margin: 0px auto;
+  margin-top: 3%;
+  color: black;
+  background-color: #e7e7e7;
+  font-family: 'Inter';
+  font-weight: 700;
+  filter: drop-shadow(3px 18px 15px rgb(147, 147, 147));
+}
+
+.mint-description{
+  width: 340px;
+  margin-left: 32%;
+  text-align: justify;
+}
+
+.mint-label{
+  text-align: center;
+  font-size: 21px;
+  padding: 5px 3px;
+  color: white;
+  border-radius: 33px;
+  margin: 0px auto;
+  border: 1px solid white;
+  width: 216px;
+}
+
+.mint-btn{
+  margin: 0px auto;
+  margin-top: 8%;
+  font-size: 23px;
+  width: 162px;
+  height: 48px;
+}
+
+.mint-des-box{
+  display: flex;
+  margin: 11% 54px;
+}
+
+.mint-grid-1{
+  width: 50%;
+  margin-right: 131px;
+}
+
+.mint-grid-1>span{
+  font-size: 15px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+}
+
+.mint-grid-1>p{
+  font-size: 21px;
+    font-weight: 300;
+    letter-spacing: 2.5px;
+    margin-bottom: 17%;
+    color: #c3c3c3;
+}
+
+.mint-col-sup>span, .mint-uniq>span{
+  font-size: 15px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+}
+
+.mint-col-sup>p, .mint-uniq>p{
+  font-size: 26px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+}
+
+
+
+
+.mint-grid-2{
+  width: 50%;
+}
+
+.mint-grid-2>span{
+  font-size: 15px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+}
+
+.mint-col-sup{
+  width: 50%;
+  float: left;
+}
+
+.mint-uniq{
+  width: 50%;
+  float: right;
+}
+
+.mint-input{
+  border: 1px solid black;
+  border-radius: 11px;
+  width: 500px;
+  height: 74px;
+  display: block;
+  margin-top: 5%;
+  margin-bottom: 3%;
+  background-color: #80808000;
+}
+
+.mint-input-div>div{
+  font-size: 15px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+}
 
 /*/////////////// Mypage ///////////////*/
 

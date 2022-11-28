@@ -24,21 +24,21 @@ function Community() {
               id="bayc"
               onClick={handleCommunityName}
             >
-              👑 BAYC 👑
+              <img src="door.jpg"></img>
             </div>
             <div
               className="community-nft"
               id="cryptopunk"
               onClick={handleCommunityName}
             >
-              👑 Crypto Punk 👑
+              <img src="door.jpg"></img>
             </div>
             <div
               className="community-nft"
               id="mayc"
               onClick={handleCommunityName}
             >
-              👑 MAYC 👑
+              <img src="door.jpg"></img>
             </div>
           </div>
         </div>
