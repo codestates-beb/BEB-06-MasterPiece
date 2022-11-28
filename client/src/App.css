@@ -317,15 +317,15 @@ input:focus {
 
 .main-image {
   width: 100%;
-  margin-top: 10%;
-  margin-bottom: 20%;
+  margin-top: 4%;
+  margin-bottom: 0%;
 }
 
 .nft-ranking {
   border-top: 1px solid white;
   border-bottom: 1px solid white;
   display: flex;
-  margin-bottom: 25%;
+  margin-bottom: 16%;
 }
 
 .ranking-title {
@@ -388,20 +388,24 @@ input:focus {
   margin-right: 38px;
 }
 
-.about {
-  margin-top: 25%;
+
+.about{
+  margin-top: 13%;
 }
 
-.about-title {
-  color: #cdff00;
-  margin-left: 35%;
-  font-family: "Jura", sans-serif;
+.about-title{
+  color:#CDFF00;
+  text-align: center;
+  font-family:'Jura', sans-serif;
 }
 
-.about-img {
-  display: flex;
+.about-img{
+  display:block;
+
   width: 400px;
-  margin: 10% 34% 10% 34%;
+  margin: 0px auto;
+  margin-top: 9%;
+  margin-bottom: 4%;
   border-radius: 20px;
   border: 13px solid #c3c3c3d9;
 }
@@ -425,31 +429,29 @@ input:focus {
   font-family: "Roboto", sans-serif;
 }
 
-.main-gallery {
-  margin: 0;
-  color: white;
-  font-family: sans-serif;
-  display: flex;
-  align-items: center;
-  min-height: 93vh;
+
+.main-gallery{
+	margin: 0;
+	color: white;
+	font-family: sans-serif;;
+	display: flex;
+	align-items: center;
+	min-height: 69vh;
 }
-.slider {
-  width: 100%;
+.slider{width: 100%}
+.slider input{display: none;}
+.testimonials{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+	min-height: 350px;
+	perspective: 1000px;
+	overflow: hidden;
 }
-.slider input {
-  display: none;
-}
-.testimonials {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  min-height: 350px;
-  perspective: 1000px;
-  overflow: hidden;
-}
-.testimonials .item {
-  width: 300px;
+.testimonials .item{
+	width: 300px;
+
   height: 300px;
   padding: 1px;
   border-radius: 8px;
@@ -570,6 +572,34 @@ input:focus {
   z-index: 4;
 }
 
+
+
+.arrow-box{
+  width: 100%;
+  text-align: center;
+}
+.s1_arrow{display:inline-block; position:relative; top:28px; margin-left:-10px; text-align:center; animation:arrow_down 1.5s infinite;}
+.scroll-arrow {width:30px; height:30px; border-right: 3px solid white; border-bottom: 3px solid white;
+transform: rotate(45deg); -webkit-transform: rotate(45deg); -moz-transform: rotate(45deg); -o-transform: rotate(45deg);  -ms-transform: rotate(45deg);
+animation: arrow-wave 1s infinite; animation-direction: alternate;}
+.scroll-arrow:nth-child(1) {animation-delay: 0.1s;}
+.scroll-arrow:nth-child(2) {margin-top:6px; animation-delay: 0.2s;}
+.scroll-arrow:nth-child(3) {margin-top:6px; animation-delay: 0.3s;}
+@keyframes arrow-wave {
+0% {opacity: 0;}
+50% {opacity: .5;}
+100% {opacity: 1;}
+}
+@keyframes arrow_down{
+0%{top:28px;}
+50%{top:40px;}
+100%{top:28px;}
+}
+
+
+
+
+
 /*/////////////// connect wallet ///////////////*/
 
 .connect-title {
@@ -595,6 +625,8 @@ input:focus {
   border-radius: 50em;
   border: 6px solid transparent;
 }
+
+
 
 /*/////////////// Community ///////////////*/
 
@@ -1147,8 +1179,9 @@ textarea:focus {
   flex: 1;
 }
 
-.mint-img {
-  margin-left: 22%;
+.mint-img{
+  margin-left: 32%;
+
   border-radius: 15px;
   border: 1px solid yellow;
 }

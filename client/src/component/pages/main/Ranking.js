@@ -4,11 +4,15 @@ import axios from "axios";
 function Ranking() {
   const [ranking, SetRanking] = useState([]);
   useEffect(() => {
-    if (ranking == []) {
-      getNft()
-    }
-    getNft()
-  })
+
+    // if (ranking != []) {
+    //   return;
+    // } else {
+    //   getNft();
+    // }
+    getNft();
+  }, []);
+
   function getNft() {
     axios
       .get(
@@ -16,32 +20,35 @@ function Ranking() {
         { headers: { "Content-Type": "application/json" } }
       )
       .then((res) => {
-        console.log(res)
-        SetRanking(res.data) //
+        console.log(res);
+        SetRanking(res.data); //
         let arr = [];
         for (let i = 0; i < ranking.length; i++) {
-          arr.push(ranking[i].id)
-          console.log(arr[i])
+          arr.push(ranking[i].id);
+          console.log(arr[i]);
         }
 
         for (let i = 0; i < arr.length; i++) {
-          axios.get(
-            `https://api.opensea.io/api/v1/collection/${arr[i]}/stats`,
-            { headers: { "Content-Type": "application/json" } }
-          ).then((res) => {
-            console.log(res.data.stats)
-
-          })
-
-
+          axios
+            .get(`https://api.opensea.io/api/v1/collection/${arr[i]}/stats`, {
+              headers: { "Content-Type": "application/json" },
+            })
+            .then((res) => {
+              console.log(res.data.stats);
+            });
         }
       });
   }
 
-
   return (
     <div>
-      <h1 style={{ marginLeft: "8%", fontFamily: "Roboto, sans-serif" }}>
+      <h1
+        style={{
+          marginTop: "22%",
+          marginLeft: "8%",
+          fontFamily: "Roboto, sans-serif",
+        }}
+      >
         <img src="Puzzle.jpg"></img>TOP
       </h1>
       <div className="nft-ranking">
@@ -54,8 +61,7 @@ function Ranking() {
 
           {ranking.slice(0, 5).map((a, idx) => {
             return (
-
-              <div className="ranking" >
+              <div className="ranking">
                 <div className="ranking-num">{idx + 1}</div>
                 <img src="ranking.jpg" className="ranking-img"></img>{" "}
                 <div className="ranking-name">{a.name}</div>
