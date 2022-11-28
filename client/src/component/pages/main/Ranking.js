@@ -3,6 +3,9 @@ import axios from "axios";
 
 function Ranking() {
   const [ranking, SetRanking] = useState([]);
+  // const [url, setUrl] = useState([])
+  // const [volume, setVoulme] = useState([]);
+  // const [fp, setFP] = useState([])
   useEffect(() => {
 
     // if (ranking != []) {
@@ -12,6 +15,15 @@ function Ranking() {
     // }
     getNft();
   }, []);
+  useEffect(() => {
+
+    // if (ranking != []) {
+    //   return;
+    // } else {
+    //   getNft();
+    // }
+
+  }, [ranking]);
 
   function getNft() {
     axios
@@ -20,25 +32,33 @@ function Ranking() {
         { headers: { "Content-Type": "application/json" } }
       )
       .then((res) => {
-        console.log(res);
+        console.log(res.data);
         SetRanking(res.data); //
-        let arr = [];
-        for (let i = 0; i < ranking.length; i++) {
-          arr.push(ranking[i].id);
-          console.log(arr[i]);
-        }
-
-        for (let i = 0; i < arr.length; i++) {
-          axios
-            .get(`https://api.opensea.io/api/v1/collection/${arr[i]}/stats`, {
-              headers: { "Content-Type": "application/json" },
-            })
-            .then((res) => {
-              console.log(res.data.stats);
-            });
-        }
-      });
+      })
   }
+  // function getPrice() {
+  //   let arr = [];
+  //   for (let i = 0; i < ranking.length; i++) {
+  //     arr.push(ranking[i].id);
+  //     console.log(arr[i]);
+  //   }
+  //   let image = []
+  //   for (let i = 0; i < arr.length; i++) {
+  //     axios
+  //       .get(`https://api.opensea.io/api/v1/collection/${arr[i]}`, {
+  //         headers: { "Content-Type": "application/json" },
+  //       })
+  //       .then((res) => {
+  //         image.push(res.data.collection.image_url);
+  //         console.log(image)
+  //         set
+  //         setVoulme(res.data.collection.stats.one_day_volume);
+  //         setFP(res.data.collection.stats.floor_price)
+
+  //       });
+  //   }
+  // }
+
 
   return (
     <div>
@@ -63,11 +83,11 @@ function Ranking() {
             return (
               <div className="ranking">
                 <div className="ranking-num">{idx + 1}</div>
-                <img src="ranking.jpg" className="ranking-img"></img>{" "}
+                <img className="ranking-img" src="ranking.jpg"></img>{" "}
                 <div className="ranking-name">{a.name}</div>
                 <div className="ranking-chk"></div>
-                <div className="ranking-FP">60.95 ETH</div>
-                <div className="ranking-Volume">867 ETH</div>
+                <div className="ranking-FP">10.22ETH</div>
+                <div className="ranking-Volume">111ETH</div>
               </div>
             );
           })}

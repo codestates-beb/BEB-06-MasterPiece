@@ -388,19 +388,18 @@ input:focus {
   margin-right: 38px;
 }
 
-
-.about{
+.about {
   margin-top: 13%;
 }
 
-.about-title{
-  color:#CDFF00;
+.about-title {
+  color: #cdff00;
   text-align: center;
-  font-family:'Jura', sans-serif;
+  font-family: "Jura", sans-serif;
 }
 
-.about-img{
-  display:block;
+.about-img {
+  display: block;
 
   width: 400px;
   margin: 0px auto;
@@ -429,28 +428,31 @@ input:focus {
   font-family: "Roboto", sans-serif;
 }
 
-
-.main-gallery{
-	margin: 0;
-	color: white;
-	font-family: sans-serif;;
-	display: flex;
-	align-items: center;
-	min-height: 69vh;
+.main-gallery {
+  margin: 0;
+  color: white;
+  font-family: sans-serif;
+  display: flex;
+  align-items: center;
+  min-height: 69vh;
 }
-.slider{width: 100%}
-.slider input{display: none;}
-.testimonials{
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	position: relative;
-	min-height: 350px;
-	perspective: 1000px;
-	overflow: hidden;
+.slider {
+  width: 100%;
 }
-.testimonials .item{
-	width: 300px;
+.slider input {
+  display: none;
+}
+.testimonials {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  min-height: 350px;
+  perspective: 1000px;
+  overflow: hidden;
+}
+.testimonials .item {
+  width: 300px;
 
   height: 300px;
   padding: 1px;
@@ -572,33 +574,64 @@ input:focus {
   z-index: 4;
 }
 
-
-
-.arrow-box{
+.arrow-box {
   width: 100%;
   text-align: center;
 }
-.s1_arrow{display:inline-block; position:relative; top:28px; margin-left:-10px; text-align:center; animation:arrow_down 1.5s infinite;}
-.scroll-arrow {width:30px; height:30px; border-right: 3px solid white; border-bottom: 3px solid white;
-transform: rotate(45deg); -webkit-transform: rotate(45deg); -moz-transform: rotate(45deg); -o-transform: rotate(45deg);  -ms-transform: rotate(45deg);
-animation: arrow-wave 1s infinite; animation-direction: alternate;}
-.scroll-arrow:nth-child(1) {animation-delay: 0.1s;}
-.scroll-arrow:nth-child(2) {margin-top:6px; animation-delay: 0.2s;}
-.scroll-arrow:nth-child(3) {margin-top:6px; animation-delay: 0.3s;}
+.s1_arrow {
+  display: inline-block;
+  position: relative;
+  top: 28px;
+  margin-left: -10px;
+  text-align: center;
+  animation: arrow_down 1.5s infinite;
+}
+.scroll-arrow {
+  width: 30px;
+  height: 30px;
+  border-right: 3px solid white;
+  border-bottom: 3px solid white;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  animation: arrow-wave 1s infinite;
+  animation-direction: alternate;
+}
+.scroll-arrow:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.scroll-arrow:nth-child(2) {
+  margin-top: 6px;
+  animation-delay: 0.2s;
+}
+.scroll-arrow:nth-child(3) {
+  margin-top: 6px;
+  animation-delay: 0.3s;
+}
 @keyframes arrow-wave {
-0% {opacity: 0;}
-50% {opacity: .5;}
-100% {opacity: 1;}
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
 }
-@keyframes arrow_down{
-0%{top:28px;}
-50%{top:40px;}
-100%{top:28px;}
+@keyframes arrow_down {
+  0% {
+    top: 28px;
+  }
+  50% {
+    top: 40px;
+  }
+  100% {
+    top: 28px;
+  }
 }
-
-
-
-
 
 /*/////////////// connect wallet ///////////////*/
 
@@ -625,8 +658,6 @@ animation: arrow-wave 1s infinite; animation-direction: alternate;}
   border-radius: 50em;
   border: 6px solid transparent;
 }
-
-
 
 /*/////////////// Community ///////////////*/
 
@@ -1179,7 +1210,7 @@ textarea:focus {
   flex: 1;
 }
 
-.mint-img{
+.mint-img {
   margin-left: 32%;
 
   border-radius: 15px;
@@ -1338,5 +1369,23 @@ textarea:focus {
 
 .sell-title {
   display: flex;
+  justify-content: center;
+}
+
+.loading-text {
+  font: 1rem "Noto Sans KR";
+  text-align: center;
+}
+
+.background-loading {
+  position: absoulute;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
 }
