@@ -4,13 +4,11 @@ import axios from "axios";
 function Ranking() {
   const [ranking, SetRanking] = useState([]);
   useEffect(() => {
-    // if (ranking != []) {
-    //   return;
-    // } else {
-    //   getNft();
-    // }
+    if (ranking == []) {
+      getNft()
+    }
     getNft()
-  }, [])
+  })
   function getNft() {
     axios
       .get(

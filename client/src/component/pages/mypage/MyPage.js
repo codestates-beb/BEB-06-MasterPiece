@@ -3,11 +3,13 @@ import { useNavigate } from "react-router-dom";
 import useStore from "../../../store/store";
 import MyNftList from "./MyNftList";
 import MyFractionalNft from "./MyFractionalNft";
+import EventMarket from "./EventMarket";
 
 function Mypage() {
   const [myNft, setMyNft] = useState([]);
   const [clickOnnft, setClickOnnft] = useState(true);
   const [clickOnpiece, setClickOnpiece] = useState(false);
+  const [clickOnevent, setClickOnevent] = useState(false);
   const { account } = useStore();
   const navigate = useNavigate();
 
@@ -18,10 +20,17 @@ function Mypage() {
   const handleMenu1 = () => {
     setClickOnnft(true);
     setClickOnpiece(false);
+    setClickOnevent(false)
   };
   const handleMenu2 = () => {
     setClickOnpiece(true);
     setClickOnnft(false);
+    setClickOnevent(false)
+  };
+  const handleMenu3 = () => {
+    setClickOnpiece(false);
+    setClickOnnft(false);
+    setClickOnevent(true);
   };
 
   const connectCheck = () => {
@@ -56,10 +65,16 @@ function Mypage() {
         >
           MY PIECE OF NFT
         </div>
+        <div
+          className={clickOnevent ? "click-menu" : "mypage-menu3"}
+          onClick={handleMenu3}
+        >
+          EVENT MARKET
+        </div>
       </div>
       {/* ///////////////////////////// nft box /////////////////////////////*/}
       <div className="mypage-nft-box">
-        {clickOnnft ? <MyNftList /> : <MyFractionalNft />}
+        {clickOnnft ? <MyNftList /> : (clickOnpiece ? <MyFractionalNft /> : <EventMarket />)}
       </div>
     </div>
   );
