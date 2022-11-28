@@ -4,6 +4,7 @@ import axios from "axios";
 function Ranking() {
   const [ranking, SetRanking] = useState([]);
   useEffect(() => {
+
     // if (ranking != []) {
     //   return;
     // } else {
@@ -11,6 +12,7 @@ function Ranking() {
     // }
     getNft();
   }, []);
+
   function getNft() {
     axios
       .get(
