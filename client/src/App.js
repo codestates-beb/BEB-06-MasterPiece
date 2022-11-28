@@ -12,7 +12,7 @@ import Write from "./component/pages/fractionalnft/Write";
 import Footer from "./component/common/footer/Footer";
 import Connectwallet from "./component/pages/connect/Connectwallet";
 import Roadmap from "./component/pages/roadmap/Roadmap";
-
+import Loading from "./component/common/loading";
 function App() {
   return (
     <div>
