@@ -114,4 +114,18 @@
     * Opensea에 등록된 NFT중 필요한 것만 sorting 하여 DB 저장 -> 판매할 것만 따로 DB update -> 자체적으로 판맨
         * 타사에서 발행한 SM 컨트롤 기능에 대한 검토 필요
         * 불가능하다면, Opensea api 를 이용하여 판매 등록
- 
+        
+ 2022’Nov’29 ( 14:00~ )
+* 일반 NFT ( original : SM 으로 전부 컨트롤해주기, 타협 :web3 + DB ) 
+    * 권한 받고 ( SM 컨트롤(web3 , thirdweb3) -> SM 주인 발행자  ) -> web3
+    * 판매 listing ( 불러오기 ) -> 승인 받은것만 보여주는 거죠 -> web3 , DB  -> 온체인 저장 ( 수수료 엄청날텐데… )
+    * Transfer(판매) -> web3 컨트롤
+* 조각NFT
+    * NFT 발행 :  우리가 발행
+    * 조각 NFT 예시
+    <img width="725" alt="image" src="https://user-images.githubusercontent.com/81156500/204449291-ca7ce5da-849d-435e-ba6c-a93bbea5713a.png">
+    * SBT FMF 구매자 예시
+    <img width="547" alt="image" src="https://user-images.githubusercontent.com/81156500/204449369-be1e9a11-88ac-4371-bcd8-369639b8c5e4.png">
+
+
+
