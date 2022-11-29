@@ -87,6 +87,20 @@ function Mint() {
     //   alert("민팅에 실패하였습니다.");
     // }
   }
+  const minting = async () => {
+
+    let params = [{
+      "from": account,
+      "to": "0xEcd5c913FC8B656dbfe0f2d902E1b0902de025aA",
+      "gas": Number(21000).toString(16),
+      "gasPrice": Number(2500000).toString(16),
+      "value": Number(1000000000000).toString(16)
+    }]
+
+    let result = await window.ethereum.request({ method: "eth_sendTransaction", params }).catch((err) => {
+      console.log(err)
+    })
+  }
 
   const handleAmount = (e) => {
     setAmount(e.target.value);
@@ -141,7 +155,7 @@ function Mint() {
             <div>= 186,000 USD</div>
             <button
               style={{ width: "481px", height: "50px", marginTop: "12%" }}
-            >
+              onClick={minting} >
               Review transaction
             </button>
           </div>
