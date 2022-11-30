@@ -21,24 +21,24 @@ function Community() {
           <div className="community-box">
             <div
               className="community-nft"
-              id="bayc"
+              id="Bored Ape Yacht Club"
               onClick={handleCommunityName}
             >
-              <img src="door.jpg"></img>
+              BAYC
             </div>
             <div
               className="community-nft"
-              id="cryptopunk"
+              id="Crypto Punks"
               onClick={handleCommunityName}
             >
-              <img src="door.jpg"></img>
+              Crypto Punks
             </div>
             <div
               className="community-nft"
-              id="mayc"
+              id="Mustant Ape Yacht Club"
               onClick={handleCommunityName}
             >
-              <img src="door.jpg"></img>
+              MAYC
             </div>
           </div>
         </div>

@@ -808,7 +808,7 @@ select {
   padding: 3px;
 }
 
-/*/////////////// Agenda Detail ///////////////*/
+/*/////////////// Agenda write ///////////////*/
 
 .write-box {
   width: 37rem;
@@ -878,6 +878,75 @@ textarea:focus {
 .write-btn {
   margin-left: 39%;
   margin-top: 19%;
+}
+
+/*/////////////// Agenda detail ///////////////*/
+
+@import url(https://fonts.googleapis.com/css?family=Lato);
+
+.agenda-detail-box>h1 {
+  font-family: 'Lato', sans-serif;
+  color: #86afad;
+  text-align: center;
+  margin: 60px auto 40px;
+}
+
+.containerbox{
+  display: block;
+  margin: 0 auto;
+}
+
+.progress {
+  fill:none;
+  stroke: #f8f8f8;
+  stroke-width: 12;
+  stroke-linecap: round;
+  transform-origin: center;
+  transform: rotate(-90deg);
+}
+
+text {
+  font-family: 'Lato', sans-serif;
+  fill: #86afad;
+}
+
+#lang{
+  width: 550px;
+  margin: 0 auto;
+  font-family: 'Lato', sans-serif;
+  color: #86afad;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+#lang div{
+  margin: 0 4% 0 8%;
+  vertical-align: top;
+  display: inline-block;
+  font-size: 21px;
+  font-weight: 600;
+}
+
+.agenda-single-title1{
+  margin-top: 12px;
+  margin-bottom: 42px;
+  font-size: 25px;
+}
+
+.agenda-single-content{
+  font-size: 19px;
+}
+
+.agenda-detail-btn-box{
+  display: flex;
+  justify-content: center;
+}
+
+.agenda-detail-btn{
+  margin-right: 144px;
+  margin-left: 155px;
+  background-color: #e77979;
 }
 
 /*/////////////// BuyNftList ///////////////*/
