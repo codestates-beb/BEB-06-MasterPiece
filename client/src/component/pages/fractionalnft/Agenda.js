@@ -26,20 +26,26 @@ function Agenda({ communityName }) {
     });
     if (communityName == "Bored Ape Yacht Club") {
       setCollectionName("Bored Ape Yacht Club");
-      setCollectionNum(15923);
-      SetCollectionPic("gallery2.jpg"); //일단 하드코딩
+      setCollectionNum(3152);
+      SetCollectionPic(
+        "https://i.seadn.io/gae/Ju9CkWtV-1Okvf45wo8UctR-M9He2PjILP0oOvxE89AyiPPGtrR3gysu1Zgy0hjd2xKIgjJJtWIc0ybj4Vd7wv8t3pxDGHoJBzDB?auto=format&w=1920"
+      ); //일단 하드코딩
       setAgenda(filterAgenda);
     }
     if (communityName == "Crypto Punks") {
       setCollectionName("Crypto Punks");
-      setCollectionNum(587);
-      SetCollectionPic("gallery1.jpg");
+      setCollectionNum(1082);
+      SetCollectionPic(
+        "https://i.seadn.io/gae/BdxvLseXcfl57BiuQcQYdJ64v-aI8din7WPk0Pgo3qQFhAUH-B6i-dCqqc_mCkRIzULmwzwecnohLhrcH8A9mpWIZqA7ygc52Sr81hE?auto=format&w=1920"
+      );
       setAgenda(filterAgenda);
     }
     if (communityName == "Mustant Ape Yacht Club") {
       setCollectionName("Mutant Ape Yacht Club");
-      setCollectionNum(2944);
-      SetCollectionPic("gallery3.jpg");
+      setCollectionNum(5082);
+      SetCollectionPic(
+        "https://i.seadn.io/gae/lHexKRMpw-aoSyB1WdFBff5yfANLReFxHzt1DOj_sg7mS14yARpuvYcUtsyyx-Nkpk6WTcUPFoG53VnLJezYi8hAs0OxNZwlw6Y-dmI?auto=format&w=1920"
+      );
       setAgenda(filterAgenda);
     }
   };

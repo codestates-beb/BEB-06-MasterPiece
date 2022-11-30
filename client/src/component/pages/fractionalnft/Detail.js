@@ -71,7 +71,7 @@ function Detail({ selectId }) {
                 <p>{item.collectionname}</p>
                 <p style={{ fontSize: "20px", color: "#CDFF00" }}>#1143</p>
                 <div className="agenda-single-box">
-                  <img src="profile.jpg" className="agenda-profile"></img>
+                  <img src={item.profile} className="agenda-profile"></img>
                   <div className="agenda-single">
                     <div className="agenda-address">
                       {item.address}{" "}

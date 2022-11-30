@@ -177,7 +177,7 @@ function Mint() {
           <div className="verify-badge">
             <div className="badge">1 piece</div>
             <div className="badge" style={{ border: "2px solid #CDFF00" }}>
-              VERIFIED
+              VERIFIED <div className="ranking-chk"></div>
             </div>
           </div>
 

@@ -36,11 +36,14 @@ function Roadmap() {
                 src="https://img.seadn.io/files/e52f773e06875799d22df815799460e9.png?fit=max&w=1000"
               ></img>
             </div>
-            <span className="tag" style={{ background: "#ef79d3b0" }}>
-              In progress
-            </span>
+
             <span>#1082</span>
-            <p style={{ fontSize: "31px" }}>Crypto Punks</p>
+            <p style={{ fontSize: "31px" }}>
+              Crypto Punks{" "}
+              <span className="tag" style={{ background: "#ef79d3b0" }}>
+                In progress
+              </span>
+            </p>
             <time style={{ color: "white" }}>December 07 2022</time>
             <div style={{ width: "150px" }}>
               <button className="roadmap-mint-btn" onClick={handleMint}>
