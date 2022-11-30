@@ -206,7 +206,7 @@ function Mint() {
           </div>
         </div>
         <div className="mint-grid-2">
-          <span style={{ marginLeft: "50px" }}>Start time : Dec 07</span>
+          <span style={{ marginLeft: "50px" }}>Until Dec 07</span>
           <div className="mint-input-div">
             <div className="timer-box">
               <section className="timer-container">
