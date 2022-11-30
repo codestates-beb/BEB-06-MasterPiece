@@ -1490,6 +1490,14 @@ section p:first-child{
   height: 50px;
 }
 
+.minting-btn-stop{
+  display: block;
+  margin: 0px auto;
+  width: 480px;
+  height: 50px;
+  background-color: gray;
+}
+
 
 /*/////////////// Mypage ///////////////*/
 
