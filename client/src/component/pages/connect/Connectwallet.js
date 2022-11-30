@@ -16,7 +16,7 @@ function Connectwallet() {
           useStore.setState({ account: accounts[0] });
           if (accounts[0] != 0) {
             alert("connect succeeded");
-            navigate("/");
+            navigate("/mypage");
           }
         }
       } else {

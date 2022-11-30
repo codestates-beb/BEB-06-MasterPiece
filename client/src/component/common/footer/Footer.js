@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function Footer() {
   return (
     <div className="footer-container">
@@ -38,43 +40,30 @@ function Footer() {
         </div>
 
         <div className="footer-link-items">
-          <h2>About us</h2>
-          <p>Contact</p>
-          <p>Support</p>
-          <p>Destinations</p>
+          <h2>Marketplace</h2>
+          <a href="/">Mainpage</a>
+          <a href="/market">Market</a>
+          <a href="/mint">Fractional nft</a>
+        </div>
+        <div className="footer-link-items">
+          <h2>Community</h2>
+          <a href="/community">Main</a>
+          <a href="/detail">Agenda</a>
+          <a href="/write">Agenda write</a>
+        </div>
+        <div className="footer-link-items">
+          <h2>My Account</h2>
+          <a href="/mypage">Profile</a>
+          <a href="/connectwallet">Connect wallet</a>
         </div>
         <div className="footer-link-items">
           <h2>About us</h2>
-          <p>Contact</p>
-          <p>Support</p>
-          <p>Destinations</p>
-        </div>
-        <div className="footer-link-items">
-          <h2>About us</h2>
-          <p>Contact</p>
-          <p>Support</p>
-          <p>Destinations</p>
-        </div>
-        <div className="footer-link-items">
-          <h2>About us</h2>
-          <p>Contact</p>
-          <p>Support</p>
-          <p>Destinations</p>
+          <a href="https://github.com/codestates-beb/BEB-06-MasterPiece">
+            Github
+          </a>
+          <a href="/roadmap">Roadmap</a>
         </div>
       </div>
-      {/* <section className="social-media">
-        <div className="social-media-wrap">
-          <div className="footer-logo">
-            <p className="social-logo">PoP</p>
-          </div>
-          <small className="website-rights">PoP © 2022</small>
-          <div className="social-icons">
-            <p className="social-icon-link facebook">facebook</p>
-            <p className="social-icon-link twitter">twitter</p>
-            <p className="social-icon-link twitter">github</p>
-          </div>
-        </div>
-      </section> */}
     </div>
   );
 }

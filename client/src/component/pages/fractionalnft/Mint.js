@@ -1,8 +1,8 @@
 import { useEffect, useState, useRef } from "react";
+import axios from "axios";
 import Web3 from "web3";
 import { ethers } from "ethers";
 // import { ABI, ADDRESS } from "./config.js";
-import About from "../main/About";
 import useStore from "../../../store/store";
 import abi from "../../abi/erc1155optimizeABI";
 import tx from "ethers";
@@ -10,17 +10,17 @@ import tx from "ethers";
 function Mint() {
   const smAddress = "0xe1A6B8329C6180f28d3c56E2CF4a1b453E43Bb8B";
   const { account } = useStore();
-  const [provider, setProvider] = useState(undefined);
-  const [amount, setAmount] = useState(0);
   const [timerDays, setTimerDays] = useState("00");
   const [timerHours, setTimerHours] = useState("00");
   const [timerMinutes, setTimerMinutes] = useState("00");
   const [timerSeconds, setTimerSeconds] = useState("00");
+  const [start, setStart] = useState(false); //처음에는 비활성화
+  const CryptoPunks = 2; //tokenId
 
   let interval = useRef();
 
   const startTimer = () => {
-    const countdownDate = new Date("Dec 07, 2022 00:00:00").getTime();
+    const countdownDate = new Date("Dec 05, 2022 21:22:00").getTime();
 
     interval = setInterval(() => {
       const now = new Date().getTime();
@@ -36,6 +36,7 @@ function Mint() {
       if (distance < 0) {
         //stop our timer
         clearInterval(interval.current);
+        setStart(true);
       } else {
         //update timer
         setTimerDays(days);
@@ -46,13 +47,6 @@ function Mint() {
     }, 1000);
   };
 
-  // const getTotal = async () => {
-  //     let web3 = new Web3(window.ethereum);
-  //     let contract = await new web3.eth.Contract(ABI, ADDRESS);
-  //     let total = await c  ontract.methods.totalSupply().call();
-  //     setTotalmint(total);
-  //   };
-
   useEffect(() => {
     startTimer();
     return () => {
@@ -60,63 +54,14 @@ function Mint() {
     };
   }, []);
 
-  //web3에서 제공하는 provider 쓸 수 있게 provider에 넣어두기
-  const getProvider = async () => {
-    const provider = await new ethers.providers.Web3Provider(window.ethereum);
-    setProvider(provider);
-    return provider;
-  };
-
-  //   const getMintBlock = async () => {
-  //     let web3 = new Web3(window.ethereum);
-  //     let contract = await new web3.eth.Contract(ABI, ADDRESS);
-  //     await contract.methods
-  //       .getStartMintBlock()
-  //       .call()
-  //       .then((result) => {
-  //         setstartBlock(result);
-  //       });
-  //   };
-
-  async function publicMint() {
-    if (account == 0) {
-      alert("Error: 지갑을 연결해주세요");
-      return;
-    }
-
-    // let web3 = new Web3(window.ethereum);
-    // let contract = await new web3.eth.Contract(ABI, ADDRESS);
-    // let mintRate = Number(await contract.methods.cost().call());
-    // let totalAmount = BigNumber(amount * mintRate);
-    if (amount <= 0 || amount > 3) {
-      alert("3개까지만 욕심쟁이야");
-      return;
-    }
-    // if (nowblock <= startBlock) {
-    //   alert("시간이 안됐다");
-    //   return;
-    // }
-    // try {
-    //   const result = contract.methods.mint(account, amount).send({
-    //     from: account,
-    //     value: String(totalAmount),
-    //   });
-
-    //   if (result != null) {
-    //     console.log(result);
-    //     alert("민팅에 성공하였습니다");
-    //   }
-    // } catch (error) {
-    //   console.log(error);
-    //   alert("민팅에 실패하였습니다.");
-    // }
-  }
-
   const minting = async () => {
     const web3 = new Web3(window.ethereum);
     const contract = new web3.eth.Contract(abi, smAddress);
-    const soulcheck = await contract.methods.soulBalanceOf(2, account).call();
+    const soulcheck = await contract.methods
+      .soulBalanceOf(CryptoPunks, account)
+      .call();
 
+    //soul 이 없어야 transaction 실행 =>
     if (soulcheck == 0) {
       let params = [
         {
@@ -128,41 +73,62 @@ function Mint() {
         },
       ];
       await window.ethereum
-        .request({ method: "eth_sendTransaction", params })
-        .then((res) => {
-          console.log(res);
+        .request({
+          method: "eth_sendTransaction",
+          params,
+        })
+        .then(async (result) => {
+          const privateKey =
+            "299a2a3f9ce26ada82bb0a548c3f88a638125e010be4c9a458485eb485487e98";
+
+          const host =
+            web3.eth.accounts.privateKeyToAccount(privateKey).address;
+
+          const transaction = contract.methods.souldrop(
+            CryptoPunks,
+            account,
+            ""
+          );
+          const options = {
+            from: account,
+            to: smAddress,
+            data: transaction.encodeABI(),
+            gas: await transaction.estimateGas({ from: host }),
+          };
+          const signed = await web3.eth.accounts.signTransaction(
+            options,
+            privateKey
+          );
+          const receipt = await web3.eth.sendSignedTransaction(
+            signed.rawTransaction
+          );
+          return receipt;
+        })
+        .then((receipt) => {
+          if (receipt.status) {
+            axios
+              .post(
+                `http://localhost:3001/mint`,
+                { account: account, tokenId: CryptoPunks },
+                { Headers: { "Content-Type": "application/json" } }
+              )
+              .then((res) => {
+                alert("success");
+              });
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+          alert("mint 실패");
         });
-
-      const privateKey =
-        "299a2a3f9ce26ada82bb0a548c3f88a638125e010be4c9a458485eb485487e98";
-
-      const host = web3.eth.accounts.privateKeyToAccount(privateKey).address;
-
-      const transaction = contract.methods.souldrop(2, account, "");
-      const options = {
-        from: account,
-        to: smAddress,
-        data: transaction.encodeABI(),
-        gas: await transaction.estimateGas({ from: host }),
-      };
-      const signed = await web3.eth.accounts.signTransaction(
-        options,
-        privateKey
-      );
-      const receipt = await web3.eth.sendSignedTransaction(
-        signed.rawTransaction
-      );
-      return console.log(receipt);
     } else {
       alert("already minted");
     }
-
-    // const Minting = await contract.methods.
   };
 
-  // const handleAmount = (e) => {
-  //   setAmount(e.target.value);
-  // };
+  const handleStartAlert = () => {
+    alert("Minting start on Dec 07");
+  };
 
   return (
     <div>
@@ -206,7 +172,7 @@ function Mint() {
           </div>
         </div>
         <div className="mint-grid-2">
-          <span style={{ marginLeft: "50px" }}>Until Dec 07</span>
+          <span style={{ marginLeft: "50px" }}>Start time Dec 07</span>
           <div className="mint-input-div">
             <div className="timer-box">
               <section className="timer-container">
@@ -243,9 +209,24 @@ function Mint() {
                 </section>
               </section>
             </div>
-            <button className="minting-btn" onClick={minting}>
-              1 Mint per 1 address
-            </button>
+            {start ? (
+              <div>
+                <button className="minting-btn" onClick={minting}>
+                  1 Mint per 1 address
+                </button>
+              </div>
+            ) : (
+              <div>
+                <div>
+                  <button
+                    className="minting-btn-stop"
+                    onClick={handleStartAlert}
+                  >
+                    1 Mint per 1 address
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
