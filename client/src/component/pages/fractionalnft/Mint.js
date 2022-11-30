@@ -1,20 +1,50 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Web3 from "web3";
 import { ethers } from "ethers";
 // import { ABI, ADDRESS } from "./config.js";
 import About from "../main/About";
 import useStore from "../../../store/store";
-import abi from "../../abi/erc1155optimizeABI"
-import tx from "ethers"
-
+import abi from "../../abi/erc1155optimizeABI";
+import tx from "ethers";
 
 function Mint() {
-  const smAddress = "0xe1A6B8329C6180f28d3c56E2CF4a1b453E43Bb8B"
+  const smAddress = "0xe1A6B8329C6180f28d3c56E2CF4a1b453E43Bb8B";
   const { account } = useStore();
   const [provider, setProvider] = useState(undefined);
-  const [nowblock, setNowblock] = useState(0);
-  const [startBlock, setstartBlock] = useState(0);
   const [amount, setAmount] = useState(0);
+  const [timerDays, setTimerDays] = useState("00");
+  const [timerHours, setTimerHours] = useState("00");
+  const [timerMinutes, setTimerMinutes] = useState("00");
+  const [timerSeconds, setTimerSeconds] = useState("00");
+
+  let interval = useRef();
+
+  const startTimer = () => {
+    const countdownDate = new Date("Dec 07, 2022 00:00:00").getTime();
+
+    interval = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = countdownDate - now;
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor(
+        (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+      );
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      if (distance < 0) {
+        //stop our timer
+        clearInterval(interval.current);
+      } else {
+        //update timer
+        setTimerDays(days);
+        setTimerHours(hours);
+        setTimerMinutes(minutes);
+        setTimerSeconds(seconds);
+      }
+    }, 1000);
+  };
 
   // const getTotal = async () => {
   //     let web3 = new Web3(window.ethereum);
@@ -24,7 +54,10 @@ function Mint() {
   //   };
 
   useEffect(() => {
-    componentMount();
+    startTimer();
+    return () => {
+      clearInterval(interval.current);
+    };
   }, []);
 
   //web3에서 제공하는 provider 쓸 수 있게 provider에 넣어두기
@@ -32,19 +65,6 @@ function Mint() {
     const provider = await new ethers.providers.Web3Provider(window.ethereum);
     setProvider(provider);
     return provider;
-  };
-
-  function componentMount() {
-    setInterval(() => {
-      getBlockNumber();
-    }, 15000);
-  }
-
-  //느리게 가져와짐 애초에 바로 시간 보일 수 있는 방법 생각하기
-  const getBlockNumber = async () => {
-    let web3 = new Web3(window.ethereum);
-    const blockNumber = await web3.eth.getBlockNumber();
-    setNowblock(blockNumber);
   };
 
   //   const getMintBlock = async () => {
@@ -93,40 +113,52 @@ function Mint() {
   }
 
   const minting = async () => {
+    const web3 = new Web3(window.ethereum);
+    const contract = new web3.eth.Contract(abi, smAddress);
+    const soulcheck = await contract.methods.soulBalanceOf(2, account).call();
 
-    const web3 = new Web3(window.ethereum)
-    const contract = new web3.eth.Contract(abi, smAddress)
-    let params = [{
-      "from": account,
-      "to": "0xEcd5c913FC8B656dbfe0f2d902E1b0902de025aA",
-      "gas": Number(21000).toString(16),
-      "gasPrice": Number(2500000).toString(16),
-      "value": Number(1000000000000000).toString(16)
-    }]
-    await window.ethereum.request({ method: "eth_sendTransaction", params }).then((res) => {
-      console.log(res)
+    if (soulcheck == 0) {
+      let params = [
+        {
+          from: account,
+          to: "0xEcd5c913FC8B656dbfe0f2d902E1b0902de025aA",
+          gas: Number(21000).toString(16),
+          gasPrice: Number(2500000).toString(16),
+          value: Number(1000000000000000).toString(16),
+        },
+      ];
+      await window.ethereum
+        .request({ method: "eth_sendTransaction", params })
+        .then((res) => {
+          console.log(res);
+        });
 
-    })
+      const privateKey =
+        "299a2a3f9ce26ada82bb0a548c3f88a638125e010be4c9a458485eb485487e98";
 
-    const privateKey = "299a2a3f9ce26ada82bb0a548c3f88a638125e010be4c9a458485eb485487e98"
+      const host = web3.eth.accounts.privateKeyToAccount(privateKey).address;
 
-    const host = web3.eth.accounts.privateKeyToAccount(privateKey).address;
-
-    const transaction = contract.methods.souldrop(1, account, "");
-    const options = {
-      from: account,
-      to: smAddress,
-      data: transaction.encodeABI(),
-      gas: await transaction.estimateGas({ from: host }),
-
-    };
-    const signed = await web3.eth.accounts.signTransaction(options, privateKey);
-    const receipt = await web3.eth.sendSignedTransaction(signed.rawTransaction);
-    return console.log(receipt)
-    console.log(receipt)
+      const transaction = contract.methods.souldrop(2, account, "");
+      const options = {
+        from: account,
+        to: smAddress,
+        data: transaction.encodeABI(),
+        gas: await transaction.estimateGas({ from: host }),
+      };
+      const signed = await web3.eth.accounts.signTransaction(
+        options,
+        privateKey
+      );
+      const receipt = await web3.eth.sendSignedTransaction(
+        signed.rawTransaction
+      );
+      return console.log(receipt);
+    } else {
+      alert("already minted");
+    }
 
     // const Minting = await contract.methods.
-  }
+  };
 
   // const handleAmount = (e) => {
   //   setAmount(e.target.value);
@@ -174,71 +206,49 @@ function Mint() {
           </div>
         </div>
         <div className="mint-grid-2">
-          <span>MINT AMOUNT</span>
+          <span style={{ marginLeft: "50px" }}>Until Dec 07</span>
           <div className="mint-input-div">
-            <input className="mint-input" type="text"></input>
-            <div>= 23 ETH</div>
-            <div>= 186,000 USD</div>
-            <button
-
-              style={{ width: "481px", height: "50px", marginTop: "12%" }}
-              onClick={minting} >
-              Mint
+            <div className="timer-box">
+              <section className="timer-container">
+                <section className="timer">
+                  <div>
+                    <section>
+                      <p>{timerDays}</p>
+                      <p>
+                        <small>Days</small>
+                      </p>
+                    </section>
+                    <span>:</span>
+                    <section>
+                      <p>{timerHours}</p>
+                      <p>
+                        <small>Hours</small>
+                      </p>
+                    </section>
+                    <span>:</span>
+                    <section>
+                      <p>{timerMinutes}</p>
+                      <p>
+                        <small>Minutes</small>
+                      </p>
+                    </section>
+                    <span>:</span>
+                    <section>
+                      <p>{timerSeconds}</p>
+                      <p>
+                        <small>Seconds</small>
+                      </p>
+                    </section>
+                  </div>
+                </section>
+              </section>
+            </div>
+            <button className="minting-btn" onClick={minting}>
+              1 Mint per 1 address
             </button>
           </div>
         </div>
       </div>
-      {/* <h1 className="mint-title">
-        <div>
-          <img src="Puzzle.jpg" />
-        </div>{" "}
-        &nbsp; The Crypto Punk NFT
-      </h1>
-      <div className="verify-badge">
-        <div>1NFT</div>
-        <div>VERIFIED</div>
-      </div>
-
-
-
-      <div className="mint-info-box">
-        <div className="mint-img-box">
-          <img
-            src="https://img.seadn.io/files/e52f773e06875799d22df815799460e9.png?fit=max&w=1000"
-            className="mint-img"
-          ></img>
-          <div className="mint-description">
-            <h2>
-              <img src="Puzzle.jpg" />
-              Crypto Punk
-            </h2>
-            <h3>#1123</h3>
-            <span>
-              CryptoPunks launched as a fixed set of 10,000 items in mid-2017
-              and became one of the inspirations for the ERC-721 standard. They
-              have been featured in places like The New York Times, Christie’s
-              of London, Art|Basel Miami, and The PBS NewsHour.
-            </span>
-          </div>
-        </div>
-        <div className="mint-info">
-          <div className="mint-label">Mint Price</div>
-          <p></p>
-          <div className="mint-label">Now Blocknumber</div>
-          <p>#{nowblock}</p>
-          <div className="mint-label">Start Blocknumber</div>
-          <p>#{startBlock}</p>
-          <div className="mint-label">My wallet</div>
-          <p>{account}</p>
-          <div className="mint-label">MAX MINT AMOUNT</div>
-          <p>3</p>
-          <p>
-            <input type="number" min="1" max="3" onChange={handleAmount} />
-          </p>
-          <button className="mint-btn">Mint Now</button>
-        </div>
-      </div>
-      <About /> */}
     </div>
   );
 }

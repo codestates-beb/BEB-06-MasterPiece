@@ -17,28 +17,40 @@ function Community() {
         <Agenda communityName={communityName} />
       ) : (
         <div>
-          <div className="community-title">Welcome to Community</div>
+          <div className="community-title">
+            <div>
+              <img src="Puzzle.jpg" style={{ width: "50px" }} />
+            </div>
+            &nbsp;Maker Governance
+          </div>
+          <div className="community-des">
+            Join a decentralized community the integrity of the Maker
+            <br /> Protocol through discussion, and on-chain voting with SBT.
+          </div>
           <div className="community-box">
             <div
-              className="community-nft"
+              className="community-nft bayc-img"
               id="Bored Ape Yacht Club"
               onClick={handleCommunityName}
             >
-              BAYC
+              <span>Bored Ape Yacht Club #3152</span>
+              <button className="btn-1">go to join</button>
             </div>
             <div
-              className="community-nft"
+              className="community-nft crypto-img"
               id="Crypto Punks"
               onClick={handleCommunityName}
             >
-              Crypto Punks
+              <span>Crypto Punks #1082</span>
+              <button className="btn-1">go to join</button>
             </div>
             <div
-              className="community-nft"
+              className="community-nft mustant-img"
               id="Mustant Ape Yacht Club"
               onClick={handleCommunityName}
             >
-              MAYC
+              <span>Mutant Ape Yacht Club #5082</span>
+              <button className="btn-1">go to join</button>
             </div>
           </div>
         </div>
