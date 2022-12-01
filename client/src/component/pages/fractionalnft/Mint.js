@@ -3,14 +3,15 @@ import axios from "axios";
 import Web3 from "web3";
 import { ethers } from "ethers";
 // import { ABI, ADDRESS } from "./config.js";
-import { contractStore } from "../../../store/store";
+import { useStore, contractStore } from "../../../store/store";
 import abi from "../../abi/erc1155optimizeABI";
 import tx from "ethers";
-import { useStore } from "../../../store/store";
 
 function Mint() {
   const { smAddress } = contractStore();
   const { account } = useStore();
+  const [collectionName, setCollectionName] = useState("");
+  const [nftName, setNftName] = useState("");
   const [total, setTotal] = useState(0);
   const [owner, setOwner] = useState(0);
   const [description, setDescription] = useState("");
@@ -20,7 +21,7 @@ function Mint() {
   const [timerMinutes, setTimerMinutes] = useState("00");
   const [timerSeconds, setTimerSeconds] = useState("00");
   const [start, setStart] = useState(false); //처음에는 비활성화
-  const CryptoPunks = 0; //tokenId
+  const CryptoPunks = 0; //tokenId bayc: 1, mayc:2
 
   let interval = useRef();
 
@@ -58,13 +59,12 @@ function Mint() {
         headers: { "Content-Type": "application/json" },
       })
       .then((res) => {
-        console.log(res.data);
-        console.log(smAddress)
-        console.log(account)
-        setTotal(res.data[0].piece_total_count);
-        setOwner(res.data[0].unique_owner);
+        setTotal(res.data[0].pieceTotalCount);
+        setOwner(res.data[0].uniqueOwner);
         setDescription(res.data[0].description);
         setPrice(res.data[0].price);
+        setCollectionName(res.data[0].collectionName);
+        setNftName(res.data[0].name);
       });
     startTimer();
     return () => {
@@ -75,7 +75,7 @@ function Mint() {
   const minting = async () => {
     const web3 = new Web3(window.ethereum);
     if (account === 0) {
-      return alert("Please connect wallet")
+      return alert("Please connect wallet");
     } else {
       const contract = new web3.eth.Contract(abi, smAddress);
       const soulcheck = await contract.methods
@@ -167,7 +167,7 @@ function Mint() {
             <div>
               <img src="Puzzle.jpg" />
             </div>{" "}
-            &nbsp; Crypto Punk #1123
+            &nbsp; {collectionName} {nftName}
           </h1>
           <div className="verify-badge">
             <div className="badge">1 piece</div>
