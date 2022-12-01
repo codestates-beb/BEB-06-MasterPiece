@@ -1,10 +1,12 @@
 const express = require("express");
 const router = express.Router();
 const {
-	findAll
+	find,
+	mint
 } = require("../controller/mint")
 
-router.get("", findAll);
+router.get("", find);
+router.post("", mint);
 
 module.exports = router;
 
