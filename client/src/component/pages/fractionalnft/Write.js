@@ -8,15 +8,17 @@ import votingAbi from "../../abi/ercvotingABI";
 
 function Write() {
   const navigate = useNavigate();
-  const selectList = ["sell", "staking", "etc"]; //agenda type
+  const selectList = ["S", "T", "etc"]; //agenda type
   const stakingPeriod = [5, 10]; //staking period
   const [type, setType] = useState("");
   const [period, setPeriod] = useState(0);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const { account } = useStore();
+  const { account, proposedId } = useStore();
   const { daoVotingContract, smAddress } = contractStore();
   const CryptoPunks = 0; //tokenId bayc: 1, mayc:2
+
+
 
   const handleChangeType = (e) => {
     setType(e.target.value);
@@ -56,13 +58,14 @@ function Write() {
       },
     });
 
+
     const metaData = {
       address: account,
       collectionName: CryptoPunks,
       title: title,
       description: description,
       agendaType: type,
-      duration: duration, //staking 시간 sell = 0
+      duration: 300, //staking 시간 sell = 0
     };
 
     const metaIpfs = await client.add(JSON.stringify(metaData)); //메타데이터 ipfs CID
@@ -78,14 +81,23 @@ function Write() {
       gasPrice: web3.utils.toWei("1.5", "gwei"),
     };
     await contract.methods
-      .suggestion(smAddress, CryptoPunks, account, metaDataUrl, duration)
+      .suggestion(smAddress, CryptoPunks, account, type, 300)
       .send(transaction)
       .then((res) => {
-        alert("success");
-        navigate("/write");
-      });
-  };
+        console.log(res)
+        contract.methods
+          .suggestion(smAddress, CryptoPunks, account, type, 300)
+          .call()
+          .then((res) => {
+            useStore.setState({ proposedId: res })
+            alert(`success `);
+            // navigate("/");
+          })
 
+      });
+
+  };
+  console.log(proposedId)
   return (
     <div className="agenda-box">
       <div className="vertical-line"></div>
@@ -123,7 +135,7 @@ function Write() {
                     </option>
                   ))}
                 </select>{" "}
-                {type === "staking" && (
+                {type === "T" && (
                   <select
                     onChange={handleChangePeriod}
                     value={period}

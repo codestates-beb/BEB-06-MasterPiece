@@ -2,6 +2,7 @@ export const dummydata = [
   {
     id: 1,
     collectionname: "Crypto Punks",
+    pieceId: 0,
     title: "this is the first Agenda",
     content: "I really wonna money so need to sell",
     address: "0x132...256",
@@ -11,6 +12,7 @@ export const dummydata = [
   {
     id: 2,
     collectionname: "Crypto Punks",
+    pieceId: 0,
     title: "I need a money ... wanna money",
     content: "Yes i agree",
     address: "0x132...256",
@@ -20,6 +22,7 @@ export const dummydata = [
   {
     id: 3,
     collectionname: "Bored Ape Yacht Club",
+    pieceId: 1,
     title: "I need a money ... wanna money",
     content: "I really wonna money so need to sell",
     address: "0x132...256",
@@ -29,6 +32,7 @@ export const dummydata = [
   {
     id: 4,
     collectionname: "Bored Ape Yacht Club",
+    pieceId: 1,
     title: "I need a money ... wanna money",
     content: "I really wonna money so need to sell",
     address: "0x132...256",
@@ -38,6 +42,7 @@ export const dummydata = [
   {
     id: 5,
     collectionname: "Mustant Ape Yacht Club",
+    pieceId: 2,
     title: "I want to sell",
     content: "I really wonna money so need to sell",
     address: "0x132...256",
@@ -47,6 +52,7 @@ export const dummydata = [
   {
     id: 6,
     collectionname: "Mustant Ape Yacht Club",
+    pieceId: 2,
     title: "I want to staking",
     content: "I really wonna money so need to sell",
     address: "0x132...256",
