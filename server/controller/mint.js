@@ -51,12 +51,12 @@ module.exports = {
             select p.nft_id
             from nft_piece_minting p
             where p.id = ${pieceMintingId}
-		`
+		`;
 		db.query(query, (err, result) => {
 			if (err) throw err;
 			query = `
-                insert into nft_piece (result[0].nft_id, address)
-                values (${pieceMintingId}, ${address})
+                insert into nft_piece (nft_id, address)
+                values (${result[0].nft_id}, ${address})
 			`;
 			db.query(query, (err, result) => {
 				if (err) throw err;
