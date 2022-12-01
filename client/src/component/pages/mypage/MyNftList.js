@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Web3 from "web3";
 import Sellnft from "./Sellnft";
-import useStore from "../../../store/store";
+import { useStore } from "../../../store/store";
 
 const MyNftList = () => {
     const { account } = useStore();

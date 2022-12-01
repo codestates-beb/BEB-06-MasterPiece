@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { dummydata } from "../../common/dummy/dummydata";
 import Detail from "./Detail";
-import useStore from "../../../store/store";
+import { useStore } from "../../../store/store";
 
 function Agenda({ communityName }) {
   const navigate = useNavigate();
