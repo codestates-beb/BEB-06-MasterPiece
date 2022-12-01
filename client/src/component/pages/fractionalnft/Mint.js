@@ -10,6 +10,10 @@ import tx from "ethers";
 function Mint() {
   const smAddress = "0xe1A6B8329C6180f28d3c56E2CF4a1b453E43Bb8B";
   const { account } = useStore();
+  const [total, setTotal] = useState(0);
+  const [owner, setOwner] = useState(0);
+  const [description, setDescription] = useState("");
+  const [price, setPrice] = useState(0);
   const [timerDays, setTimerDays] = useState("00");
   const [timerHours, setTimerHours] = useState("00");
   const [timerMinutes, setTimerMinutes] = useState("00");
@@ -20,7 +24,7 @@ function Mint() {
   let interval = useRef();
 
   const startTimer = () => {
-    const countdownDate = new Date("Dec 05, 2022 21:22:00").getTime();
+    const countdownDate = new Date("Dec 01, 2022 09:44:00").getTime();
 
     interval = setInterval(() => {
       const now = new Date().getTime();
@@ -48,6 +52,17 @@ function Mint() {
   };
 
   useEffect(() => {
+    axios
+      .get("http://localhost:3001/mint", {
+        headers: { "Content-Type": "application/json" },
+      })
+      .then((res) => {
+        console.log(res.data);
+        setTotal(res.data[0].piece_total_count);
+        setOwner(res.data[0].unique_owner);
+        setDescription(res.data[0].description);
+        setPrice(res.data[0].price);
+      });
     startTimer();
     return () => {
       clearInterval(interval.current);
@@ -106,12 +121,20 @@ function Mint() {
         })
         .then((receipt) => {
           if (receipt.status) {
+            // axios
+            //   .post(
+            //     `http://localhost:3001/mint`,
+            //     { account: account, tokenId: CryptoPunks },
+            //     { Headers: { "Content-Type": "application/json" } }
+            //   )
+
             axios
-              .post(
-                `http://localhost:3001/mint`,
-                { account: account, tokenId: CryptoPunks },
-                { Headers: { "Content-Type": "application/json" } }
-              )
+              .get("http://localhost:3001/mint", {
+                headers: { "Content-Type": "application/json" },
+              })
+              .then((res) => {
+                console.log(res.data);
+              })
               .then((res) => {
                 alert("success");
               });
@@ -157,18 +180,15 @@ function Mint() {
       <div className="mint-des-box">
         <div className="mint-grid-1">
           <span>Description</span>
-          <p>
-            {" "}
-            CryptoPunks launched as a fixed set of 10,000 items in mid-2017 and
-            became one of the inspirations for the ERC-721 standard. They have
-            been featured in places like The New York Times, Christie’s of
-            London, Art|Basel Miami, and The PBS NewsHour.
-          </p>
+          <p> {description}</p>
           <div className="mint-col-sup">
-            <span>COLLECTION SUPPLY</span> <p>13.00%</p>
+            <span>Price</span> <p>{price} ETH</p>
           </div>
           <div className="mint-uniq">
-            <span>UNIQUE OWNERS</span> <p>26 / 100</p>
+            <span>UNIQUE OWNERS</span>{" "}
+            <p>
+              {owner} / {total}
+            </p>
           </div>
         </div>
         <div className="mint-grid-2">
