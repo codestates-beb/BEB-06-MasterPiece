@@ -44,16 +44,24 @@ module.exports = {
 			res.send(rows);
 		});
 	},
+
 	mint: async (req, res) => {
-		const {nftId, address} = req.body;
-		console.log(req.body);
-		const query = `
-            insert into nft_piece_minting_address (nft_id, address)
-            values (${nftId}, ${address});
+		const {pieceMintingId, address} = req.body;
+		let query = `
+            select p.nft_id
+            from nft_piece_minting p
+            where p.id = ${pieceMintingId}
 		`
 		db.query(query, (err, result) => {
 			if (err) throw err;
-			res.send("ok");
+			query = `
+                insert into nft_piece (result[0].nft_id, address)
+                values (${pieceMintingId}, ${address})
+			`;
+			db.query(query, (err, result) => {
+				if (err) throw err;
+				res.send("ok");
+			})
 		})
 	}
 }
