@@ -4,7 +4,7 @@ module.exports = {
 	find: async (req, res) => {
 		const response = {};
 		const query = `
-            select count(*)             as uniqueOwner,
+            select b.id                 as pieceMintingId,
                    b.contract_address   as contractAddress,
                    b.collection_name    as collectionName,
                    b.holder_address     as holderAddress,
@@ -14,7 +14,8 @@ module.exports = {
                    b.piece_total_count  as pieceTotalCount,
                    b.sale_end_date_time as saleEndDateTime,
                    b.status             as status,
-                   b.price              as price
+                   b.price              as price,
+                   count(*)             as uniqueOwner
             from (select p.id,
                          n.contract_address,
                          n.collection_name,
