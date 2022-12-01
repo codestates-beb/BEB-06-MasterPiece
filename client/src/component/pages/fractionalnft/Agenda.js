@@ -26,9 +26,9 @@ function Agenda({ communityName }) {
 
   const handleSetName = (communityName) => {
     let filterAgenda = dummydata.filter((a) => {
-      return a.collectionname == communityName;
+      return a.pieceId == communityName;
     });
-    if (communityName == "Bored Ape Yacht Club") {
+    if (communityName == "1") {
       setCollectionName("Bored Ape Yacht Club");
       setCollectionNum(3152);
       SetCollectionPic(
@@ -36,7 +36,7 @@ function Agenda({ communityName }) {
       ); //일단 하드코딩
       setAgenda(filterAgenda);
     }
-    if (communityName == "Crypto Punks") {
+    if (communityName == "0") {
       setCollectionName("Crypto Punks");
       setCollectionNum(1082);
       SetCollectionPic(
@@ -44,7 +44,7 @@ function Agenda({ communityName }) {
       );
       setAgenda(filterAgenda);
     }
-    if (communityName == "Mustant Ape Yacht Club") {
+    if (communityName == "2") {
       setCollectionName("Mutant Ape Yacht Club");
       setCollectionNum(5082);
       SetCollectionPic(
@@ -85,7 +85,7 @@ function Agenda({ communityName }) {
   return (
     <div>
       {selectId ? (
-        <Detail selectId={selectId} />
+        <Detail selectId={selectId} communityName={communityName} />
       ) : (
         <div className="agenda-box">
           <div className="vertical-line"></div>
@@ -106,6 +106,7 @@ function Agenda({ communityName }) {
                       className="agenda-single"
                       onClick={handleClickAgenda}
                       id={a.id}
+
                     >
                       <div className="agenda-address">
                         {a.address} <div className="agenda-type">{a.type}</div>
@@ -129,6 +130,7 @@ function Agenda({ communityName }) {
                           className="agenda-single"
                           onClick={handleClickAgenda}
                           id={a.id}
+
                         >
                           <div className="agenda-address">
                             {a.address}{" "}

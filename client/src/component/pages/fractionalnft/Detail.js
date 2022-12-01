@@ -1,9 +1,17 @@
 import { useEffect } from "react";
 import { dummydata } from "../../common/dummy/dummydata";
+import axios from "axios";
+import Web3 from "web3";
+import votingAbi from "../../abi/ercvotingABI";
+import { useStore, contractStore } from "../../../store/store";
 
-function Detail({ selectId }) {
+function Detail({ selectId, communityName }) {
+  const CryptoPunks = 0;
+  const { account, proposedId } = useStore();
+  const { daoVotingContract, smAddress } = contractStore();
   useEffect(() => {
     progressBar();
+    console.log(parseInt(communityName))
   }, []);
   function progressBar() {
     let circle = document.getElementById("one");
@@ -49,6 +57,27 @@ function Detail({ selectId }) {
       }
       angle2 += 6;
     }, 30);
+  }
+  const handleAgree = async () => {
+    // solidty에 알려준다.
+    //db업데이트해준다./
+
+    const web3 = new Web3(window.ethereum);
+    const contract = new web3.eth.Contract(votingAbi, daoVotingContract);
+    const transaction = {
+      from: account,
+      gas: 20000000, //100만
+      gasPrice: web3.utils.toWei("1.5", "gwei"),
+    };
+    await contract.methods
+      .voting(smAddress, account, CryptoPunks, proposedId, 1)
+      .send(transaction)
+      .then((res) => {
+        console.log(res)
+      })
+  }
+  const handleDisagree = async () => {
+
   }
 
   return (
@@ -130,8 +159,8 @@ function Detail({ selectId }) {
           <div>Disagree</div>
         </div>
         <div className="agenda-detail-btn-box">
-          <button className="agenda-detail-btn">agree</button>
-          <button className="agenda-detail-btn">disagree</button>
+          <button className="agenda-detail-btn" onClick={handleAgree}>agree</button>
+          <button className="agenda-detail-btn" onClick={handleDisagree}>disagree</button>
         </div>
       </div>
     </div>
