@@ -1,20 +1,24 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { dummydata } from "../../common/dummy/dummydata";
+import Web3 from "web3";
+import abi from "../../abi/erc1155optimizeABI";
 import Detail from "./Detail";
-import { useStore } from "../../../store/store";
+import { useStore, contractStore } from "../../../store/store";
 
 function Agenda({ communityName }) {
   const navigate = useNavigate();
-  const { agendaSelectedId } = useStore();
+  const { account } = useStore();
+  const { smAddress } = contractStore();
   //dummy data
   const [agenda, setAgenda] = useState(dummydata);
-  const selectList = ["sell", "staking"];
-  const [Selected, setSelected] = useState("sell");
+  const selectList = ["all", "sell", "staking", "etc"];
+  const [Selected, setSelected] = useState("all");
   const [collectionName, setCollectionName] = useState("");
   const [collectionNum, setCollectionNum] = useState(0);
   const [collectionPic, SetCollectionPic] = useState("");
   const [selectId, setSelectId] = useState(0); // 선택된 single agenda id
+  const CryptoPunks = 0; //tokenId bayc: 1, mayc:2
 
   useEffect(() => {
     handleSetName(communityName);
@@ -54,14 +58,26 @@ function Agenda({ communityName }) {
     setSelected(e.target.value);
   };
 
-  const handleClickWrite = () => {
-    navigate("/write");
+  const handleClickWrite = async () => {
+    if (account === 0) {
+      alert("Please connect wallet");
+    } else {
+      const web3 = new Web3(window.ethereum);
+      const contract = new web3.eth.Contract(abi, smAddress);
+      const soulcheck = await contract.methods
+        .soulBalanceOf(CryptoPunks, account)
+        .call();
+      if (soulcheck == 0) {
+        alert("No soul found");
+      } else {
+        navigate("/write");
+      }
+    }
   };
 
   const handleClickAgenda = (e) => {
     setSelectId(e.currentTarget.id);
   };
-  console.log(agendaSelectedId);
 
   const handleClickFractional = () => {
     navigate("/fractionalnft");
@@ -81,12 +97,9 @@ function Agenda({ communityName }) {
             <p style={{ fontSize: "20px", color: "#CDFF00" }}>
               #{collectionNum}
             </p>
-            {agenda
-              .filter((a) => {
-                return Selected === a.type;
-              })
-              .map((a) => {
-                return (
+            {Selected == "all" ? (
+              <div>
+                {agenda.map((a) => (
                   <div className="agenda-single-box">
                     <img src={a.profile} className="agenda-profile"></img>
                     <div
@@ -100,8 +113,34 @@ function Agenda({ communityName }) {
                       <div className="agenda-single-title">{a.title}</div>
                     </div>
                   </div>
-                );
-              })}
+                ))}
+              </div>
+            ) : (
+              <div>
+                {agenda
+                  .filter((a) => {
+                    return Selected === a.type;
+                  })
+                  .map((a) => {
+                    return (
+                      <div className="agenda-single-box">
+                        <img src={a.profile} className="agenda-profile"></img>
+                        <div
+                          className="agenda-single"
+                          onClick={handleClickAgenda}
+                          id={a.id}
+                        >
+                          <div className="agenda-address">
+                            {a.address}{" "}
+                            <div className="agenda-type">{a.type}</div>
+                          </div>
+                          <div className="agenda-single-title">{a.title}</div>
+                        </div>
+                      </div>
+                    );
+                  })}{" "}
+              </div>
+            )}
           </div>
 
           {/*///////// select box ///////// */}
