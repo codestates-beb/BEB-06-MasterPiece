@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function BuyNftList() {
+function BuyNftList({ handleNftNum }) {
   const [nftList, setNftList] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]);
   const [viewMore, setViewMore] = useState(false);
   const nftListFirst = nftList.slice(0, 10); //첫 화면에서는 10개의 nftlist만

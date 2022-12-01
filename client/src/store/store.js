@@ -1,7 +1,7 @@
 //공통으로 쓰는 state
 import create from "zustand";
 
-const useStore = create((set) => ({
+export const useStore = create((set) => ({
   account: 0,
   logout() {
     set((state) => ({ account: 0 }));
@@ -9,6 +9,12 @@ const useStore = create((set) => ({
 
   //header community 관리용
   openCommunity: false,
-}));
 
-export default useStore;
+
+}));
+export const contractStore = create((set) => ({
+  smAddress: "0xbFaF3a9ce3710403A0c3D4310753c9C07b45c22E",
+  daoVotingContract: "0x4c89c29085a5719350A44037Db79e22d45284b2a"
+}))
+
+

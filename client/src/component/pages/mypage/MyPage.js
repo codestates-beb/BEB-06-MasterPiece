@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import useStore from "../../../store/store";
+import { useStore } from "../../../store/store";
 import MyNftList from "./MyNftList";
 import MyFractionalNft from "./MyFractionalNft";
 import EventMarket from "./EventMarket";

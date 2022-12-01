@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoneyBill1, faUser } from "@fortawesome/free-regular-svg-icons";
-import useStore from "../../../store/store";
+import { useStore } from "../../../store/store";
 
 function Header() {
   return (

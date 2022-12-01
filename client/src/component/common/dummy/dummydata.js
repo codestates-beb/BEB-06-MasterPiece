@@ -38,6 +38,15 @@ export const dummydata = [
   {
     id: 5,
     collectionname: "Mustant Ape Yacht Club",
+    title: "I want to sell",
+    content: "I really wonna money so need to sell",
+    address: "0x132...256",
+    type: "sell",
+    profile: "gallery1.jpg",
+  },
+  {
+    id: 6,
+    collectionname: "Mustant Ape Yacht Club",
     title: "I want to staking",
     content: "I really wonna money so need to sell",
     address: "0x132...256",

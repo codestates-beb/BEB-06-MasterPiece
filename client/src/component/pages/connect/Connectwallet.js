@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import useStore from "../../../store/store";
+import { useStore } from "../../../store/store";
 import Web3 from "web3";
 
 function Connectwallet() {
@@ -16,7 +16,7 @@ function Connectwallet() {
           useStore.setState({ account: accounts[0] });
           if (accounts[0] != 0) {
             alert("connect succeeded");
-            navigate("/");
+            navigate("/mypage");
           }
         }
       } else {

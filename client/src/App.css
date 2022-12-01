@@ -695,7 +695,7 @@ input:focus {
   height: 400px;
   color: rgb(255, 255, 255);
   font-size: 19px;
-  border-radius: 10px;
+  border-radius: 15px;
   border: 2px solid rgb(218, 218, 218);
   font-family: "Jura";
   cursor: pointer;
@@ -871,7 +871,7 @@ select {
   height: 5%;
   padding: 1px;
   color: black;
-  margin-top: 8%;
+  margin-top: 13%;
   border: 0px;
   margin-left: 14%;
   padding: 6px;
@@ -1003,30 +1003,6 @@ text {
   justify-content: center;
 }
 
-.nftlist-menu {
-  display: flex;
-  width: 100%;
-  justify-content: center;
-}
-
-.nftlist-menu > div {
-  width: 150px;
-  text-align: center;
-  margin-right: 16px;
-  margin-top: 32px;
-  font-size: 20px;
-  font-family: "Jura";
-  padding: 10px;
-  color: black;
-  background-color: #bbbbb4;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-
-.nftlist-menu > div:hover {
-  color: tomato;
-}
 
 .nftlist-res {
   display: flex;
@@ -1512,6 +1488,14 @@ section p:first-child{
   margin: 0px auto;
   width: 480px;
   height: 50px;
+}
+
+.minting-btn-stop{
+  display: block;
+  margin: 0px auto;
+  width: 480px;
+  height: 50px;
+  background-color: gray;
 }
 
 

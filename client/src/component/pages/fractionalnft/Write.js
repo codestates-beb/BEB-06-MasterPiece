@@ -1,9 +1,11 @@
 import { useState } from "react";
-import useStore from "../../../store/store";
+import { useStore } from "../../../store/store";
 
 function Write() {
-  const selectList = ["sell", "staking"];
+  const selectList = ["sell", "staking", "etc"]; //agenda type
+  const stakingPeriod = ["5 min", "10 min"]; //staking period
   const [type, setType] = useState("");
+  const [period, setPeriod] = useState(0);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const { account } = useStore();
@@ -12,12 +14,20 @@ function Write() {
     setType(e.target.value);
   };
 
+  const handleChangePeriod = (e) => {
+    setPeriod(e.target.value); // 5 or 10
+  };
+
   const handleChangeTitle = (e) => {
     setTitle(e.target.value);
   };
 
   const handleChangeDes = (e) => {
     setDescription(e.target.value);
+  };
+
+  const handleSubmit = () => {
+    //작성 contract에 보내기. address, agenda type, period, metadata uri (ipfs)
   };
 
   return (
@@ -38,15 +48,39 @@ function Write() {
               </div>
               <div>
                 {" "}
+                <label
+                  for="type"
+                  style={{ fontSize: "15px", marginLeft: "4px" }}
+                >
+                  Agenda type :
+                </label>
                 <select
                   onChange={handleChangeType}
                   value={type}
-                  style={{ marginTop: "17px", marginLeft: "35px" }}
+                  style={{ marginTop: "17px" }}
+                  id={type}
                 >
-                  {selectList.map((item) => (
-                    <option value={item}>{item}</option>
+                  {selectList.map((item, idx) => (
+                    <option value={item} key={idx}>
+                      {item}
+                    </option>
                   ))}
-                </select>
+                </select>{" "}
+                {type === "staking" && (
+                  <select
+                    onChange={handleChangePeriod}
+                    value={period}
+                    style={{ marginTop: "17px" }}
+                    id="staking"
+                  >
+                    {" "}
+                    <option value="period" selected>
+                      period
+                    </option>
+                    <option value="5">5 min</option>
+                    <option value="10">10 min</option>
+                  </select>
+                )}
               </div>
             </div>
           </div>
@@ -61,7 +95,9 @@ function Write() {
             className="agenda-input2"
             onChange={handleChangeDes}
           ></textarea>
-          <button className="write-btn">submit</button>
+          <button className="write-btn" onClick={handleSubmit}>
+            submit
+          </button>
         </div>
       </div>
     </div>
