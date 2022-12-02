@@ -20,7 +20,7 @@ function Community() {
   }, []);
 
   const startTimer = () => {
-    const countdownDate = new Date("Dec 04, 2022 09:44:00").getTime();
+    const countdownDate = new Date("Dec 04, 2022 09:44:00").getTime(); //staking 끝나는 날짜 설정
 
     interval = setInterval(() => {
       const now = new Date().getTime();
@@ -67,12 +67,18 @@ function Community() {
             Join a decentralized community the integrity of the Maker
             <br /> Protocol through discussion, and on-chain voting with SBT.
           </div>
+
+          {/* ////////////  staking 진행 시 /////////////*/}
           <div className="staking-timer">
             Until {timerDays} : {timerHours} : {timerMinutes} : {timerSeconds}
           </div>
           <div className="community-status-box">
             <div style={{ color: "pink" }}>Staking</div>
+
+            {/* ////////////  minting 진행 시 /////////////*/}
             <div style={{ color: "#86fbc1" }}>In progress</div>
+
+            {/* ////////////  minting 아직 시작 안했을 때 /////////////*/}
             <div style={{ color: "black" }}>Open Jan 11</div>
           </div>
           <div className="community-box">

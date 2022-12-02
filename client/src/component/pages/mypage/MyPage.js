@@ -72,7 +72,11 @@ function Mypage() {
           EVENT MARKET
         </div>
         <div className="mypage-gettoken">Get token</div>
-        <div style={{ textAlign: "center", fontSize: "20px" }}>50 POP</div>
+        <div
+          style={{ textAlign: "center", fontSize: "20px", marginTop: "22px" }}
+        >
+          50 POP
+        </div>
       </div>
       {/* ///////////////////////////// nft box /////////////////////////////*/}
       <div className="mypage-nft-box">
