@@ -47,18 +47,19 @@ module.exports = {
 
 	mint: async (req, res) => {
 		const {pieceMintingId, address} = req.body;
+		console.log(`${pieceMintingId}, ${address}`);
 		let query = `
             select p.nft_id
             from nft_piece_minting p
             where p.id = ${pieceMintingId}
 		`;
-		db.query(query, (err, result) => {
+		await db.query(query, async (err, result) => {
 			if (err) throw err;
 			query = `
                 insert into nft_piece (nft_id, address)
-                values (${result[0].nft_id}, ${address})
+                values (?, ?)
 			`;
-			db.query(query, (err, result) => {
+			await db.query(query, [result[0].nft_id, address], (err, result) => {
 				if (err) throw err;
 				res.send("ok");
 			})
