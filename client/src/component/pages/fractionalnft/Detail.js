@@ -11,7 +11,7 @@ function Detail({ selectId, communityName }) {
   const { daoVotingContract, smAddress } = contractStore();
   useEffect(() => {
     progressBar();
-    console.log(parseInt(communityName))
+    console.log(parseInt(communityName));
   }, []);
   function progressBar() {
     let circle = document.getElementById("one");
@@ -73,12 +73,10 @@ function Detail({ selectId, communityName }) {
       .voting(smAddress, account, CryptoPunks, proposedId, 1)
       .send(transaction)
       .then((res) => {
-        console.log(res)
-      })
-  }
-  const handleDisagree = async () => {
-
-  }
+        console.log(res);
+      });
+  };
+  const handleDisagree = async () => {};
 
   return (
     <div>
@@ -105,6 +103,7 @@ function Detail({ selectId, communityName }) {
                     <div className="agenda-address">
                       {item.address}{" "}
                       <div className="agenda-type">{item.type}</div>
+                      <div className="agenda-type-div"># 안건번호</div>
                     </div>
                     <div className="agenda-single-title1">{item.title}</div>
                     <div className="agenda-single-content">{item.content}</div>
@@ -154,14 +153,25 @@ function Detail({ selectId, communityName }) {
           </g>
         </svg>
         <div id="lang">
-          <div>Agree</div>
-          <div>Vote rate</div>
-          <div>Disagree</div>
+          <div>
+            Agree{" "}
+            <div>
+              <button className="agenda-detail-btn" onClick={handleAgree}>
+                agree
+              </button>
+            </div>
+          </div>
+          <div>
+            Vote rate<button className="agenda-detail-btn">Check result</button>
+          </div>
+          <div>
+            Disagree
+            <button className="agenda-detail-btn" onClick={handleDisagree}>
+              disagree
+            </button>
+          </div>
         </div>
-        <div className="agenda-detail-btn-box">
-          <button className="agenda-detail-btn" onClick={handleAgree}>agree</button>
-          <button className="agenda-detail-btn" onClick={handleDisagree}>disagree</button>
-        </div>
+        <div className="agenda-detail-btn-box"></div>
       </div>
     </div>
   );

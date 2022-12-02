@@ -8,17 +8,13 @@ import votingAbi from "../../abi/ercvotingABI";
 
 function Write() {
   const navigate = useNavigate();
-  const selectList = ["S", "T", "etc"]; //agenda type
-  const stakingPeriod = [5, 10]; //staking period
-  const [type, setType] = useState("");
-  const [period, setPeriod] = useState(0);
+  const [type, setType] = useState(""); //S, T ,etc
+  const [period, setPeriod] = useState(0); //5 , 10
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const { account, proposedId } = useStore();
   const { daoVotingContract, smAddress } = contractStore();
   const CryptoPunks = 0; //tokenId bayc: 1, mayc:2
-
-
 
   const handleChangeType = (e) => {
     setType(e.target.value);
@@ -58,7 +54,6 @@ function Write() {
       },
     });
 
-
     const metaData = {
       address: account,
       collectionName: CryptoPunks,
@@ -84,20 +79,18 @@ function Write() {
       .suggestion(smAddress, CryptoPunks, account, type, 300)
       .send(transaction)
       .then((res) => {
-        console.log(res)
+        console.log(res);
         contract.methods
           .suggestion(smAddress, CryptoPunks, account, type, 300)
           .call()
           .then((res) => {
-            useStore.setState({ proposedId: res })
+            useStore.setState({ proposedId: res });
             alert(`success `);
             // navigate("/");
-          })
-
+          });
       });
-
   };
-  console.log(proposedId)
+  console.log(proposedId);
   return (
     <div className="agenda-box">
       <div className="vertical-line"></div>
@@ -129,11 +122,9 @@ function Write() {
                   id="type"
                   key={type}
                 >
-                  {selectList.map((item, idx) => (
-                    <option value={item} key={idx}>
-                      {item}
-                    </option>
-                  ))}
+                  <option value="S">Sell</option>
+                  <option value="T">Staking</option>
+                  <option value="etc">ETC</option>
                 </select>{" "}
                 {type === "T" && (
                   <select

@@ -20,12 +20,12 @@ function Mypage() {
   const handleMenu1 = () => {
     setClickOnnft(true);
     setClickOnpiece(false);
-    setClickOnevent(false)
+    setClickOnevent(false);
   };
   const handleMenu2 = () => {
     setClickOnpiece(true);
     setClickOnnft(false);
-    setClickOnevent(false)
+    setClickOnevent(false);
   };
   const handleMenu3 = () => {
     setClickOnpiece(false);
@@ -71,10 +71,18 @@ function Mypage() {
         >
           EVENT MARKET
         </div>
+        <div className="mypage-gettoken">Get token</div>
+        <div style={{ textAlign: "center", fontSize: "20px" }}>50 POP</div>
       </div>
       {/* ///////////////////////////// nft box /////////////////////////////*/}
       <div className="mypage-nft-box">
-        {clickOnnft ? <MyNftList /> : (clickOnpiece ? <MyFractionalNft /> : <EventMarket />)}
+        {clickOnnft ? (
+          <MyNftList />
+        ) : clickOnpiece ? (
+          <MyFractionalNft />
+        ) : (
+          <EventMarket />
+        )}
       </div>
     </div>
   );
