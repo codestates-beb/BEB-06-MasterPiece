@@ -1,41 +1,40 @@
 import { useEffect, useState } from "react";
+import { rankingDummy } from "../../common/dummy/dummydata";
 import axios from "axios";
 
 function Ranking() {
-  const [ranking, SetRanking] = useState([]);
+  const [ranking, SetRanking] = useState(rankingDummy);
   // const [url, setUrl] = useState([])
   // const [volume, setVoulme] = useState([]);
   // const [fp, setFP] = useState([])
-  useEffect(() => {
+  // useEffect(() => {
 
+  // if (ranking != []) {
+  //   return;
+  // } else {
+  //   getNft();
+  // }
+  //   getNft();
+  // }, []);
+  useEffect(() => {
     // if (ranking != []) {
     //   return;
     // } else {
     //   getNft();
     // }
-    getNft();
-  }, []);
-  useEffect(() => {
-
-    // if (ranking != []) {
-    //   return;
-    // } else {
-    //   getNft();
-    // }
-
   }, [ranking]);
 
-  function getNft() {
-    axios
-      .get(
-        "https://api.coingecko.com/api/v3/nfts/list?order=market_cap_usd_desc&per_page=10&page=1",
-        { headers: { "Content-Type": "application/json" } }
-      )
-      .then((res) => {
-        console.log(res.data);
-        SetRanking(res.data); //
-      })
-  }
+  // function getNft() {
+  //   axios
+  //     .get(
+  //       "https://api.coingecko.com/api/v3/nfts/list?order=market_cap_usd_desc&per_page=10&page=1",
+  //       { headers: { "Content-Type": "application/json" } }
+  //     )
+  //     .then((res) => {
+  //       console.log(res.data);
+  //       SetRanking(res.data); //
+  //     })
+  // }
   // function getPrice() {
   //   let arr = [];
   //   for (let i = 0; i < ranking.length; i++) {
@@ -58,7 +57,6 @@ function Ranking() {
   //       });
   //   }
   // }
-
 
   return (
     <div>
@@ -83,11 +81,11 @@ function Ranking() {
             return (
               <div className="ranking">
                 <div className="ranking-num">{idx + 1}</div>
-                <img className="ranking-img" src="ranking.jpg"></img>{" "}
-                <div className="ranking-name">{a.name}</div>
+                <img className="ranking-img" src={a.profile}></img>{" "}
+                <div className="ranking-name">{a.collectionname}</div>
                 <div className="ranking-chk"></div>
-                <div className="ranking-FP">10.22ETH</div>
-                <div className="ranking-Volume">111ETH</div>
+                <div className="ranking-FP">{a.floorprice} ETH</div>
+                <div className="ranking-Volume">{a.volume} ETH</div>
               </div>
             );
           })}
@@ -103,11 +101,11 @@ function Ranking() {
             return (
               <div className="ranking">
                 <div className="ranking-num">{idx + 6}</div>
-                <img src="ranking.jpg" className="ranking-img"></img>{" "}
-                <div className="ranking-name">{a.name}</div>
+                <img className="ranking-img" src={a.profile}></img>{" "}
+                <div className="ranking-name">{a.collectionname}</div>
                 <div className="ranking-chk"></div>
-                <div className="ranking-FP">60.95 ETH</div>
-                <div className="ranking-Volume">867 ETH</div>
+                <div className="ranking-FP">{a.floorprice} ETH</div>
+                <div className="ranking-Volume">{a.volume} ETH</div>
               </div>
             );
           })}

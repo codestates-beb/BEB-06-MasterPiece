@@ -67,46 +67,69 @@ function Community() {
             Join a decentralized community the integrity of the Maker
             <br /> Protocol through discussion, and on-chain voting with SBT.
           </div>
-
-          {/* ////////////  staking 진행 시 /////////////*/}
-          <div className="staking-timer">
-            Until {timerDays} : {timerHours} : {timerMinutes} : {timerSeconds}
-          </div>
-          <div className="community-status-box">
-            <div style={{ color: "pink" }}>Staking</div>
-
-            {/* ////////////  minting 진행 시 /////////////*/}
-            <div style={{ color: "#86fbc1" }}>In progress</div>
-
-            {/* ////////////  minting 아직 시작 안했을 때 /////////////*/}
-            <div style={{ color: "black" }}>Open Jan 11</div>
-          </div>
-          <div className="community-box">
-            <div
-              className="community-nft bayc-img"
-              id="1"
-              onClick={handleCommunityName}
-            >
-              <span>Bored Ape Yacht Club #3152</span>
-              <button className="btn-1">go to join</button>
-            </div>
-            <div
-              className="community-nft crypto-img"
-              id="0"
-              onClick={handleCommunityName}
-            >
-              <span>Crypto Punks #1082</span>
-              <button className="btn-1">go to join</button>
-            </div>
-            <div
-              className="community-nft mustant-img"
-              id="2"
-              onClick={handleCommunityName}
-            >
-              <span>Mutant Ape Yacht Club #5082</span>
-              <button className="btn-1">go to join</button>
-            </div>
-          </div>
+          <table style={{ margin: "0px auto", borderSpacing: "69px 8px" }}>
+            <thead>
+              <tr>
+                <th>
+                  <div>
+                    Until {timerDays} : {timerHours} : {timerMinutes} :{" "}
+                    {timerSeconds}
+                  </div>
+                </th>
+                <th></th>
+                <th></th>
+              </tr>
+              <tr>
+                <th>
+                  <div style={{ color: "pink", fontSize: "23px" }}>Staking</div>
+                </th>
+                <th>
+                  <div style={{ color: "#86fbc1", fontSize: "23px" }}>
+                    In progress
+                  </div>
+                </th>
+                <th>
+                  <div style={{ color: "black", fontSize: "23px" }}>
+                    Open Jan 11
+                  </div>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <div
+                    className="community-nft bayc-img"
+                    id="1"
+                    onClick={handleCommunityName}
+                  >
+                    <span>Bored Ape Yacht Club #3152</span>
+                    <button className="btn-1">go to join</button>
+                  </div>
+                </td>
+                <td>
+                  <div
+                    className="community-nft crypto-img"
+                    id="0"
+                    onClick={handleCommunityName}
+                  >
+                    <span>Crypto Punks #1082</span>
+                    <button className="btn-1">go to join</button>
+                  </div>
+                </td>
+                <td>
+                  <div
+                    className="community-nft mustant-img"
+                    id="2"
+                    onClick={handleCommunityName}
+                  >
+                    <span>Mutant Ape Yacht Club #5082</span>
+                    <button className="btn-1">go to join</button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       )}
     </div>
