@@ -106,10 +106,10 @@ function Agenda({ communityName }) {
                       className="agenda-single"
                       onClick={handleClickAgenda}
                       id={a.id}
-
                     >
                       <div className="agenda-address">
                         {a.address} <div className="agenda-type">{a.type}</div>
+                        <div className="agenda-type-div"># 안건번호</div>
                       </div>
                       <div className="agenda-single-title">{a.title}</div>
                     </div>
@@ -130,7 +130,6 @@ function Agenda({ communityName }) {
                           className="agenda-single"
                           onClick={handleClickAgenda}
                           id={a.id}
-
                         >
                           <div className="agenda-address">
                             {a.address}{" "}

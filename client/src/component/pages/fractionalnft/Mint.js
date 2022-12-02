@@ -139,8 +139,6 @@ function Mint() {
                 })
                 .then((res) => {
                   console.log(res.data);
-                })
-                .then((res) => {
                   alert("success");
                 });
             }

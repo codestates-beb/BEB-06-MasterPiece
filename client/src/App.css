@@ -661,7 +661,31 @@ input:focus {
 
 /*/////////////// Community ///////////////*/
 
+.community-status-box{
+  justify-content: center;
+    display: flex;
+}
 
+.staking-timer{
+  margin-top: 4%;
+  font-size: 20px;
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  margin-left: 4%;
+}
+
+.community-status-box> div{
+  margin: 1% 8% 1% 8%;
+  width: 15%;
+  height: 32px;
+  justify-content: center;
+  display: flex;
+  font-size: 26px;
+  border: 2px solid;
+  border-radius: 5px;
+  font-family: "Roboto", sans-serif;
+}
 
 .community-box {
   display: flex;
@@ -688,7 +712,7 @@ input:focus {
 
 
 .community-nft {
-  margin: 10% 5% 0% 5%;
+  margin: 2% 5% 0% 5%;
   background-size: 300px 300px;
   background-repeat: no-repeat;
   width: 300px;
@@ -828,6 +852,11 @@ display: block;
   color: #191a19;
 }
 
+.agenda-type-div {
+  margin-left: 19px;
+  display: inline-block;
+}
+
 .agenda-single-title {
   font-size: 19px;
   margin-top: 12px;
@@ -949,8 +978,8 @@ text {
 }
 
 #lang{
-  width: 550px;
-  margin: 0 auto;
+  width: 0px;
+  margin-left: 33%;
   font-family: 'Lato', sans-serif;
   color: #86afad;
   text-align: center;
@@ -959,7 +988,9 @@ text {
 }
 
 #lang div{
-  margin: 0 4% 0 8%;
+  width: 182px;
+  height: 202px;
+  margin: 0 0% 0 9%;
   vertical-align: top;
   display: inline-block;
   font-size: 21px;
@@ -982,8 +1013,7 @@ text {
 }
 
 .agenda-detail-btn{
-  margin-right: 144px;
-  margin-left: 155px;
+  margin-left: 14%;
   background-color: #e77979;
 }
 
@@ -1511,7 +1541,7 @@ section p:first-child{
   float: left;
   width: 20%;
   background-color: #b0b0b0c2;
-  height: 100vh;
+  height: 108vh;
   border-radius: 5px;
 }
 
@@ -1562,6 +1592,26 @@ section p:first-child{
 .mypage-menu2:hover,
 .mypage-menu3:hover {
   color: #cdff00;
+}
+
+.mypage-gettoken{
+  text-align: center;
+  margin-top: 70px;
+  font-size: 20px;
+  font-family: "Jura";
+  cursor: pointer;
+  background-color: #78faff;
+  width: 50%;
+  margin-left: 24%;
+  padding: 2%;
+  border-radius: 10px;
+  color: black;
+}
+
+.mypage-gettoken:hover{
+  color: white;
+  transform: scale(1.06);
+  transition-duration: 0.3s;
 }
 
 .item {
