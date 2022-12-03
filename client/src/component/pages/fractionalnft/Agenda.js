@@ -153,6 +153,7 @@ function Agenda({ communityName }) {
               ))}
             </select>
           </div>
+          <div className="agenda-token-btn">Claim</div>
           <div className="agenda-write-btn" onClick={handleClickWrite}>
             write
           </div>
