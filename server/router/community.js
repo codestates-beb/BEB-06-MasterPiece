@@ -1,14 +1,16 @@
 const express = require("express");
 const router = express.Router();
 const {
+	agenda,
 	community,
-	list,
-	description
+	description,
+	vote,
 } = require("../controller/community")
 
 router.get("", community);
-router.get("/:communityId", list);
-router.get("/:communityId/description/:postId", description);
+router.post("/:postId", agenda)
+router.get("/:postId", description);
+router.post("/:postId/vote", vote);
 
 module.exports = router;
 
