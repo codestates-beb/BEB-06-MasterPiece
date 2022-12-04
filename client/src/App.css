@@ -369,6 +369,26 @@ input:focus {
   color: black;
 }
 
+.main-right>div{
+  background-size: 300px 300px;
+  background-repeat: no-repeat;
+  width: 300px;
+  height: 400px;
+  color: rgb(255, 255, 255);
+  font-size: 19px;
+  border-radius: 15px;
+  border: 2px solid rgb(0, 0, 0);
+  font-family: "Jura";
+  word-break: break-all;
+  text-align: center;
+  background-image: url("https://img.seadn.io/files/e52f773e06875799d22df815799460e9.png?fit=max&w=1000");
+}
+
+.main-right>div>span{
+  display: block;
+  margin-top: 104%;
+}
+
 
 
 .nft-ranking {

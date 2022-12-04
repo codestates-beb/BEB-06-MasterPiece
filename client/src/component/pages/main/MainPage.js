@@ -36,7 +36,11 @@ function MainPage() {
             </span>
           </div>
         </div>
-        <div className="main-right">nft slide</div>
+        <div className="main-right">
+          <div>
+            <span>1/100 ETH</span>
+          </div>
+        </div>
       </div>
       <div className="arrow-box">
         <div className="s1_arrow">

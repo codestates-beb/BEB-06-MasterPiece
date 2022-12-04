@@ -1,4 +1,4 @@
-export default [
+const voteAbi = [
   {
     inputs: [
       {
@@ -243,3 +243,4 @@ export default [
     type: "function",
   },
 ];
+export default voteAbi;
