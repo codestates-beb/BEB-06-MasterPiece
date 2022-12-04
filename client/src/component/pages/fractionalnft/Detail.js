@@ -1,18 +1,28 @@
-import { useEffect } from "react";
-import { dummydata } from "../../common/dummy/dummydata";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import Web3 from "web3";
 import votingAbi from "../../abi/ercvotingABI";
 import { useStore, contractStore } from "../../../store/store";
 
-function Detail({ selectId, communityName }) {
+function Detail({ selectId, communityName, selectedAgenda }) {
+  const [detailInfo, setDetailInfo] = useState([]);
   const CryptoPunks = 0;
   const { account, proposedId } = useStore();
   const { daoVotingContract, smAddress } = contractStore();
+  console.log(detailInfo);
   useEffect(() => {
+    getDetail();
     progressBar();
     console.log(parseInt(communityName));
   }, []);
+
+  const getDetail = () => {
+    axios.get(`http://localhost:3001/community/${selectId}`).then((res) => {
+      setDetailInfo(res.data);
+      console.log(res.data);
+    });
+  };
+
   function progressBar() {
     let circle = document.getElementById("one");
     let text = document.getElementById("percent-one");
@@ -80,39 +90,32 @@ function Detail({ selectId, communityName }) {
 
   return (
     <div>
-      {dummydata
-        .filter((a) => {
-          return a.id == selectId;
-        })
-        .map((item) => {
-          return (
-            <div
-              className="agenda-box"
-              style={{ height: "600px", width: "75%" }}
-            >
-              <div className="vertical-line"></div>
-              <div className="agenda-img">
-                <img src="gallery2.jpg" className="agenda-img" />
-              </div>
-              <div className="agenda-title">
-                <p>{item.collectionname}</p>
-                <p style={{ fontSize: "20px", color: "#CDFF00" }}>#1143</p>
-                <div className="agenda-single-box">
-                  <img src={item.profile} className="agenda-profile"></img>
-                  <div className="agenda-single">
-                    <div className="agenda-address">
-                      {item.address}{" "}
-                      <div className="agenda-type">{item.type}</div>
-                      <div className="agenda-type-div"># 안건번호</div>
-                    </div>
-                    <div className="agenda-single-title1">{item.title}</div>
-                    <div className="agenda-single-content">{item.content}</div>
+      {selectedAgenda.map((item) => {
+        return (
+          <div className="agenda-box" style={{ height: "600px", width: "75%" }}>
+            <div className="vertical-line"></div>
+            <div className="agenda-img">
+              <img src="gallery2.jpg" className="agenda-img" />
+            </div>
+            <div className="agenda-title">
+              <p>{item.collectionName}</p>
+              <p style={{ fontSize: "20px", color: "#CDFF00" }}>#1143</p>
+              <div className="agenda-single-box">
+                <img src="profile.jpg" className="agenda-profile"></img>
+                <div className="agenda-single">
+                  <div className="agenda-address">
+                    {item.address.slice(0, 6)}...{item.address.slice(-3)}
+                    <div className="agenda-type">{item.type}</div>
+                    <div className="agenda-type-div">#{item.postId}</div>
                   </div>
+                  <div className="agenda-single-title1">{item.title}</div>
+                  <div className="agenda-single-content">description</div>
                 </div>
               </div>
             </div>
-          );
-        })}
+          </div>
+        );
+      })}
 
       <div className="agenda-detail-box">
         <svg className="containerbox" width="600px" height="210px">
