@@ -6,7 +6,7 @@ import abi from "../../abi/erc1155optimizeABI";
 import Detail from "./Detail";
 import { useStore, contractStore } from "../../../store/store";
 
-function Agenda({ communityName }) {
+function Agenda({ communityName, filteredAgenda }) {
   const navigate = useNavigate();
   const { account } = useStore();
   const { smAddress } = contractStore();
@@ -17,7 +17,11 @@ function Agenda({ communityName }) {
   const [collectionName, setCollectionName] = useState("");
   const [collectionNum, setCollectionNum] = useState(0);
   const [collectionPic, SetCollectionPic] = useState("");
-  const [selectId, setSelectId] = useState(0); // 선택된 single agenda id
+  const [selectId, setSelectId] = useState(0); // 선택된 postId
+  const selectedAgenda = filteredAgenda.filter((a) => {
+    return a.postId == selectId;
+  });
+
   const CryptoPunks = 0; //tokenId bayc: 1, mayc:2
 
   useEffect(() => {
@@ -77,6 +81,7 @@ function Agenda({ communityName }) {
 
   const handleClickAgenda = (e) => {
     setSelectId(e.currentTarget.id);
+    console.log(e.currentTarget.id);
   };
 
   const handleClickFractional = () => {
@@ -85,7 +90,11 @@ function Agenda({ communityName }) {
   return (
     <div>
       {selectId ? (
-        <Detail selectId={selectId} communityName={communityName} />
+        <Detail
+          selectId={selectId}
+          communityName={communityName}
+          selectedAgenda={selectedAgenda}
+        />
       ) : (
         <div className="agenda-box">
           <div className="vertical-line"></div>
@@ -99,17 +108,18 @@ function Agenda({ communityName }) {
             </p>
             {Selected == "all" ? (
               <div>
-                {agenda.map((a) => (
+                {filteredAgenda.map((a) => (
                   <div className="agenda-single-box">
-                    <img src={a.profile} className="agenda-profile"></img>
+                    <img src="profile.jpg" className="agenda-profile"></img>
                     <div
                       className="agenda-single"
                       onClick={handleClickAgenda}
-                      id={a.id}
+                      id={a.postId}
                     >
                       <div className="agenda-address">
-                        {a.address} <div className="agenda-type">{a.type}</div>
-                        <div className="agenda-type-div"># 안건번호</div>
+                        {a.address.slice(0, 6)}...{a.address.slice(-3)}{" "}
+                        <div className="agenda-type">{a.type}</div>
+                        <div className="agenda-type-div">#{a.postId}</div>
                       </div>
                       <div className="agenda-single-title">{a.title}</div>
                     </div>
@@ -118,21 +128,21 @@ function Agenda({ communityName }) {
               </div>
             ) : (
               <div>
-                {agenda
+                {filteredAgenda
                   .filter((a) => {
-                    return Selected === a.type;
+                    return a.type === Selected;
                   })
                   .map((a) => {
                     return (
                       <div className="agenda-single-box">
-                        <img src={a.profile} className="agenda-profile"></img>
+                        <img src="profile.jpg" className="agenda-profile"></img>
                         <div
                           className="agenda-single"
                           onClick={handleClickAgenda}
-                          id={a.id}
+                          id={a.postId}
                         >
                           <div className="agenda-address">
-                            {a.address}{" "}
+                            {a.address.slice(0, 6)}...{a.address.slice(-3)}
                             <div className="agenda-type">{a.type}</div>
                           </div>
                           <div className="agenda-single-title">{a.title}</div>

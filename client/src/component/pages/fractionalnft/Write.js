@@ -8,8 +8,6 @@ import votingAbi from "../../abi/ercvotingABI";
 
 function Write() {
   const navigate = useNavigate();
-  const selectList = ["S", "T", "etc"]; //agenda type
-  const stakingPeriod = [5, 10]; //staking period
   const [type, setType] = useState("");
   const [period, setPeriod] = useState(0);
   const [title, setTitle] = useState("");
@@ -17,8 +15,6 @@ function Write() {
   const { account, proposedId } = useStore();
   const { daoVotingContract, smAddress } = contractStore();
   const CryptoPunks = 0; //tokenId bayc: 1, mayc:2
-
-
 
   const handleChangeType = (e) => {
     setType(e.target.value);
@@ -58,7 +54,6 @@ function Write() {
       },
     });
 
-
     const metaData = {
       address: account,
       collectionName: CryptoPunks,
@@ -84,22 +79,21 @@ function Write() {
       .suggestion(smAddress, CryptoPunks, account, type, 300)
       .send(transaction)
       .then((res) => {
-        console.log(res)
+        console.log(res);
         contract.methods
           .suggestion(smAddress, CryptoPunks, account, type, 300)
           .call()
           .then((res) => {
-            useStore.setState({ proposedId: res })
+            useStore.setState({ proposedId: res });
             //alert(`success `);
             // navigate("/");
-          }).then((res) => {
-            //axios.post db에 업데이트
           })
-
+          .then((res) => {
+            //axios.post db에 업데이트
+          });
       });
-
   };
-  console.log(proposedId)
+  console.log(proposedId);
   return (
     <div className="agenda-box">
       <div className="vertical-line"></div>
@@ -131,13 +125,11 @@ function Write() {
                   id="type"
                   key={type}
                 >
-                  {selectList.map((item, idx) => (
-                    <option value={item} key={idx}>
-                      {item}
-                    </option>
-                  ))}
+                  <option value="T">Sell</option>
+                  <option value="S">Staking</option>
+                  <option value="E">ETC</option>
                 </select>{" "}
-                {type === "T" && (
+                {type === "S" && (
                   <select
                     onChange={handleChangePeriod}
                     value={period}
