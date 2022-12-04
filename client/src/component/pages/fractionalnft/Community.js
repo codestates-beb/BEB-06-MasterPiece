@@ -1,10 +1,14 @@
 import { useState, useRef, useEffect } from "react";
-import { useStore } from "../../../store/store";
+import { useStore, contractStore } from "../../../store/store";
 import axios from "axios";
+import Web3 from "web3";
 import Agenda from "./Agenda";
+import abi from "../../abi/erc1155optimizeABI";
+import voteAbi from "../../abi/ercvotingABI";
 
 function Community() {
   const { openCommunity } = useStore();
+  const { smAddress, daoVotingContract } = contractStore();
   const [communityName, setCommunityName] = useState("");
   const [timerDays, setTimerDays] = useState("00");
   const [timerHours, setTimerHours] = useState("00");
@@ -28,6 +32,7 @@ function Community() {
   let interval = useRef();
 
   useEffect(() => {
+    getStatus(); //status return
     getAgendaList();
     startTimer();
     return () => {
@@ -40,6 +45,13 @@ function Community() {
       setAgendaList(res.data);
       console.log(res.data);
     });
+  };
+
+  const getStatus = async () => {
+    const web3 = new Web3(window.ethereum);
+    const contract = new web3.eth.Contract(abi, smAddress);
+    const status = await contract.methods.showStatus(0).call();
+    console.log(status);
   };
 
   const startTimer = () => {

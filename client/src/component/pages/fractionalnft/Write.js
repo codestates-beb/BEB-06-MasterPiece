@@ -4,7 +4,7 @@ import { useStore, contractStore } from "../../../store/store";
 import { create } from "ipfs-http-client";
 import { Buffer } from "buffer";
 import Web3 from "web3";
-import votingAbi from "../../abi/ercvotingABI";
+import voteAbi from "../../abi/ercvotingABI";
 
 function Write() {
   const navigate = useNavigate();
@@ -69,7 +69,7 @@ function Write() {
 
     //작성 contract에 보내기. address, agenda type, period, metadata uri (ipfs)
     const web3 = new Web3(window.ethereum);
-    const contract = new web3.eth.Contract(votingAbi, daoVotingContract);
+    const contract = new web3.eth.Contract(voteAbi, daoVotingContract);
     const transaction = {
       from: account,
       gas: 20000000, //100만

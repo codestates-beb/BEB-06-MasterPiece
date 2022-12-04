@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Web3 from "web3";
-import votingAbi from "../../abi/ercvotingABI";
+import voteAbi from "../../abi/ercvotingABI";
 import { useStore, contractStore } from "../../../store/store";
 
 function Detail({ selectId, communityName, selectedAgenda }) {
@@ -73,7 +73,7 @@ function Detail({ selectId, communityName, selectedAgenda }) {
     //db업데이트해준다./
 
     const web3 = new Web3(window.ethereum);
-    const contract = new web3.eth.Contract(votingAbi, daoVotingContract);
+    const contract = new web3.eth.Contract(voteAbi, daoVotingContract);
     const transaction = {
       from: account,
       gas: 20000000, //100만
