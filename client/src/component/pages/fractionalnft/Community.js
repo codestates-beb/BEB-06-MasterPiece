@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { useStore } from "../../../store/store";
+import axios from "axios";
 import Agenda from "./Agenda";
 
 function Community() {
@@ -9,15 +10,37 @@ function Community() {
   const [timerHours, setTimerHours] = useState("00");
   const [timerMinutes, setTimerMinutes] = useState("00");
   const [timerSeconds, setTimerSeconds] = useState("00");
+  const [agendaList, setAgendaList] = useState([]);
+  const filteredAgenda = agendaList.filter((a) => {
+    if (communityName == "0") {
+      return a.collectionName === "Crypto Punks";
+    }
+    if (communityName == "1") {
+      return a.collectionName === "Bored Ape Yacht Club";
+    }
+    if (communityName == "2") {
+      return a.collectionName === "Mutant Ape Yacht Club";
+    }
+  });
+
+  console.log(filteredAgenda);
 
   let interval = useRef();
 
   useEffect(() => {
+    getAgendaList();
     startTimer();
     return () => {
       clearInterval(interval.current);
     };
   }, []);
+
+  const getAgendaList = () => {
+    axios.get("http://localhost:3001/community").then((res) => {
+      setAgendaList(res.data);
+      console.log(res.data);
+    });
+  };
 
   const startTimer = () => {
     const countdownDate = new Date("Dec 04, 2022 09:44:00").getTime(); //staking 끝나는 날짜 설정
@@ -54,7 +77,7 @@ function Community() {
   return (
     <div>
       {openCommunity ? (
-        <Agenda communityName={communityName} />
+        <Agenda communityName={communityName} filteredAgenda={filteredAgenda} />
       ) : (
         <div>
           <div className="community-title">

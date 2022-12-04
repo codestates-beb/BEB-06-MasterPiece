@@ -88,7 +88,7 @@ create table dao_agenda
     address          char(42)           not null comment '안건 제안자',
     title            varchar(255)       not null comment '안건 타이틀',
     content          text               not null comment '안건 내용',
-    agenda_type      char(1)            not null comment '안건 타입 sell , staking',
+    agenda_type      char(42)            not null comment '안건 타입 sell , staking',
     delete_yn        char(1) comment '데이터 삭제 여부',
     create_date_time timestamp          not null default current_timestamp() comment '데이터 생성일시',
     update_date_time timestamp          not null default current_timestamp() comment '데이터 수정일시',

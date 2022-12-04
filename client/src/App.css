@@ -316,10 +316,60 @@ input:focus {
 /*/////////////// main ///////////////*/
 
 .main-image {
+  display: flex;
   width: 100%;
-  margin-top: 4%;
+  margin-top: 10%;
   margin-bottom: 0%;
+  background-color: #edecec;
+  padding-top: 29px;
+  padding-bottom: 75px;
 }
+
+.main-left{
+  width: 38%;
+  padding-left: 8%;
+  color: black;
+  flex:1;
+}
+
+.main-left>h1{
+  font-size: 50px;
+}
+
+.main-left>h1>span{
+  color:#a9d200 ;
+  text-decoration: underline;
+}
+
+
+.main-connect-btn{
+  width: 50%;
+  margin-top: 44px;
+}
+
+.main-connect-btn>span{
+  color: black;
+  border: 1px solid black;
+  width: 20%;
+  text-align: center;
+  padding: 8px 12px;
+  font-weight: 600;
+  cursor: pointer;
+  overflow:hiddlen;
+  white-space:nowrap;
+}
+
+.main-connect-btn>span:hover{
+  background-color: #fd603d;
+}
+
+.main-right{
+  width: 50%;
+  flex: 1;
+  color: black;
+}
+
+
 
 .nft-ranking {
   border-top: 1px solid white;
@@ -633,6 +683,13 @@ input:focus {
     top: 28px;
   }
 }
+
+
+/*/////////////// main image slide ///////////////*/
+
+
+
+
 
 /*/////////////// connect wallet ///////////////*/
 
@@ -1328,7 +1385,7 @@ text {
 /*/////////////// Mint ///////////////*/
 
 .mint-box {
-  background-color: #bfbfbf;
+  background-color: #dedede;
   padding-top: 3%;
   padding-bottom: 3%;
 }
