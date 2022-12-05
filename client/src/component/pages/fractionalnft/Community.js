@@ -35,9 +35,8 @@ function Community() {
   });
 
   let interval = useRef();
-
+  console.log(filteredAgenda);
   useEffect(() => {
-    console.log(account);
     soulCheck();
     getStatus(); //status return
     getAgendaList();
@@ -74,7 +73,6 @@ function Community() {
   const getAgendaList = () => {
     axios.get("http://localhost:3001/community").then((res) => {
       setAgendaList(res.data);
-      console.log(res.data);
     });
   };
   const getStatus = async () => {

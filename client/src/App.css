@@ -981,6 +981,28 @@ select {
   padding: 3px;
 }
 
+.page-box{
+  display: flex;
+  position: absolute;
+  right: 624px;
+  bottom: -436px;
+}
+
+.page{
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  font-size: 21px;
+  margin: 78px 25px 1px -2px;
+  text-align: center;
+  color: black;
+  background-color: #d4d4d4;
+}
+
+.page:hover{
+  color: tomato;
+}
+
 /*/////////////// Agenda write ///////////////*/
 
 .write-box {

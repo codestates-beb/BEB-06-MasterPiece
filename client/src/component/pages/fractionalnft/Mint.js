@@ -125,19 +125,14 @@ function Mint() {
           })
           .then((receipt) => {
             if (receipt.status) {
-              // axios
-              //   .post(
-              //     `http://localhost:3001/mint`,
-              //     { account: account, tokenId: CryptoPunks },
-              //     { Headers: { "Content-Type": "application/json" } }
-              //   )
-
               axios
-                .get("http://localhost:3001/mint", {
-                  headers: { "Content-Type": "application/json" },
-                })
+                .post(
+                  `http://localhost:3001/mint`,
+                  { pieceMintingId: 1, address: account },
+                  { Headers: { "Content-Type": "application/json" } }
+                )
                 .then((res) => {
-                  console.log(res.data);
+                  console.log(res);
                   alert("success");
                 });
             }
