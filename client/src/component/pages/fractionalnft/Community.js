@@ -3,7 +3,7 @@ import { useStore, contractStore } from "../../../store/store";
 import axios from "axios";
 import Web3 from "web3";
 import Agenda from "./Agenda";
-import abi from "../../abi/erc1155optimizeABI";
+import abi from "../../abi/erc1155optimizeABI"; //masterpiece contract
 import voteAbi from "../../abi/ercvotingABI";
 
 function Community() {
@@ -15,6 +15,7 @@ function Community() {
   const [timerMinutes, setTimerMinutes] = useState("00");
   const [timerSeconds, setTimerSeconds] = useState("00");
   const [agendaList, setAgendaList] = useState([]);
+  const [status, setStatus] = useState([]); //0: Crypto Punks , 1: bayc, 2:mayc
   const filteredAgenda = agendaList.filter((a) => {
     if (communityName == "0") {
       return a.collectionName === "Crypto Punks";
@@ -26,8 +27,6 @@ function Community() {
       return a.collectionName === "Mutant Ape Yacht Club";
     }
   });
-
-  console.log(filteredAgenda);
 
   let interval = useRef();
 
@@ -50,12 +49,30 @@ function Community() {
   const getStatus = async () => {
     const web3 = new Web3(window.ethereum);
     const contract = new web3.eth.Contract(abi, smAddress);
-    const status = await contract.methods.showStatus(0).call();
-    console.log(status);
+
+    //result값 별로 status 저장
+    let array = [];
+    for (let i = 0; i < 3; i++) {
+      await contract.methods
+        .showStatus(i)
+        .call()
+        .then((res) => {
+          if (res === "0") {
+            array.push("Voting");
+          }
+          if (res === "1") {
+            array.push("Sell");
+          }
+          if (res === "2") {
+            array.push("Staking");
+          }
+        });
+    }
+    setStatus(array);
   };
 
   const startTimer = () => {
-    const countdownDate = new Date("Dec 04, 2022 09:44:00").getTime(); //staking 끝나는 날짜 설정
+    const countdownDate = new Date("Dec 04, 2022 09:44:00").getTime(); //staking duration 끝나는 날짜 설정
 
     interval = setInterval(() => {
       const now = new Date().getTime();
@@ -105,18 +122,26 @@ function Community() {
           <table style={{ margin: "0px auto", borderSpacing: "69px 8px" }}>
             <thead>
               <tr>
-                <th>
-                  <div>
-                    Until {timerDays} : {timerHours} : {timerMinutes} :{" "}
-                    {timerSeconds}
-                  </div>
-                </th>
-                <th></th>
-                <th></th>
+                {status.map((a) => {
+                  if (a == "Staking") {
+                    return (
+                      <th>
+                        <div>
+                          Until {timerDays} : {timerHours} : {timerMinutes} :{" "}
+                          {timerSeconds}
+                        </div>
+                      </th>
+                    );
+                  } else {
+                    return <th></th>;
+                  }
+                })}
               </tr>
               <tr>
                 <th>
-                  <div style={{ color: "pink", fontSize: "23px" }}>Staking</div>
+                  <div style={{ color: "pink", fontSize: "23px" }}>
+                    {status[1]}
+                  </div>
                 </th>
                 <th>
                   <div style={{ color: "#86fbc1", fontSize: "23px" }}>

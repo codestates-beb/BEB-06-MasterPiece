@@ -39,6 +39,9 @@ function MainPage() {
         <div className="main-right">
           <div>
             <span>1/100 ETH</span>
+            <span style={{ marginTop: "12px", fontSize: "25px" }}>
+              DEC 07 2022 OPEN 🎉
+            </span>
           </div>
         </div>
       </div>
