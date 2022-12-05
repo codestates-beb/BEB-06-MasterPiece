@@ -13,23 +13,32 @@ function Write() {
   const [period, setPeriod] = useState(0);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const { account, proposedId, collectionId } = useStore(); //collectionId crypto:0 bayc: 1, mayc:2
+  const { account, proposedId } = useStore();
   const { daoVotingContract, smAddress } = contractStore();
-  const [type2, setType2] = useState("sell");
+  const [type2, setType2] = useState("sell")
   let propose = 0;
+
+  const CryptoPunks = 0; //tokenId bayc: 1, mayc:2
 
   const handleChangeType = (e) => {
     setType(e.target.value);
 
     if (e.target.value == "T") {
-      setType2("sell");
+      setType2("sell")
+
+
     }
     if (e.target.value == "S") {
-      setType2("staking");
+      setType2("staking")
+
+
     }
     if (e.target.value == "E") {
-      setType2("etc");
+      setType2("etc")
+
+
     }
+
   };
 
   const handleChangePeriod = (e) => {
@@ -68,7 +77,7 @@ function Write() {
 
     const metaData = {
       address: account,
-      collectionName: collectionId,
+      collectionName: CryptoPunks,
       title: title,
       description: description,
       agendaType: type,
@@ -88,36 +97,32 @@ function Write() {
       gasPrice: web3.utils.toWei("1.5", "gwei"),
     };
     await contract.methods
-      .suggestion(smAddress, collectionId, account, metaDataUrl, 3000)
+      .suggestion(smAddress, CryptoPunks, account, type, 3000)
       .call()
       .then((res) => {
         console.log(res);
         propose = res;
         contract.methods
-          .suggestion(smAddress, collectionId, account, metaDataUrl, 3000)
+          .suggestion(smAddress, CryptoPunks, account, type, 3000)
           .send(transaction)
           .then((res) => {
-            console.log(propose);
-            axios
-              .post(
-                `http://localhost:3001/community/${propose}`,
-                {
-                  collectionName: "Crypto Punks",
-                  nftName: "#1173",
-                  address: account,
-                  title,
-                  description,
-                  type: type2,
-                  duration: 5,
-                },
-                { Headers: { "Content-Type": "application/json" } }
-              )
-              .then((res) => {
-                console.log(res);
-              });
+            console.log(propose)
+            axios.post(`http://localhost:3001/community/${propose}`, {
+              collectionName: "Crypto Punks",
+              nftName: "#1173",
+              address: account,
+              title,
+              description,
+              type: type2,
+              duration: 5
+            }, { Headers: { "Content-Type": "application/json" } }).then((res) => {
+              console.log(res)
+            })
           });
-      });
+        ;
+      })
   };
+
 
   return (
     <div className="agenda-box">

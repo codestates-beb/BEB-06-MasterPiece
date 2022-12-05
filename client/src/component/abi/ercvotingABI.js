@@ -1,4 +1,5 @@
 const voteAbi = [
+
   {
     inputs: [
       {
@@ -15,11 +16,6 @@ const voteAbi = [
         internalType: "address",
         name: "account",
         type: "address",
-      },
-      {
-        internalType: "uint256",
-        name: "proposernumber",
-        type: "uint256",
       },
     ],
     name: "getRight",
@@ -85,6 +81,11 @@ const voteAbi = [
         type: "string",
       },
       {
+        internalType: "string",
+        name: "suggestionstring",
+        type: "string",
+      },
+      {
         internalType: "uint256",
         name: "duration",
         type: "uint256",
@@ -92,6 +93,16 @@ const voteAbi = [
     ],
     name: "suggestion",
     outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
       {
         internalType: "uint256",
         name: "",
@@ -187,6 +198,11 @@ const voteAbi = [
       {
         internalType: "string",
         name: "proposeuri",
+        type: "string",
+      },
+      {
+        internalType: "string",
+        name: "proposestring",
         type: "string",
       },
       {
