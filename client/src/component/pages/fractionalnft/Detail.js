@@ -3,35 +3,37 @@ import axios from "axios";
 import Web3 from "web3";
 import voteAbi from "../../abi/ercvotingABI";
 import { useStore, contractStore } from "../../../store/store";
-import e from "cors";
 
 function Detail({ selectId, communityName, selectedAgenda }) {
   const [detailInfo, setDetailInfo] = useState([]);
+  const [description, setDescription] = useState("");
   const CryptoPunks = 0;
   const { account, proposedId } = useStore();
   const { daoVotingContract, smAddress } = contractStore();
   const web3 = new Web3(window.ethereum);
-  const [right, setRight] = useState("")
+  const [right, setRight] = useState("");
   const contract = new web3.eth.Contract(voteAbi, daoVotingContract);
   const transaction = {
     from: account,
     gas: 20000000, //100만
     gasPrice: web3.utils.toWei("1.5", "gwei"),
   };
-  console.log(detailInfo);
+
   useEffect(() => {
     getDetail();
     progressBar();
-    console.log(selectId)
+    console.log(selectId);
     console.log(parseInt(communityName));
   }, []);
 
   const getDetail = () => {
     axios.get(`http://localhost:3001/community/${selectId}`).then((res) => {
       setDetailInfo(res.data);
-      console.log(res.data);
+      setDescription(res.data[0].description);
     });
   };
+
+  console.log(description);
 
   function progressBar() {
     let circle = document.getElementById("one");
@@ -82,7 +84,9 @@ function Detail({ selectId, communityName, selectedAgenda }) {
     // solidty에 알려준다.
     //db업데이트해준다./
     await contract.methods
-      .isitRight(account, CryptoPunks).call().then((res) => {
+      .isitRight(account, CryptoPunks)
+      .call()
+      .then((res) => {
         if (res == 1) {
           contract.methods
             .voting(smAddress, account, CryptoPunks, selectId, 1)
@@ -91,13 +95,12 @@ function Detail({ selectId, communityName, selectedAgenda }) {
               console.log(res);
             });
         } else {
-          alert("투표 권한이 없습니다.")
+          alert("투표 권한이 없습니다.");
         }
-      })
-
+      });
   };
   const handleDisagree = async () => {
-    console.log(selectId)
+    console.log(selectId);
     await contract.methods
       .voting(smAddress, account, CryptoPunks, selectId, 0)
       .send(transaction)
@@ -106,31 +109,32 @@ function Detail({ selectId, communityName, selectedAgenda }) {
       });
   };
   const checkResult = async () => {
-    await contract.methods.result(smAddress, CryptoPunks, selectId)
+    await contract.methods
+      .result(smAddress, CryptoPunks, selectId)
       .call()
       .then((res) => {
-        console.log(res)
+        console.log(res);
         if (res == "disagree") {
-          alert("투표가 부결되었습니다.")
+          alert("투표가 부결되었습니다.");
         }
-      })
-  }
+      });
+  };
   const getRight = async () => {
     try {
-      await contract.methods.getRight(smAddress, CryptoPunks, account, selectId)
+      await contract.methods
+        .getRight(smAddress, CryptoPunks, account, selectId)
         .call()
         .then((res) => {
           if (res == 1) {
-            alert("투표 가능")
+            alert("투표 가능");
+          } else {
+            alert("");
           }
-          else {
-            alert("")
-          }
-        })
+        });
     } catch (err) {
-      alert("soul을 확인하세요!")
+      alert("soul을 확인하세요!");
     }
-  }
+  };
   return (
     <div>
       {selectedAgenda.map((item) => {
@@ -151,8 +155,10 @@ function Detail({ selectId, communityName, selectedAgenda }) {
                     <div className="agenda-type">{item.type}</div>
                     <div className="agenda-type-div">#{item.postId}</div>
                   </div>
-                  <div className="agenda-single-title1">{item.title}</div>
-                  <div className="agenda-single-content">description</div>
+                  <div className="agenda-single-title1">
+                    Title : {item.title}
+                  </div>
+                  <div className="agenda-single-content">{description}</div>
                 </div>
               </div>
             </div>
@@ -208,10 +214,14 @@ function Detail({ selectId, communityName, selectedAgenda }) {
             </div>
           </div>
           <div>
-            Vote rate<button className="agenda-detail-btn" onClick={checkResult}>Check result</button>
+            Vote rate
+            <button className="agenda-detail-btn" onClick={checkResult}>
+              Check result
+            </button>
           </div>
           <div>
-            Vote Right <button className="agenda-detail-btn" onClick={getRight}>
+            Vote Right{" "}
+            <button className="agenda-detail-btn" onClick={getRight}>
               getRight
             </button>
           </div>

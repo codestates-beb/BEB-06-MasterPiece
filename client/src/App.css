@@ -115,7 +115,7 @@ button:hover {
 
 /*/////////////// footer ///////////////*/
 .footer-container {
-  margin-top: 25%;
+  margin-top: 34%;
   padding: 100px 15%;
   border-top: 1px solid white;
   padding: 1rem 0 0 0;
@@ -872,9 +872,6 @@ input:focus {
   font-family: "Jura", sans-serif;
 }
 
-.agenda-title > p {
-  cursor: pointer;
-}
 
 .agenda-write-btn {
   margin-left: 20px;
@@ -929,7 +926,7 @@ input:focus {
 .agenda-single {
   display: inline-block;
   margin-left: 22px;
-  cursor: pointer;
+  font-family: 'Inter';
 }
 
 .agenda-profile {
@@ -1088,7 +1085,10 @@ textarea:focus {
 
 .containerbox {
   display: block;
+  position: absolute;
   margin: 0 auto;
+  right: 356px;
+  bottom: -92px;
 }
 
 .progress {
@@ -1106,6 +1106,9 @@ text {
 }
 
 #lang {
+  position: absolute;
+  right: 1019px;
+  bottom: -288px;
   width: 0px;
   margin-left: 33%;
   font-family: "Lato", sans-serif;
@@ -1127,12 +1130,22 @@ text {
 
 .agenda-single-title1 {
   margin-top: 12px;
-  margin-bottom: 42px;
-  font-size: 25px;
+  margin-bottom: 26px;
+  font-size: 19px;
+  color: black;
+  background-color: #dadada;
+  width: 500px;
+  padding: 10px 10px;
+  font-family: 'Inter';
 }
 
 .agenda-single-content {
-  font-size: 19px;
+  font-size: 17px;
+  color: black;
+  background-color: #dadada;
+  padding: 10px 10px;
+  height: 100px;
+  font-family: 'Inter';
 }
 
 .agenda-detail-btn-box {
@@ -1141,6 +1154,7 @@ text {
 }
 
 .agenda-detail-btn {
+  height: 39px;
   margin-left: 14%;
   background-color: #e77979;
 }
