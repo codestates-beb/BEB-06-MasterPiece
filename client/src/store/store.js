@@ -14,6 +14,7 @@ export const useStore = create((set) => ({
   collectionId: 0,
 }));
 export const contractStore = create((set) => ({
-  smAddress: "0x75E33587d1284be2D7E2e55Cf5518BE4a377770E",
-  daoVotingContract: "0x616D77F351b1816c9A00C4Cd1fA094D7efF48d86",
+  smAddress: "0x4d3Ca82e234f9653ADF7ae3791Ec7a66e60DD362",
+  daoVotingContract: "0x1c2827D1EAb62deb59909a01ca883B3D7Bed0a1f",
+  nftAddress: "0x3B00Bc19C85cf93C02dEC8df21F3c8FC3D030cE6"
 }));
