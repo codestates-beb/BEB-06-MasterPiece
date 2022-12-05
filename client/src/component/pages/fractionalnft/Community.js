@@ -1,19 +1,25 @@
 import { useState, useRef, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useStore, contractStore } from "../../../store/store";
 import axios from "axios";
 import Web3 from "web3";
 import Agenda from "./Agenda";
 import abi from "../../abi/erc1155optimizeABI"; //masterpiece contract
-import voteAbi from "../../abi/ercvotingABI";
+import { SoulModals, WalletModals } from "../../common/Modals/Modals";
 
 function Community() {
+  const navigate = useNavigate();
+  const { account } = useStore();
   const { openCommunity } = useStore();
   const { smAddress, daoVotingContract } = contractStore();
   const [communityName, setCommunityName] = useState("");
+  const [soulModal, setSoulModal] = useState(false); //modal
+  const [walletModal, setWalletModal] = useState(false); //madal
   const [timerDays, setTimerDays] = useState("00");
   const [timerHours, setTimerHours] = useState("00");
   const [timerMinutes, setTimerMinutes] = useState("00");
   const [timerSeconds, setTimerSeconds] = useState("00");
+  const [stakingEnd, setStakingEnd] = useState(false);
   const [agendaList, setAgendaList] = useState([]);
   const [status, setStatus] = useState([]); //0: Crypto Punks , 1: bayc, 2:mayc
   const filteredAgenda = agendaList.filter((a) => {
@@ -31,6 +37,8 @@ function Community() {
   let interval = useRef();
 
   useEffect(() => {
+    console.log(account);
+    soulCheck();
     getStatus(); //status return
     getAgendaList();
     startTimer();
@@ -39,17 +47,39 @@ function Community() {
     };
   }, []);
 
+  //지갑연결, sbt 있는지 check
+  const soulCheck = async () => {
+    const web3 = new Web3(window.ethereum);
+    if (account == 0) {
+      setWalletModal(true);
+    } else {
+      const contract = new web3.eth.Contract(abi, smAddress);
+      let souls = [];
+      for (let i = 0; i < 3; i++) {
+        const soulcheck = await contract.methods
+          .soulBalanceOf(i, account) //crypto punks 에 대한 soul
+          .call()
+          .then((res) => {
+            souls[i] = res;
+          });
+      }
+      if (souls.includes("1")) {
+        setSoulModal(false);
+      } else {
+        setSoulModal(true);
+      }
+    }
+  };
+
   const getAgendaList = () => {
     axios.get("http://localhost:3001/community").then((res) => {
       setAgendaList(res.data);
       console.log(res.data);
     });
   };
-
   const getStatus = async () => {
     const web3 = new Web3(window.ethereum);
     const contract = new web3.eth.Contract(abi, smAddress);
-
     //result값 별로 status 저장
     let array = [];
     for (let i = 0; i < 3; i++) {
@@ -72,7 +102,7 @@ function Community() {
   };
 
   const startTimer = () => {
-    const countdownDate = new Date("Dec 04, 2022 09:44:00").getTime(); //staking duration 끝나는 날짜 설정
+    const countdownDate = new Date("Dec 05, 2022 13:00:00").getTime(); //staking duration 끝나는 날짜 설정
 
     interval = setInterval(() => {
       const now = new Date().getTime();
@@ -94,6 +124,7 @@ function Community() {
         setTimerHours(hours);
         setTimerMinutes(minutes);
         setTimerSeconds(seconds);
+        setStakingEnd(true);
       }
     }, 1000);
   };
@@ -105,6 +136,8 @@ function Community() {
 
   return (
     <div>
+      {walletModal && <WalletModals />}
+      {soulModal && <SoulModals />}
       {openCommunity ? (
         <Agenda communityName={communityName} filteredAgenda={filteredAgenda} />
       ) : (
@@ -122,8 +155,9 @@ function Community() {
           <table style={{ margin: "0px auto", borderSpacing: "69px 8px" }}>
             <thead>
               <tr>
+                {/* /////// staking 상태라면 시간 표시해주기 ex 5분동안 staking이면 5분동안만 활성화 후 status가 꺼지게 //////*/}
                 {status.map((a) => {
-                  if (a == "Staking") {
+                  if (a == "Staking" && stakingEnd) {
                     return (
                       <th>
                         <div>

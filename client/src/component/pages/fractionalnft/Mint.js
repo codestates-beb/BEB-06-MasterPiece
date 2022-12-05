@@ -1,15 +1,14 @@
 import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import Web3 from "web3";
-import { ethers } from "ethers";
-// import { ABI, ADDRESS } from "./config.js";
+import { WalletModals } from "../../common/Modals/Modals";
 import { useStore, contractStore } from "../../../store/store";
 import abi from "../../abi/erc1155optimizeABI";
-import tx from "ethers";
 
 function Mint() {
   const { smAddress } = contractStore();
   const { account } = useStore();
+  const [walletModal, setWalletModal] = useState(false); //madal
   const [collectionName, setCollectionName] = useState("");
   const [nftName, setNftName] = useState("");
   const [total, setTotal] = useState(0);
@@ -26,7 +25,7 @@ function Mint() {
   let interval = useRef();
 
   const startTimer = () => {
-    const countdownDate = new Date("Dec 07, 2022 00:00:00").getTime(); //민팅 시작 시간
+    const countdownDate = new Date("Dec 04, 2022 00:00:00").getTime(); //민팅 시작 시간
 
     interval = setInterval(() => {
       const now = new Date().getTime();
@@ -75,7 +74,7 @@ function Mint() {
   const minting = async () => {
     const web3 = new Web3(window.ethereum);
     if (account === 0) {
-      return alert("Please connect wallet");
+      setWalletModal(true);
     } else {
       const contract = new web3.eth.Contract(abi, smAddress);
       const soulcheck = await contract.methods
@@ -159,6 +158,7 @@ function Mint() {
 
   return (
     <div>
+      {walletModal && <WalletModals />}
       <div className="mint-box">
         <section>
           <h1 className="mint-title">
