@@ -26,7 +26,7 @@ function Mint() {
   let interval = useRef();
 
   const startTimer = () => {
-    const countdownDate = new Date("Dec 01, 2022 09:44:00").getTime();
+    const countdownDate = new Date("Dec 07, 2022 00:00:00").getTime(); //민팅 시작 시간
 
     interval = setInterval(() => {
       const now = new Date().getTime();

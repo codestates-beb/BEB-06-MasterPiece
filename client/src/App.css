@@ -322,7 +322,7 @@ input:focus {
   margin-bottom: 0%;
   background-color: #edecec;
   padding-top: 29px;
-  padding-bottom: 75px;
+  padding-bottom: 50px;
 }
 
 .main-left{
@@ -367,6 +367,8 @@ input:focus {
   width: 50%;
   flex: 1;
   color: black;
+  margin-left: 150px;
+    margin-top: 10px;
 }
 
 .main-right>div{
@@ -387,6 +389,9 @@ input:focus {
 .main-right>div>span{
   display: block;
   margin-top: 104%;
+  font-weight: 600;
+  font-family: 'Inter';
+  color: tomato;
 }
 
 
@@ -872,7 +877,7 @@ input:focus {
 }
 
 .agenda-write-btn {
-  margin-left: auto;
+  margin-left: 20px;
   margin-top: 50px;
   height: 27px;
   width: 80px;
@@ -897,7 +902,7 @@ input:focus {
   text-align: center;
   padding-top: 10px;
   border-radius: 13px;
-  background-color: rgb(21, 141, 184);
+  background-color: rgb(127 193 217);
   color: black;
   font-family: "Roboto", sans-serif;
   font-weight: 700;
@@ -911,7 +916,7 @@ input:focus {
 .agenda-write-btn:hover {
   color: tomato;
 }
-.agenda-write-btn:hover {
+.agenda-token-btn:hover {
   color: tomato;
 }
 
