@@ -13,6 +13,6 @@ export const useStore = create((set) => ({
   proposedId: 0,
 }));
 export const contractStore = create((set) => ({
-  smAddress: "0xbFaF3a9ce3710403A0c3D4310753c9C07b45c22E",
-  daoVotingContract: "0x4c89c29085a5719350A44037Db79e22d45284b2a",
+  smAddress: "0x721cB9fe2C227EF9Cf06DA970d93CBD69aB12C60",
+  daoVotingContract: "0x076af9894eE4F31E52Cd8DCc09d2079F489c6a8F",
 }));
