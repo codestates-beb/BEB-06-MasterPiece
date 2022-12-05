@@ -1,20 +1,27 @@
 import { useState } from "react";
+import axios from "axios";
 
 const MyFractionalNft = () => {
-  const [pieceNft, setPieceNft] = useState([1, 2, 3, 4, 5, 6, 7, 8]);
+  const [myInfo, setMyInfo] = useState([
+    { profile: "", collectionname: "Bored Ape Yacht Club", nftname: "#1055" },
+  ]);
+
+  //TODO: api 완성 되면 axios
+  // const getPieceNft = () => {
+  //   axios.get(`http://localhost:3001/mypage/${account}`).then((res) => {
+  //     setMyInfo(res.data);
+  //   });
+  // };
 
   return (
     <div className="fractionalnft-box">
-      {pieceNft.map((a) => {
+      {myInfo.map((a) => {
         return (
           <div className="frac-nft">
             <img className="frac-pic" src="gallery1.jpg" />
             <div className="frac-des">
-              <div>Bored Ape Yacht Club</div>
-              <div>#1055</div>
-              <div style={{ color: "tomato" }}>
-                0.013 ETH <div className="sell-btn">sell</div>
-              </div>
+              <div>{a.collectionname}</div>
+              <div>{a.nftname}</div>
             </div>
           </div>
         );
