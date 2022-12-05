@@ -8,10 +8,11 @@ import { useStore, contractStore } from "../../../store/store";
 
 function Agenda({ communityName, filteredAgenda }) {
   const navigate = useNavigate();
-  const { account } = useStore();
+  const { account, collectionId } = useStore();
   const { smAddress } = contractStore();
-  //dummy data
-  const [agenda, setAgenda] = useState(dummydata);
+  const [page, setPage] = useState(1); //pagenation 페이지
+  const limit = 5; //filteredAgenda 가일 최대한의 갯수
+  const offset = (page - 1) * limit; //시작점과 끝점을 구하는 offset
   const selectList = ["all", "sell", "staking", "etc"];
   const [Selected, setSelected] = useState("all");
   const [collectionName, setCollectionName] = useState("");
@@ -21,6 +22,7 @@ function Agenda({ communityName, filteredAgenda }) {
   const selectedAgenda = filteredAgenda.filter((a) => {
     return a.postId == selectId;
   });
+  let result = filteredAgenda.slice(offset, offset + limit); //pagenation filter
 
   const CryptoPunks = 0; //tokenId bayc: 1, mayc:2
 
@@ -28,17 +30,19 @@ function Agenda({ communityName, filteredAgenda }) {
     handleSetName(communityName);
   }, []);
 
+  useEffect(() => {
+    setPage(1);
+  }, [Selected]);
+
   const handleSetName = (communityName) => {
-    let filterAgenda = dummydata.filter((a) => {
-      return a.pieceId == communityName;
-    });
     if (communityName == "1") {
       setCollectionName("Bored Ape Yacht Club");
       setCollectionNum(3152);
       SetCollectionPic(
         "https://i.seadn.io/gae/Ju9CkWtV-1Okvf45wo8UctR-M9He2PjILP0oOvxE89AyiPPGtrR3gysu1Zgy0hjd2xKIgjJJtWIc0ybj4Vd7wv8t3pxDGHoJBzDB?auto=format&w=1920"
       ); //일단 하드코딩
-      setAgenda(filterAgenda);
+
+      useStore.setState({ collectionId: 1 });
     }
     if (communityName == "0") {
       setCollectionName("Crypto Punks");
@@ -46,7 +50,7 @@ function Agenda({ communityName, filteredAgenda }) {
       SetCollectionPic(
         "https://i.seadn.io/gae/BdxvLseXcfl57BiuQcQYdJ64v-aI8din7WPk0Pgo3qQFhAUH-B6i-dCqqc_mCkRIzULmwzwecnohLhrcH8A9mpWIZqA7ygc52Sr81hE?auto=format&w=1920"
       );
-      setAgenda(filterAgenda);
+      useStore.setState({ collectionId: 0 });
     }
     if (communityName == "2") {
       setCollectionName("Mutant Ape Yacht Club");
@@ -54,7 +58,7 @@ function Agenda({ communityName, filteredAgenda }) {
       SetCollectionPic(
         "https://i.seadn.io/gae/lHexKRMpw-aoSyB1WdFBff5yfANLReFxHzt1DOj_sg7mS14yARpuvYcUtsyyx-Nkpk6WTcUPFoG53VnLJezYi8hAs0OxNZwlw6Y-dmI?auto=format&w=1920"
       );
-      setAgenda(filterAgenda);
+      useStore.setState({ collectionId: 2 });
     }
   };
 
@@ -87,6 +91,11 @@ function Agenda({ communityName, filteredAgenda }) {
   const handleClickFractional = () => {
     navigate("/fractionalnft");
   };
+
+  const pageNation = (e) => {
+    setPage(e.target.id);
+    console.log(e.target.id);
+  };
   return (
     <div>
       {selectId ? (
@@ -108,7 +117,7 @@ function Agenda({ communityName, filteredAgenda }) {
             </p>
             {Selected == "all" ? (
               <div>
-                {filteredAgenda.map((a) => (
+                {result.map((a) => (
                   <div className="agenda-single-box">
                     <img src="profile.jpg" className="agenda-profile"></img>
                     <div
@@ -128,7 +137,7 @@ function Agenda({ communityName, filteredAgenda }) {
               </div>
             ) : (
               <div>
-                {filteredAgenda
+                {result
                   .filter((a) => {
                     return a.type === Selected;
                   })
@@ -152,6 +161,15 @@ function Agenda({ communityName, filteredAgenda }) {
                   })}{" "}
               </div>
             )}
+            <div className="page-box">
+              {[1, 2, 3, 4, 5].map((a) => {
+                return (
+                  <div onClick={pageNation} id={a} className="page">
+                    {a}
+                  </div>
+                );
+              })}
+            </div>
           </div>
 
           {/*///////// select box ///////// */}

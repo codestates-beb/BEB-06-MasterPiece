@@ -11,8 +11,9 @@ export const useStore = create((set) => ({
   openCommunity: false,
 
   proposedId: 0,
+  collectionId: 0,
 }));
 export const contractStore = create((set) => ({
-  smAddress: "0x721cB9fe2C227EF9Cf06DA970d93CBD69aB12C60",
-  daoVotingContract: "0x076af9894eE4F31E52Cd8DCc09d2079F489c6a8F",
+  smAddress: "0x75E33587d1284be2D7E2e55Cf5518BE4a377770E",
+  daoVotingContract: "0x616D77F351b1816c9A00C4Cd1fA094D7efF48d86",
 }));
