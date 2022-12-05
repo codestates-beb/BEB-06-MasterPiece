@@ -185,7 +185,7 @@ contract masterpiece {
         return reward;     
     }  
 
-    //@ Voting 마감일 조회
+    //@ Staking 마감일 조회
     function _getexpireddate (uint256 pieceid ) public view returns(uint256){
         return _staking[pieceid].expiredate;
     }
@@ -295,7 +295,7 @@ contract DaoVoting {
     // (mSaddr: masterpiece SM 주소, pieceid: 조각번호, account: useraddr, suggestionuri : 제안 , duration : 투표 기간 )
     function suggestion (address mSMaddr, uint256 pieceid,address account, string memory suggestionuri, string memory suggestionstring, uint256 duration) public returns(uint256, uint256, uint256) {
         require(masterpiece(mSMaddr).soulBalanceOf(pieceid,account) ==1,"Not owned Soul"); //soul을 소유했는지 확인
-        require(block.timestamp > masterpiece(mSMaddr)._getexpireddate(pieceid)+60,"Woops! Under staking");// staking 완료 + 보상 수령 전에 제안 불가
+        require(block.timestamp > masterpiece(mSMaddr)._getexpireddate(pieceid)+180,"Woops! Under staking");// staking 완료 + 보상 수령 전에 제안 불가
         proposers[pieceid][_proposercounter[pieceid]].soulowner = account;
         proposers[pieceid][_proposercounter[pieceid]].proposeuri = suggestionuri;
         proposers[pieceid][_proposercounter[pieceid]].agree =0; //초기값 설정
