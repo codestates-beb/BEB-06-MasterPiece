@@ -3,16 +3,26 @@ import axios from "axios";
 import Web3 from "web3";
 import voteAbi from "../../abi/ercvotingABI";
 import { useStore, contractStore } from "../../../store/store";
+import e from "cors";
 
 function Detail({ selectId, communityName, selectedAgenda }) {
   const [detailInfo, setDetailInfo] = useState([]);
   const CryptoPunks = 0;
   const { account, proposedId } = useStore();
   const { daoVotingContract, smAddress } = contractStore();
+  const web3 = new Web3(window.ethereum);
+  const [right, setRight] = useState("")
+  const contract = new web3.eth.Contract(voteAbi, daoVotingContract);
+  const transaction = {
+    from: account,
+    gas: 20000000, //100만
+    gasPrice: web3.utils.toWei("1.5", "gwei"),
+  };
   console.log(detailInfo);
   useEffect(() => {
     getDetail();
     progressBar();
+    console.log(selectId)
     console.log(parseInt(communityName));
   }, []);
 
@@ -71,23 +81,56 @@ function Detail({ selectId, communityName, selectedAgenda }) {
   const handleAgree = async () => {
     // solidty에 알려준다.
     //db업데이트해준다./
-
-    const web3 = new Web3(window.ethereum);
-    const contract = new web3.eth.Contract(voteAbi, daoVotingContract);
-    const transaction = {
-      from: account,
-      gas: 20000000, //100만
-      gasPrice: web3.utils.toWei("1.5", "gwei"),
-    };
     await contract.methods
-      .voting(smAddress, account, CryptoPunks, proposedId, 1)
+      .isitRight(account, CryptoPunks).call().then((res) => {
+        if (res == 1) {
+          contract.methods
+            .voting(smAddress, account, CryptoPunks, selectId, 1)
+            .send(transaction)
+            .then((res) => {
+              console.log(res);
+            });
+        } else {
+          alert("투표 권한이 없습니다.")
+        }
+      })
+
+  };
+  const handleDisagree = async () => {
+    console.log(selectId)
+    await contract.methods
+      .voting(smAddress, account, CryptoPunks, selectId, 0)
       .send(transaction)
       .then((res) => {
         console.log(res);
       });
   };
-  const handleDisagree = async () => {};
-
+  const checkResult = async () => {
+    await contract.methods.result(smAddress, CryptoPunks, selectId)
+      .call()
+      .then((res) => {
+        console.log(res)
+        if (res == "disagree") {
+          alert("투표가 부결되었습니다.")
+        }
+      })
+  }
+  const getRight = async () => {
+    try {
+      await contract.methods.getRight(smAddress, CryptoPunks, account, selectId)
+        .call()
+        .then((res) => {
+          if (res == 1) {
+            alert("투표 가능")
+          }
+          else {
+            alert("")
+          }
+        })
+    } catch (err) {
+      alert("soul을 확인하세요!")
+    }
+  }
   return (
     <div>
       {selectedAgenda.map((item) => {
@@ -165,7 +208,12 @@ function Detail({ selectId, communityName, selectedAgenda }) {
             </div>
           </div>
           <div>
-            Vote rate<button className="agenda-detail-btn">Check result</button>
+            Vote rate<button className="agenda-detail-btn" onClick={checkResult}>Check result</button>
+          </div>
+          <div>
+            Vote Right <button className="agenda-detail-btn" onClick={getRight}>
+              getRight
+            </button>
           </div>
           <div>
             Disagree

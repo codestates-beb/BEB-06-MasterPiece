@@ -5,6 +5,7 @@ import { create } from "ipfs-http-client";
 import { Buffer } from "buffer";
 import Web3 from "web3";
 import voteAbi from "../../abi/ercvotingABI";
+import axios from "axios";
 
 function Write() {
   const navigate = useNavigate();
@@ -14,10 +15,30 @@ function Write() {
   const [description, setDescription] = useState("");
   const { account, proposedId } = useStore();
   const { daoVotingContract, smAddress } = contractStore();
+  const [type2, setType2] = useState("sell")
+  let propose = 0;
+
   const CryptoPunks = 0; //tokenId bayc: 1, mayc:2
 
   const handleChangeType = (e) => {
     setType(e.target.value);
+
+    if (e.target.value == "T") {
+      setType2("sell")
+
+
+    }
+    if (e.target.value == "S") {
+      setType2("staking")
+
+
+    }
+    if (e.target.value == "E") {
+      setType2("etc")
+
+
+    }
+
   };
 
   const handleChangePeriod = (e) => {
@@ -76,24 +97,33 @@ function Write() {
       gasPrice: web3.utils.toWei("1.5", "gwei"),
     };
     await contract.methods
-      .suggestion(smAddress, CryptoPunks, account, type, 300)
-      .send(transaction)
+      .suggestion(smAddress, CryptoPunks, account, type, 3000)
+      .call()
       .then((res) => {
         console.log(res);
+        propose = res;
         contract.methods
-          .suggestion(smAddress, CryptoPunks, account, type, 300)
-          .call()
+          .suggestion(smAddress, CryptoPunks, account, type, 3000)
+          .send(transaction)
           .then((res) => {
-            useStore.setState({ proposedId: res });
-            //alert(`success `);
-            // navigate("/");
-          })
-          .then((res) => {
-            //axios.post db에 업데이트
+            console.log(propose)
+            axios.post(`http://localhost:3001/community/${propose}`, {
+              collectionName: "Crypto Punks",
+              nftName: "#1173",
+              address: account,
+              title,
+              description,
+              type: type2,
+              duration: 5
+            }, { Headers: { "Content-Type": "application/json" } }).then((res) => {
+              console.log(res)
+            })
           });
-      });
+        ;
+      })
   };
-  console.log(proposedId);
+
+
   return (
     <div className="agenda-box">
       <div className="vertical-line"></div>
