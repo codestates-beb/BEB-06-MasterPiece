@@ -37,6 +37,113 @@ const voteAbi = [
     inputs: [
       {
         internalType: "address",
+        name: "mSMaddr",
+        type: "address",
+      },
+      {
+        internalType: "uint256",
+        name: "pieceid",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
+        name: "proposedid",
+        type: "uint256",
+      },
+    ],
+    name: "result",
+    outputs: [
+      {
+        internalType: "string",
+        name: "",
+        type: "string",
+      },
+    ],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "mSMaddr",
+        type: "address",
+      },
+      {
+        internalType: "uint256",
+        name: "pieceid",
+        type: "uint256",
+      },
+      {
+        internalType: "address",
+        name: "account",
+        type: "address",
+      },
+      {
+        internalType: "string",
+        name: "suggestionuri",
+        type: "string",
+      },
+      {
+        internalType: "uint256",
+        name: "duration",
+        type: "uint256",
+      },
+    ],
+    name: "suggestion",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "mSMaddr",
+        type: "address",
+      },
+      {
+        internalType: "address",
+        name: "account",
+        type: "address",
+      },
+      {
+        internalType: "uint256",
+        name: "pieceid",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
+        name: "proposedid",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
+        name: "voted",
+        type: "uint256",
+      },
+    ],
+    name: "voting",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
         name: "account",
         type: "address",
       },
@@ -110,74 +217,6 @@ const voteAbi = [
     inputs: [
       {
         internalType: "address",
-        name: "mSMaddr",
-        type: "address",
-      },
-      {
-        internalType: "uint256",
-        name: "pieceid",
-        type: "uint256",
-      },
-      {
-        internalType: "uint256",
-        name: "proposedid",
-        type: "uint256",
-      },
-    ],
-    name: "result",
-    outputs: [
-      {
-        internalType: "string",
-        name: "",
-        type: "string",
-      },
-    ],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "address",
-        name: "mSMaddr",
-        type: "address",
-      },
-      {
-        internalType: "uint256",
-        name: "pieceid",
-        type: "uint256",
-      },
-      {
-        internalType: "address",
-        name: "account",
-        type: "address",
-      },
-      {
-        internalType: "string",
-        name: "suggestionuri",
-        type: "string",
-      },
-      {
-        internalType: "uint256",
-        name: "duration",
-        type: "uint256",
-      },
-    ],
-    name: "suggestion",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "address",
         name: "",
         type: "address",
       },
@@ -201,45 +240,6 @@ const voteAbi = [
       },
     ],
     stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "address",
-        name: "mSMaddr",
-        type: "address",
-      },
-      {
-        internalType: "address",
-        name: "account",
-        type: "address",
-      },
-      {
-        internalType: "uint256",
-        name: "pieceid",
-        type: "uint256",
-      },
-      {
-        internalType: "uint256",
-        name: "proposedid",
-        type: "uint256",
-      },
-      {
-        internalType: "uint256",
-        name: "voted",
-        type: "uint256",
-      },
-    ],
-    name: "voting",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    stateMutability: "nonpayable",
     type: "function",
   },
 ];
