@@ -20,6 +20,8 @@ function Mint() {
   const [timerMinutes, setTimerMinutes] = useState("00");
   const [timerSeconds, setTimerSeconds] = useState("00");
   const [start, setStart] = useState(false); //처음에는 비활성화
+  const cryptoPunksProfile =
+    "https://img.seadn.io/files/e52f773e06875799d22df815799460e9.png?fit=max&w=1000";
   const CryptoPunks = 0; //tokenId bayc: 1, mayc:2
 
   let interval = useRef();
@@ -128,7 +130,11 @@ function Mint() {
               axios
                 .post(
                   `http://localhost:3001/mint`,
-                  { pieceMintingId: 1, address: account },
+                  {
+                    pieceMintingId: 1,
+                    address: account,
+                    profile: cryptoPunksProfile,
+                  },
                   { Headers: { "Content-Type": "application/json" } }
                 )
                 .then((res) => {

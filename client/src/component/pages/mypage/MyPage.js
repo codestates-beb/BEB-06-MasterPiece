@@ -14,11 +14,11 @@ function Mypage() {
   const [clickOnpiece, setClickOnpiece] = useState(false);
   const [clickOnevent, setClickOnevent] = useState(false);
   const [token, setToken] = useState(0);
-  const { account } = useStore();
+  const { account, myProfile } = useStore();
   const baycUri =
     "https://i.seadn.io/gae/Ju9CkWtV-1Okvf45wo8UctR-M9He2PjILP0oOvxE89AyiPPGtrR3gysu1Zgy0hjd2xKIgjJJtWIc0ybj4Vd7wv8t3pxDGHoJBzDB?auto=format&w=1920";
   const cryptoUri =
-    "https://i.seadn.io/gae/BdxvLseXcfl57BiuQcQYdJ64v-aI8din7WPk0Pgo3qQFhAUH-B6i-dCqqc_mCkRIzULmwzwecnohLhrcH8A9mpWIZqA7ygc52Sr81hE?auto=format&w=1920";
+    "https://img.seadn.io/files/e52f773e06875799d22df815799460e9.png?fit=max&w=1000";
   const maycUri =
     "https://i.seadn.io/gae/lHexKRMpw-aoSyB1WdFBff5yfANLReFxHzt1DOj_sg7mS14yARpuvYcUtsyyx-Nkpk6WTcUPFoG53VnLJezYi8hAs0OxNZwlw6Y-dmI?auto=format&w=1920";
   const navigate = useNavigate();
@@ -63,7 +63,7 @@ function Mypage() {
     <div className="mypage-box">
       {/* ///////////////////////// propfile box /////////////////////////*/}
       <div className="mypage-profile-box">
-        <img src="profile.jpg" className="mypage-nft-pic" />{" "}
+        <img src={myProfile} className="mypage-nft-pic" />{" "}
         {account == 0 ? (
           0
         ) : (
@@ -77,7 +77,9 @@ function Mypage() {
           style={{ textAlign: "center", fontSize: "20px", marginTop: "22px" }}
         >
           <p></p>
-          <img className="copy-btn" src="copy.jpg" /> {token} POP
+          <div>
+            {token} <span>POP</span>
+          </div>
         </div>
         <div
           className={clickOnnft ? "click-menu" : "mypage-menu1"}

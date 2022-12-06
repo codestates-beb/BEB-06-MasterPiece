@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useStore, contractStore } from "../../../store/store";
 import { create } from "ipfs-http-client";
@@ -13,10 +13,47 @@ function Write() {
   const [period, setPeriod] = useState(0);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const { account, proposedId, collectionId } = useStore(); //collectionId cryptopunks: 0, bayc: 1, mayc:2
+  const { account, proposedId, collectionId, typeStatus, myProfile } =
+    useStore(); //collectionId cryptopunks: 0, bayc: 1, mayc:2
+  const [collectionInfo, setCollectionInfo] = useState({
+    collectionpic: "",
+    name: "",
+    nftname: "",
+  });
   const { daoVotingContract, smAddress } = contractStore();
   const [type2, setType2] = useState("sell");
   let propose = 0;
+
+  useEffect(() => {
+    setInfo();
+  }, []);
+
+  const setInfo = () => {
+    if (collectionId === 0) {
+      setCollectionInfo({
+        collectionpic:
+          "https://img.seadn.io/files/e52f773e06875799d22df815799460e9.png?fit=max&w=1000",
+        name: "Crypto Punks",
+        nftname: "#1082",
+      });
+    }
+    if (collectionId === 1) {
+      setCollectionInfo({
+        collectionpic:
+          "https://i.seadn.io/gae/Ju9CkWtV-1Okvf45wo8UctR-M9He2PjILP0oOvxE89AyiPPGtrR3gysu1Zgy0hjd2xKIgjJJtWIc0ybj4Vd7wv8t3pxDGHoJBzDB?auto=format&w=1920",
+        name: "Bored Ape Yacht Club",
+        nftname: "#3152",
+      });
+    }
+    if (collectionId === 2) {
+      setCollectionInfo({
+        collectionpic:
+          "https://i.seadn.io/gae/lHexKRMpw-aoSyB1WdFBff5yfANLReFxHzt1DOj_sg7mS14yARpuvYcUtsyyx-Nkpk6WTcUPFoG53VnLJezYi8hAs0OxNZwlw6Y-dmI?auto=format&w=1920",
+        name: "Mustant Ape Yacht Club",
+        nftname: "#5082",
+      });
+    }
+  };
 
   const handleChangeType = (e) => {
     setType(e.target.value);
@@ -50,6 +87,7 @@ function Write() {
     setDescription(e.target.value);
   };
 
+  //안건 작성 후 실행되는 function
   const handleSubmit = async () => {
     let metaDataUrl = "";
     let duration = period * 60;
@@ -86,7 +124,7 @@ function Write() {
     const contract = new web3.eth.Contract(voteAbi, daoVotingContract);
     const transaction = {
       from: account,
-      gas: 20000000, //100만
+      gas: 30000000, //100만
       gasPrice: web3.utils.toWei("1.5", "gwei"),
     };
     await contract.methods
@@ -118,12 +156,29 @@ function Write() {
                 axios
                   .get(`http://localhost:3001/community/${propose}`)
                   .then((res) => {
+                    //res.data[0].createDateTime
+                    //5분 후 function result 자동실행.
                     setTimeout(() => {
-                      console.log(res.data);
-                    }, 5000);
+                      checkResult();
+                    }, 30000);
+                    //agree 답 오면 community.js에 daration 띄워주기
+                    //끝나면 voting end로 바꿔주기
                   });
               });
           });
+      });
+  };
+  const checkResult = async () => {
+    const contract = new web3.eth.Contract(voteAbi, daoVotingContract);
+    const web3 = new Web3(window.ethereum);
+    await contract.methods
+      .result(smAddress, collectionId, propose)
+      .call()
+      .then((res) => {
+        console.log(res);
+        if (res == "agree") {
+          useStore.setState({ typeStatus: "agree" });
+        }
       });
   };
 
@@ -131,14 +186,16 @@ function Write() {
     <div className="agenda-box">
       <div className="vertical-line"></div>
       <div className="agenda-img">
-        <img src="gallery2.jpg" className="agenda-img" />
+        <img src={collectionInfo.collectionpic} className="agenda-img" />
       </div>
       <div className="agenda-title">
-        <p>Bored Ape Yacht Club</p>
-        <p style={{ fontSize: "20px", color: "#CDFF00" }}>#15923</p>
+        <p>{collectionInfo.name}</p>
+        <p style={{ fontSize: "20px", color: "#CDFF00" }}>
+          {collectionInfo.nftname}
+        </p>
         <div className="write-box">
           <div className="agenda-profile-box">
-            <img src="profile.jpg" className="agenda-profile"></img>
+            <img src={myProfile} className="agenda-profile"></img>
             <div className="agenda-single">
               <div className="agenda-address">
                 {account.slice(0, 5)}...{account.slice(-3)}

@@ -109,7 +109,7 @@ const EventMarket = () => {
                   <div>{a.collection.name}</div>
                   <div>{a.name}</div>
                   <div style={{ color: "tomato" }}>
-                    1300 POP{" "}
+                    30 POP{" "}
                     <div className="sell-btn" id={idx} onClick={handleBuy}>
                       BUY
                     </div>
