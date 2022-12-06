@@ -91,21 +91,21 @@ function Write() {
     };
     await contract.methods
       .suggestion(smAddress, collectionId, account, type, metaDataUrl, 300)
-      .send(transaction)
+      .call()
       .then((res) => {
         console.log(res);
+        propose = res[0];
         contract.methods
           .suggestion(smAddress, collectionId, account, type, metaDataUrl, 300)
-          .call()
+          .send(transaction)
           .then((res) => {
-            propose = res;
-            console.log(propose);
+            console.log(res)
             axios
               .post(
                 `http://localhost:3001/community/${propose}`,
                 {
                   collectionName: "Bored Ape Yacht Club",
-                  nftName: "#15923",
+                  nftName: "#3152",
                   address: account,
                   title,
                   description,
