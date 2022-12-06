@@ -9,9 +9,11 @@ module.exports = {
                    a.title            as title,
                    a.address          as address,
                    a.agenda_type      as type,
+                   p.profile_url as profileUrl,
                    a.create_date_time as createDateTime
             from dao_agenda a
                      left join nft n on n.id = a.nft_id
+            		 left join profile p on p.address = a.address
             where a.delete_yn = 0
               and n.delete_yn = 0
 		 order by a.create_date_time desc 
