@@ -280,7 +280,7 @@ contract DaoVoting {
     // (mSaddr: masterpiece SM 주소, pieceid: 조각번호, account: useraddr, proposernum: 권한 받고 싶은 제안 번호)  
     function getRight (address mSMaddr,uint256 pieceid,address account, uint256 proposernumber) public  returns(uint256) {
         require(masterpiece(mSMaddr).soulBalanceOf(pieceid,account) ==1,"Not owned Soul"); //soul을 소유했는지 확인
-        require(block.timestamp < proposers[pieceid][proposernumber].expiration,"Expired time getting voting right" );
+        require(block.timestamp > proposers[pieceid][proposernumber].expiration,"Expired time getting voting right" );
         voters[account][pieceid].weight = 1; //투표 권한 받음
         voters[account][pieceid].voted = false; // 투표 안한 상태로 세팅
         return voters[account][pieceid].weight ;
