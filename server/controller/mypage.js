@@ -33,5 +33,21 @@ module.exports = {
 			console.log(rows);
 			res.send(rows);
 		})
+	},
+
+	profiles: async (req, res) => {
+		const {address} = req.params;
+		const query = `
+            select np.profile_url,
+                   n.nft_name,
+                   n.collection_name
+            from nft_piece np
+       left join nft n on np.nft_id = n.id
+		   where np.address = ?
+		`
+		db.query(query, [address], (err, rows) => {
+			if (err) throw err;
+			return res.send(rows);
+		});
 	}
 }

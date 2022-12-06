@@ -50,18 +50,19 @@ module.exports = {
 		await db.query(query, async (err, result) => {
 			if (err) throw err;
 			query = `
-                insert into nft_piece (nft_id, address)
-                values (?, ?)
+                insert into nft_piece (nft_id, address, profile_url)
+                values (?, ?, ?)
 			`;
-			await db.query(query, [result[0].nft_id, address], (err, result) => {
+			await db.query(query, [result[0].nft_id, address, profile], (err, result) => {
 				if (err) throw err;
 			})
 		});
 		query = `
-			insert into profile(address, profile_url)
-			values (? ,?)
+            update profile
+            set profile_url = ?
+            where address = ?
 		`
-		await db.query(query, [address, profile], (err, result) => {
+		await db.query(query, [profile, address], (err, result) => {
 			if (err) throw err;
 			res.send("ok");
 		});
