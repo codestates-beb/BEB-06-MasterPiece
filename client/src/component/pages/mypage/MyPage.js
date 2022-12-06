@@ -6,6 +6,7 @@ import MyFractionalNft from "./MyFractionalNft";
 import EventMarket from "./EventMarket";
 import Web3 from "web3";
 import abi from "../../abi/erc1155optimizeABI";
+import axios from "axios";
 
 function Mypage() {
   const { smAddress } = contractStore();
@@ -26,6 +27,7 @@ function Mypage() {
   useEffect(() => {
     connectCheck();
     tokenBalance();
+    getMyProfile();
   }, []);
 
   const handleMenu1 = () => {
@@ -57,6 +59,13 @@ function Mypage() {
     if (account == 0) {
       navigate("/connectwallet");
     }
+  };
+
+  const getMyProfile = () => {
+    axios.get(`http://localhost:3001/mypage/${account}`).then((res) => {
+      console.log(res.data);
+      useStore.setState({ myProfile: res.data[0].profileUrl });
+    });
   };
 
   return (
