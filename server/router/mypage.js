@@ -6,8 +6,8 @@ const {
 } = require("../controller/mypage")
 
 
-router.get("/:address",profile);
-router.post("/:address",setting);
+router.get("/:address", profile);
+router.post("/:address", setting);
 
 
 module.exports = router;

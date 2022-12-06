@@ -464,3 +464,4 @@ const nftAbi = [
         type: "function",
     },
 ];
+export default nftAbi;

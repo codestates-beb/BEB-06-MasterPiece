@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { dummydata } from "../../common/dummy/dummydata";
 import Web3 from "web3";
 import abi from "../../abi/erc1155optimizeABI";
@@ -92,6 +92,19 @@ function Agenda({ communityName, filteredAgenda }) {
     navigate("/fractionalnft");
   };
 
+  const handleClaim = async () => {
+    const web3 = new Web3(window.ethereum);
+    const contract = new web3.eth.Contract(abi, smAddress);
+    const transaction = {
+      from: account,
+      gas: 20000000, //100만
+      gasPrice: web3.utils.toWei("1.5", "gwei"),
+    }; try {
+      await contract.methods.getStakingmoney(CryptoPunks, smAddress).send(transaction).then((res) => console.log(res))
+    } catch (err) {
+      alert("보상 수령이 가능한 상태가 아닙니다.")
+    }
+  }
   const pageNation = (e) => {
     setPage(e.target.id);
     console.log(e.target.id);
@@ -181,7 +194,7 @@ function Agenda({ communityName, filteredAgenda }) {
               ))}
             </select>
           </div>
-          <div className="agenda-token-btn">Claim</div>
+          <div className="agenda-token-btn" onClick={handleClaim}>Claim</div>
           <div className="agenda-write-btn" onClick={handleClickWrite}>
             write
           </div>

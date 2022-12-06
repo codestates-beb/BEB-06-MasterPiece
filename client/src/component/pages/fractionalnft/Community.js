@@ -62,7 +62,7 @@ function Community() {
             souls[i] = res;
           });
       }
-      if (souls.includes("5")) {  //원래대로 돌려놓기
+      if (souls.includes("1")) {  //원래대로 돌려놓기
         setSoulModal(false);
       } else {
         setSoulModal(true);

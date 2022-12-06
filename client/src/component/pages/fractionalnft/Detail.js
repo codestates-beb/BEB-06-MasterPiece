@@ -109,31 +109,38 @@ function Detail({ selectId, communityName, selectedAgenda }) {
       });
   };
   const checkResult = async () => {
-    await contract.methods
-      .result(smAddress, CryptoPunks, selectId)
-      .call()
-      .then((res) => {
-        console.log(res);
-        if (res == "disagree") {
-          alert("투표가 부결되었습니다.");
-        }
-      });
-  };
-  const getRight = async () => {
     try {
       await contract.methods
-        .getRight(smAddress, CryptoPunks, account, selectId)
+        .result(smAddress, CryptoPunks, selectId)
         .call()
         .then((res) => {
-          if (res == 1) {
-            alert("투표 가능");
+
+          console.log(res);
+          if (res == "disagree") {
+            alert("투표가 부결되었습니다.");
           } else {
-            alert("");
+            alert("투표가 승인되었습니다.")
           }
         });
-    } catch (err) {
-      alert("soul을 확인하세요!");
     }
+    catch (err) {
+      alert("투표가 진행 중 입니다.")
+    }
+  };
+  const getRight = async () => {
+
+    await contract.methods
+      .getRight(smAddress, CryptoPunks, account)
+      .send(transaction)
+      .then((res) => {
+        console.log(res)
+        if (res == 1) {
+          alert("투표 가능");
+        } else {
+          alert("");
+        }
+      });
+
   };
   return (
     <div>
