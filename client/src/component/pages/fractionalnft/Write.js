@@ -13,7 +13,7 @@ function Write() {
   const [period, setPeriod] = useState(0);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const { account, proposedId, collectionId, typeStatus, myProfile } =
+  const { account, proposedId, collectionId, typeStatus, myProfile, duration } =
     useStore(); //collectionId cryptopunks: 0, bayc: 1, mayc:2
   const [collectionInfo, setCollectionInfo] = useState({
     collectionpic: "",
@@ -71,9 +71,11 @@ function Write() {
 
   const handleChangePeriod = (e) => {
     if (e.target.value === "5") {
-      setPeriod(5);
+      setPeriod(5 * 60);
+      useStore.setState({ duration: 5 * 60 });
     } else if (e.target.value === "10") {
-      setPeriod(10);
+      setPeriod(10 * 60);
+      useStore.setState({ duration: 10 * 60 });
     } else {
       setPeriod(0);
     }
