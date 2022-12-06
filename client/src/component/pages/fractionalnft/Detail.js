@@ -3,20 +3,22 @@ import axios from "axios";
 import Web3 from "web3";
 import voteAbi from "../../abi/ercvotingABI";
 import { useStore, contractStore } from "../../../store/store";
+import abi from "../../abi/erc1155optimizeABI";
 
 function Detail({ selectId, communityName, selectedAgenda }) {
   const [detailInfo, setDetailInfo] = useState([]);
   const [description, setDescription] = useState("");
 
-  const { account, proposedId, collectionId } = useStore();
+  const { account, proposedId, collectionId, duration } = useStore();
   const { daoVotingContract, smAddress } = contractStore();
   const web3 = new Web3(window.ethereum);
   const [right, setRight] = useState("");
   const contract = new web3.eth.Contract(voteAbi, daoVotingContract);
+  const smContract = new web3.eth.Contract(abi, smAddress)
   const transaction = {
     from: account,
-    gas: 20000000, //100만
-    gasPrice: web3.utils.toWei("1.5", "gwei"),
+    gas: 2000000, //100만
+    gasPrice: web3.utils.toWei("3", "gwei"),
   };
 
   useEffect(() => {
@@ -133,23 +135,42 @@ function Detail({ selectId, communityName, selectedAgenda }) {
         }
       });
   };
+
   const checkResult = async () => {
-    try {
-      await contract.methods
-        .result(smAddress, collectionId, selectId)
-        .call()
-        .then((res) => {
-          console.log(res);
-          if (res == "disagree") {
-            alert("투표가 부결되었습니다.");
-          } else {
-            alert("투표가 승인되었습니다.");
-          }
-        });
-    } catch (err) {
-      alert("투표가 진행 중 입니다.");
-    }
-  };
+
+    axios.get(`http://localhost:3001/community/${selectId}/vote/result`, {
+      headers: { "Content-Type": "application/json" }
+    }).then((res) => {
+      const votes = res.data[0].total
+      console.log(selectId + "qweeqw")
+      console.log(votes)
+      if (votes >= 1) {
+        contract.methods
+          .result(smAddress, collectionId, selectId)
+          .send(transaction)
+          .then((res) => {
+            console.log(res);
+            if (res == "disagree") {
+              alert("투표가 부결되었습니다.");
+            } else {
+              alert("투표가 승인되었습니다.")
+              smContract.methods._nftstatus(collectionId).call().then((res) => {
+                console.log(res)
+                smContract.methods.setStaking(collectionId, duration).send(transaction)
+                  .then((res) => {
+                    console.log(duration)
+                    console.log(res)
+                  })
+              })
+
+            }
+          })
+
+      }
+    })
+  }
+
+
   const getRight = async () => {
     await contract.methods
       .getRight(smAddress, collectionId, account)

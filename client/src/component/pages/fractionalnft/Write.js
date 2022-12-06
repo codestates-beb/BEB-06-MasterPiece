@@ -13,7 +13,7 @@ function Write() {
   const [period, setPeriod] = useState(0);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const { account, proposedId, collectionId } = useStore(); //collectionId cryptopunks: 0, bayc: 1, mayc:2
+  const { account, proposedId, collectionId, duration } = useStore(); //collectionId cryptopunks: 0, bayc: 1, mayc:2
   const { daoVotingContract, smAddress } = contractStore();
   const [type2, setType2] = useState("sell");
   let propose = 0;
@@ -34,9 +34,11 @@ function Write() {
 
   const handleChangePeriod = (e) => {
     if (e.target.value === "5") {
-      setPeriod(5);
+      setPeriod(5 * 60);
+      useStore.setState({ duration: 5 * 60 });
     } else if (e.target.value === "10") {
-      setPeriod(10);
+      setPeriod(10 * 60)
+      useStore.setState({ duration: 10 * 60 });
     } else {
       setPeriod(0);
     }

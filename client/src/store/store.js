@@ -9,7 +9,7 @@ export const useStore = create((set) => ({
 
   //header community 관리용
   openCommunity: false,
-
+  duration: 300,
   proposedId: 0,
   collectionId: 0,
 }));
