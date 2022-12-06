@@ -21,6 +21,18 @@ app.use('/mint', mintRouter);
 app.use('/community', communityRouter);
 app.use('/mypage', mypageRouter);
 
+app.use((req, res, next) => {
+	res.status(404).send('Not Found!');
+});
+
+app.use((err, req, res, next) => {
+	console.error(err.stack);
+	res.status(500).send({
+		message: 'Internal Server Error',
+		stacktrace: err.toString()
+	});
+});
+
 app.listen(port, async () => {
 	console.log(`[RUN] Server... | http://localhost:${port}`);
 });
