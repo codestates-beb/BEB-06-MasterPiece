@@ -1778,7 +1778,6 @@ section p:first-child {
 }
 
 .event-nft {
-  height: 300px;
   border: 1px solid #0e0e9f;
   border-radius: 7px;
 }
@@ -1788,7 +1787,6 @@ section p:first-child {
   height: 74%;
   border-radius: 50%;
   cursor: pointer;
-  border: 1px solid white;
 }
 
 .my-pic {
@@ -1813,14 +1811,12 @@ section p:first-child {
 }
 
 .frac-des {
+  height: 20%;
   margin: 5px;
   text-align: center;
 }
 
-.frac-des>div{
-  font-size: 21px;
-  margin-bottom: 11px;
-}
+
 
 .sell-btn {
   display: inline-block;
