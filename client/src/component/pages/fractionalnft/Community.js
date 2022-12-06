@@ -172,17 +172,17 @@ function Community() {
               </tr>
               <tr>
                 <th>
-                  <div style={{ color: "pink", fontSize: "23px" }}>
+                  <div style={{ color: "pink", fontSize: "23px", marginLeft:"23px" }}>
                     {status[1]}
                   </div>
                 </th>
                 <th>
-                  <div style={{ color: "#86fbc1", fontSize: "23px" }}>
+                  <div style={{ color: "#86fbc1", fontSize: "23px", marginLeft:"23px" }}>
                     In progress
                   </div>
                 </th>
                 <th>
-                  <div style={{ color: "black", fontSize: "23px" }}>
+                  <div style={{ color: "black", fontSize: "23px", marginLeft:"23px" }}>
                     Open Jan 11
                   </div>
                 </th>

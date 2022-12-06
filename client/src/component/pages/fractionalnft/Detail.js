@@ -85,73 +85,57 @@ function Detail({ selectId, communityName, selectedAgenda }) {
   const handleAgree = async () => {
     // solidty에 알려준다.
     //db업데이트해준다./
-    axios.get(`http://localhost:3001/community/${selectId}/vote/${account}`, {
-      headers: { "Content-Type": "application/json" }
-    }).then((res) => {
-      console.log(selectId)
-      console.log(res.data)
-      if (res.data == "ok") {
-        console.log("You've voted")
-      } else {
-        contract.methods
-          .isitRight(account, collectionId)
-          .call()
-          .then((res) => {
-            if (res == 1) {
-              contract.methods
-                .voting(smAddress, account, collectionId, selectId, 1)
-                .send(transaction)
-                .then((res) => {
-                  console.log(res);
-                  axios.post(`http://localhost:3001/community/${selectId}/vote`, {
-                    vote: 1,
-                    address: account
-                  }, { headers: { "Content-Type": "application/json" } })
-                });
-            } else {
-              alert("투표 권한이 없습니다.");
-            }
-          });
-      }
-
-    })
-
+    await contract.methods
+      .isitRight(account, collectionId)
+      .call()
+      .then((res) => {
+        if (res == 1) {
+          contract.methods
+            .voting(smAddress, account, collectionId, selectId, 1)
+            .send(transaction)
+            .then((res) => {
+              console.log(res);
+              axios.post(
+                `http://localhost:3001/community/${selectId}/vote`,
+                {
+                  vote: 1,
+                  address: account,
+                },
+                { headers: { "Content-Type": "application/json" } }
+              );
+            });
+        } else {
+          alert("투표 권한이 없습니다.");
+        }
+      });
   };
   const handleDisagree = async () => {
-    axios.get(`http://localhost:3001/community/${selectId}/vote/${account}`, {
-      headers: { "Content-Type": "application/json" }
-    }).then((res) => {
-      console.log(selectId)
-      console.log(account)
-      console.log(res)
-      if (res.data == "ok") {
-        alert("You've already voted")
-      } else {
-        contract.methods
-          .isitRight(account, collectionId)
-          .call()
-          .then((res) => {
-            if (res == 1) {
-              contract.methods
-                .voting(smAddress, account, collectionId, selectId, 0)
-                .send(transaction)
-                .then((res) => {
-                  console.log(res);
-                  axios.post(`http://localhost:3001/community/${selectId}/vote`, {
-                    vote: 0,
-                    address: account
-                  }, { headers: { "Content-Type": "application/json" } })
-                });
-            } else {
-              alert("투표 권한이 없습니다.");
-            }
-          });
-      }
-
-    }
-    )
-
+    console.log(selectId);
+    await contract.methods
+      .isitRight(account, collectionId)
+      .call()
+      .then((res) => {
+        if (res == 1) {
+          contract.methods
+            .voting(smAddress, account, collectionId, selectId, 0)
+            .send(transaction)
+            .then((res) => {
+              console.log(res);
+              axios.post(
+                `http://localhost:3001/community/${selectId}/vote`,
+                {
+                  vote: 0,
+                  address: account,
+                },
+                { headers: { "Content-Type": "application/json" } }
+              );
+            });
+        } else {
+          alert("투표 권한이 없습니다.");
+        }
+      });
   };
+
   const checkResult = async () => {
 
     axios.get(`http://localhost:3001/community/${selectId}/vote/result`, {
@@ -188,19 +172,17 @@ function Detail({ selectId, communityName, selectedAgenda }) {
 
 
   const getRight = async () => {
-
     await contract.methods
       .getRight(smAddress, collectionId, account)
       .send(transaction)
       .then((res) => {
-        console.log(res)
+        console.log(res);
         if (res.status) {
           alert("투표 가능");
         } else {
           alert("");
         }
       });
-
   };
   return (
     <div>
@@ -234,43 +216,6 @@ function Detail({ selectId, communityName, selectedAgenda }) {
       })}
 
       <div className="agenda-detail-box">
-        <svg className="containerbox" width="600px" height="210px">
-          <g id="">
-            <circle className="progress" id="one" cx="100" cy="100" r="75px" />
-            <text
-              id="percent-one"
-              textAnchor="middle"
-              x="100"
-              y="112"
-              style={{ fontSize: "36px" }}
-            >
-              {" "}
-              0{" "}
-            </text>
-            <circle class="progress" id="two" cx="300" cy="100" r="75px" />
-            <text
-              id="percent-two"
-              textAnchor="middle"
-              x="300"
-              y="112"
-              style={{ fontSize: "36px" }}
-            >
-              {" "}
-              0{" "}
-            </text>
-            <circle class="progress" id="three" cx="500" cy="100" r="75px" />
-            <text
-              id="percent-three"
-              textAnchor="middle"
-              x="500"
-              y="112"
-              style={{ fontSize: "36px" }}
-            >
-              {" "}
-              0{" "}
-            </text>
-          </g>
-        </svg>
         <div id="lang">
           <div>
             Agree{" "}

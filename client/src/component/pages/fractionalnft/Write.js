@@ -101,7 +101,7 @@ function Write() {
           .suggestion(smAddress, collectionId, account, type, metaDataUrl, 300)
           .send(transaction)
           .then((res) => {
-            console.log(res)
+            console.log(res);
             axios
               .post(
                 `http://localhost:3001/community/${propose}`,
@@ -117,7 +117,13 @@ function Write() {
                 { Headers: { "Content-Type": "application/json" } }
               )
               .then((res) => {
-                console.log(res);
+                axios
+                  .get(`http://localhost:3001/community/${propose}`)
+                  .then((res) => {
+                    setTimeout(() => {
+                      console.log(res.data);
+                    }, 5000);
+                  });
               });
           });
       });
