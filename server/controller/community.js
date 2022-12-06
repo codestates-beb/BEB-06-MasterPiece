@@ -14,6 +14,7 @@ module.exports = {
                      left join nft n on n.id = a.nft_id
             where a.delete_yn = 0
               and n.delete_yn = 0
+		 order by a.create_date_time desc 
 		`;
 		db.query(query, (err, rows) => {
 			if (err) throw err;
