@@ -7,8 +7,8 @@ import { useStore, contractStore } from "../../../store/store";
 function Detail({ selectId, communityName, selectedAgenda }) {
   const [detailInfo, setDetailInfo] = useState([]);
   const [description, setDescription] = useState("");
-  const CryptoPunks = 0;
-  const { account, proposedId } = useStore();
+
+  const { account, proposedId, collectionId } = useStore();
   const { daoVotingContract, smAddress } = contractStore();
   const web3 = new Web3(window.ethereum);
   const [right, setRight] = useState("");
@@ -84,15 +84,23 @@ function Detail({ selectId, communityName, selectedAgenda }) {
     // solidty에 알려준다.
     //db업데이트해준다./
     await contract.methods
-      .isitRight(account, CryptoPunks)
+      .isitRight(account, collectionId)
       .call()
       .then((res) => {
         if (res == 1) {
           contract.methods
-            .voting(smAddress, account, CryptoPunks, selectId, 1)
+            .voting(smAddress, account, collectionId, selectId, 1)
             .send(transaction)
             .then((res) => {
               console.log(res);
+              axios.post(
+                `http://localhost:3001/community/${selectId}/vote`,
+                {
+                  vote: 1,
+                  address: account,
+                },
+                { headers: { "Content-Type": "application/json" } }
+              );
             });
         } else {
           alert("투표 권한이 없습니다.");
@@ -102,16 +110,33 @@ function Detail({ selectId, communityName, selectedAgenda }) {
   const handleDisagree = async () => {
     console.log(selectId);
     await contract.methods
-      .voting(smAddress, account, CryptoPunks, selectId, 0)
-      .send(transaction)
+      .isitRight(account, collectionId)
+      .call()
       .then((res) => {
-        console.log(res);
+        if (res == 1) {
+          contract.methods
+            .voting(smAddress, account, collectionId, selectId, 0)
+            .send(transaction)
+            .then((res) => {
+              console.log(res);
+              axios.post(
+                `http://localhost:3001/community/${selectId}/vote`,
+                {
+                  vote: 0,
+                  address: account,
+                },
+                { headers: { "Content-Type": "application/json" } }
+              );
+            });
+        } else {
+          alert("투표 권한이 없습니다.");
+        }
       });
   };
   const checkResult = async () => {
     try {
       await contract.methods
-        .result(smAddress, CryptoPunks, selectId)
+        .result(smAddress, collectionId, selectId)
         .call()
         .then((res) => {
           console.log(res);
@@ -127,11 +152,11 @@ function Detail({ selectId, communityName, selectedAgenda }) {
   };
   const getRight = async () => {
     await contract.methods
-      .getRight(smAddress, CryptoPunks, account)
+      .getRight(smAddress, collectionId, account)
       .send(transaction)
       .then((res) => {
         console.log(res);
-        if (res == 1) {
+        if (res.status) {
           alert("투표 가능");
         } else {
           alert("");

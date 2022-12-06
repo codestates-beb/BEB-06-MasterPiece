@@ -91,15 +91,15 @@ function Write() {
     };
     await contract.methods
       .suggestion(smAddress, collectionId, account, type, metaDataUrl, 300)
-      .send(transaction)
+      .call()
       .then((res) => {
         console.log(res);
+        propose = res[0];
         contract.methods
           .suggestion(smAddress, collectionId, account, type, metaDataUrl, 300)
-          .call()
+          .send(transaction)
           .then((res) => {
-            propose = res[0];
-            console.log(propose);
+            console.log(res);
             axios
               .post(
                 `http://localhost:3001/community/${propose}`,

@@ -9,7 +9,7 @@ import { SoulModals, WalletModals } from "../../common/Modals/Modals";
 
 function Community() {
   const navigate = useNavigate();
-  const { account } = useStore();
+  const { account, collectionId } = useStore();
   const { openCommunity } = useStore();
   const { smAddress, daoVotingContract } = contractStore();
   const [communityName, setCommunityName] = useState("");

@@ -7,7 +7,7 @@ import abi from "../../abi/erc1155optimizeABI";
 
 function Mint() {
   const { smAddress } = contractStore();
-  const { account } = useStore();
+  const { account, collectionId } = useStore();
   const [walletModal, setWalletModal] = useState(false); //madal
   const [collectionName, setCollectionName] = useState("");
   const [nftName, setNftName] = useState("");
@@ -78,7 +78,7 @@ function Mint() {
     } else {
       const contract = new web3.eth.Contract(abi, smAddress);
       const soulcheck = await contract.methods
-        .soulBalanceOf(CryptoPunks, account)
+        .soulBalanceOf(collectionId, account)
         .call();
       //soul 이 없어야 transaction 실행 =>
       if (soulcheck == 0) {
@@ -104,7 +104,7 @@ function Mint() {
               web3.eth.accounts.privateKeyToAccount(privateKey).address;
 
             const transaction = contract.methods.souldrop(
-              CryptoPunks,
+              collectionId,
               account,
               ""
             );
