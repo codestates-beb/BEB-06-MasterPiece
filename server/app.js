@@ -14,10 +14,12 @@ app.use(express.json());
 const mintRouter = require('./router/mint');
 const memberRouter = require('./router/member');
 const communityRouter = require('./router/community');
+const mypageRouter = require('./router/mypage');
 
 app.use('/member', memberRouter);
 app.use('/mint', mintRouter);
 app.use('/community', communityRouter);
+app.use('/mypage', mypageRouter);
 
 app.listen(port, async () => {
 	console.log(`[RUN] Server... | http://localhost:${port}`);
