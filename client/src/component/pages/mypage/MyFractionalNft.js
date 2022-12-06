@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 
-const MyFractionalNft = () => {
+const MyFractionalNft = ({ baycUri, cryptoUri, maycUri }) => {
   const [myInfo, setMyInfo] = useState([
     { profile: "", collectionname: "Bored Ape Yacht Club", nftname: "#1055" },
   ]);
@@ -18,7 +18,7 @@ const MyFractionalNft = () => {
       {myInfo.map((a) => {
         return (
           <div className="frac-nft">
-            <img className="frac-pic" src="gallery1.jpg" />
+            <img className="frac-pic" src={baycUri} />
             <div className="frac-des">
               <div>{a.collectionname}</div>
               <div>{a.nftname}</div>
