@@ -101,7 +101,9 @@ function Agenda({ communityName, filteredAgenda }) {
       gas: 20000000, //100만
       gasPrice: web3.utils.toWei("1.5", "gwei"),
     }; try {
-      await contract.methods.getStakingmoney(collectionId, smAddress).send(transaction).then((res) => console.log(res))
+      await contract.methods.getStakingmoney(collectionId, smAddress).send(transaction)
+        .then((res) =>
+          alert("보상 수령 완료!"))
     } catch (err) {
       alert("보상 수령이 가능한 상태가 아닙니다.")
     }
