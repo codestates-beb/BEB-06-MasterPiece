@@ -98,14 +98,14 @@ function Write() {
           .suggestion(smAddress, collectionId, account, type, metaDataUrl, 300)
           .call()
           .then((res) => {
-            propose = res;
+            propose = res[0];
             console.log(propose);
             axios
               .post(
                 `http://localhost:3001/community/${propose}`,
                 {
                   collectionName: "Bored Ape Yacht Club",
-                  nftName: "#15923",
+                  nftName: "#3152",
                   address: account,
                   title,
                   description,
@@ -115,7 +115,13 @@ function Write() {
                 { Headers: { "Content-Type": "application/json" } }
               )
               .then((res) => {
-                console.log(res);
+                axios
+                  .get(`http://localhost:3001/community/${propose}`)
+                  .then((res) => {
+                    setTimeout(() => {
+                      console.log(res.data);
+                    }, 5000);
+                  });
               });
           });
       });

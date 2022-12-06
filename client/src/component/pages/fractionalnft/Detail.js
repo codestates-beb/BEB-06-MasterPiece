@@ -114,33 +114,29 @@ function Detail({ selectId, communityName, selectedAgenda }) {
         .result(smAddress, CryptoPunks, selectId)
         .call()
         .then((res) => {
-
           console.log(res);
           if (res == "disagree") {
             alert("투표가 부결되었습니다.");
           } else {
-            alert("투표가 승인되었습니다.")
+            alert("투표가 승인되었습니다.");
           }
         });
-    }
-    catch (err) {
-      alert("투표가 진행 중 입니다.")
+    } catch (err) {
+      alert("투표가 진행 중 입니다.");
     }
   };
   const getRight = async () => {
-
     await contract.methods
       .getRight(smAddress, CryptoPunks, account)
       .send(transaction)
       .then((res) => {
-        console.log(res)
+        console.log(res);
         if (res == 1) {
           alert("투표 가능");
         } else {
           alert("");
         }
       });
-
   };
   return (
     <div>
@@ -174,43 +170,6 @@ function Detail({ selectId, communityName, selectedAgenda }) {
       })}
 
       <div className="agenda-detail-box">
-        <svg className="containerbox" width="600px" height="210px">
-          <g id="">
-            <circle className="progress" id="one" cx="100" cy="100" r="75px" />
-            <text
-              id="percent-one"
-              textAnchor="middle"
-              x="100"
-              y="112"
-              style={{ fontSize: "36px" }}
-            >
-              {" "}
-              0{" "}
-            </text>
-            <circle class="progress" id="two" cx="300" cy="100" r="75px" />
-            <text
-              id="percent-two"
-              textAnchor="middle"
-              x="300"
-              y="112"
-              style={{ fontSize: "36px" }}
-            >
-              {" "}
-              0{" "}
-            </text>
-            <circle class="progress" id="three" cx="500" cy="100" r="75px" />
-            <text
-              id="percent-three"
-              textAnchor="middle"
-              x="500"
-              y="112"
-              style={{ fontSize: "36px" }}
-            >
-              {" "}
-              0{" "}
-            </text>
-          </g>
-        </svg>
         <div id="lang">
           <div>
             Agree{" "}
