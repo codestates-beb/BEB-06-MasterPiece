@@ -31,10 +31,6 @@ function Header() {
           <Link to="/roadmap">
             <button>Roadmap</button>
           </Link>
-          <Link to="/market">
-            <button>Market</button>
-          </Link>
-
           <Link to="/mypage">
             <FontAwesomeIcon icon={faUser} />
           </Link>

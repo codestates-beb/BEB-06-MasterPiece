@@ -23,9 +23,6 @@ function Detail({ selectId, communityName, selectedAgenda }) {
 
   useEffect(() => {
     getDetail();
-    progressBar();
-    console.log(selectId);
-    console.log(parseInt(communityName));
   }, []);
 
   const getDetail = () => {
@@ -35,53 +32,6 @@ function Detail({ selectId, communityName, selectedAgenda }) {
     });
   };
 
-  console.log(description);
-
-  function progressBar() {
-    let circle = document.getElementById("one");
-    let text = document.getElementById("percent-one");
-    let angle = 0;
-    let percent = 40 * 4.7; //agree 수 여기서 setting
-
-    let timer = setInterval(() => {
-      circle.setAttribute("stroke-desharray", angle + ", 20000");
-      text.innerHTML = parseInt((angle / 471) * 100);
-      if (angle >= percent) {
-        clearInterval(timer);
-      }
-      angle += 6;
-    }, 30);
-
-    let circle1 = document.getElementById("two");
-    let text1 = document.getElementById("percent-two");
-    let angle1 = 0;
-    let percent1 = 60 * 4.7; //vote rate 여기서 setting
-
-    let timer1 = setInterval(function () {
-      circle1.setAttribute("stroke-dasharray", angle1 + ", 20000");
-      text1.innerHTML = parseInt((angle1 / 471) * 100) + "%";
-      if (angle1 >= percent1) {
-        clearInterval(timer1);
-      }
-      angle1 += 7;
-    }, 30);
-
-    //---
-
-    let circle2 = document.getElementById("three");
-    let text2 = document.getElementById("percent-three");
-    let angle2 = 0;
-    let percent2 = 20 * 4.7; //disagree 수 여기서 setting
-
-    let timer2 = setInterval(function () {
-      circle2.setAttribute("stroke-dasharray", angle2 + ", 20000");
-      text2.innerHTML = parseInt((angle2 / 471) * 100);
-      if (angle2 >= percent2) {
-        clearInterval(timer2);
-      }
-      angle2 += 6;
-    }, 30);
-  }
   const handleAgree = async () => {
     // solidty에 알려준다.
     //db업데이트해준다./
@@ -212,7 +162,9 @@ function Detail({ selectId, communityName, selectedAgenda }) {
             </div>
             <div className="agenda-title">
               <p>{item.collectionName}</p>
-              <p style={{ fontSize: "20px", color: "#CDFF00" }}>#1143</p>
+              <p style={{ fontSize: "20px", color: "#CDFF00" }}>
+                {item.nftname}
+              </p>
               <div className="agenda-single-box">
                 <img src="profile.jpg" className="agenda-profile"></img>
                 <div className="agenda-single">
@@ -237,20 +189,32 @@ function Detail({ selectId, communityName, selectedAgenda }) {
           <div>
             Agree{" "}
             <div>
-              <button className="agenda-detail-btn" onClick={handleAgree}>
+              <button
+                className="agenda-detail-btn"
+                onClick={handleAgree}
+                style={{ backgroundColor: "#a3d18b" }}
+              >
                 agree
               </button>
             </div>
           </div>
           <div>
             Vote rate
-            <button className="agenda-detail-btn" onClick={checkResult}>
+            <button
+              className="agenda-detail-btn"
+              onClick={checkResult}
+              style={{ backgroundColor: "#f7f6d7" }}
+            >
               Check result
             </button>
           </div>
           <div>
             Vote Right{" "}
-            <button className="agenda-detail-btn" onClick={getRight}>
+            <button
+              className="agenda-detail-btn"
+              onClick={getRight}
+              style={{ backgroundColor: "#f7f6d7" }}
+            >
               getRight
             </button>
           </div>
