@@ -138,7 +138,7 @@ function Agenda({ communityName, filteredAgenda }) {
               <div>
                 {result.map((a) => (
                   <div className="agenda-single-box">
-                    <img src="profile.jpg" className="agenda-profile"></img>
+                    <img src={a.profileUrl} className="agenda-profile"></img>
                     <div
                       className="agenda-single"
                       onClick={handleClickAgenda}
@@ -163,7 +163,10 @@ function Agenda({ communityName, filteredAgenda }) {
                   .map((a) => {
                     return (
                       <div className="agenda-single-box">
-                        <img src="profile.jpg" className="agenda-profile"></img>
+                        <img
+                          src={a.profileUrl}
+                          className="agenda-profile"
+                        ></img>
                         <div
                           className="agenda-single"
                           onClick={handleClickAgenda}
