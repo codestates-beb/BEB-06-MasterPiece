@@ -97,15 +97,15 @@ function Write() {
       gasPrice: web3.utils.toWei("1.5", "gwei"),
     };
     await contract.methods
-      .suggestion(smAddress, CryptoPunks, account, type, 3000)
-      .call()
+      .suggestion(smAddress, CryptoPunks, account, type, metaDataUrl, 300)
+      .send(transaction)
       .then((res) => {
         console.log(res);
-        propose = res;
         contract.methods
-          .suggestion(smAddress, CryptoPunks, account, type, 3000)
-          .send(transaction)
+          .suggestion(smAddress, CryptoPunks, account, type, metaDataUrl, 300)
+          .call()
           .then((res) => {
+            propose = res;
             console.log(propose)
             axios.post(`http://localhost:3001/community/${propose}`, {
               collectionName: "Crypto Punks",

@@ -22,7 +22,7 @@ module.exports = {
 	},
 
 	agenda: async (req, res) => {
-		const {postId} = req.params;
+		const { postId } = req.params;
 		const {
 			collectionName,
 			nftName,
@@ -60,7 +60,7 @@ module.exports = {
 	},
 
 	description: async (req, res) => {
-		const {postId} = req.params;
+		const { postId } = req.params;
 		const query = `
             select a.id                                                                       as postId,
                    n.collection_name                                                          as collectionName,
@@ -86,8 +86,8 @@ module.exports = {
 	},
 
 	vote: async (req, res) => {
-		const {postId} = req.params;
-		const {vote, address} = req.body;
+		const { postId } = req.params;
+		const { vote, address } = req.body;
 		const query = `
             insert into dao_agenda_voting (agenda_id, address, agree)
             values (?, ?, ?)
@@ -99,7 +99,7 @@ module.exports = {
 	},
 
 	isVoted: async (req, res) => {
-		const {postId, address} = req.params;
+		const { postId, address } = req.params;
 		const query = `
             select count(*) as voted
             from dao_agenda_voting
@@ -116,7 +116,7 @@ module.exports = {
 	},
 
 	result: async (req, res) => {
-		const {postId} = req.params;
+		const { postId } = req.params;
 		const query = `
             select count(*)                              as total,
                    count(case when agree = 1 then 1 end) as agree,
@@ -131,4 +131,4 @@ module.exports = {
 
 	}
 }
-;
+	;
