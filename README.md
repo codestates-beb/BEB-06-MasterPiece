@@ -33,7 +33,7 @@ SBT 홀더는 PoP 이벤트 마켓에 입장할 수 있습니다. 좋은 NFT를 
 ### 👩‍👩‍👧‍👦 멤버구성
 - 문지훈 (Front-end) : 기획, metamask연결, token claim, token staking, Event market
 - 김나혜 (Front-end) : css, SBT minting, Voting, Mypage(nft, sbt)
-- 김준섭 (Smart contract) : 전반적인 smart contract (erc-1155)
+- 김준섭 (Smart contract) : 전반적인 smart contract (erc-1155, Voting, Staking, ERC-721)
 - 정다운 (Back-end): Dao, Mypage, Minting 
 <br />
 
