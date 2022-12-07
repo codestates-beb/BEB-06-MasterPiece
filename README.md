@@ -1,131 +1,80 @@
-# BEB-06-FINAL-05
-# Meeting Minutes
+# 🧩 PoP (Piece of Puzzle)
+![스크린샷 2022-12-06 오전 10 44 57](https://user-images.githubusercontent.com/108771794/206086379-b838807a-a114-4299-a390-2bdd9af15b19.jpg)
 
-2022’Nov-10
-* Project 기간 : Nov’10 ~ Dec05
-* 팀장님 : 문지훈 
-* 팀결성 :  문지훈, 김나혜, 정다운, 김준섭 ( SBT 활용한 NFT 조각 투자 &  community 마켓플레이스 )
-* 미팅시간 : 매일 ( 오후 : 14:00~ )
-* 파트 : FE ( 문지훈, 김나혜) / BE (정다운, 김준섭) / SM,Web3( 김준섭, 문지훈, 김나혜,정다운 )
-* SBT/ DAO 시스템에 대한 학습 이후 월요일 부터 본격 시작
-    * BE / FE 쪽은 추후 논의
-* FE wire frame 할 에정 
-* 김준섭 : 오전 10:00~11:00 , 14:00~ , ( 수요일 오전(x), 금요일 오후(x)), 19일 면접 ( 다음주 정신없을 수 …)
-* 정다운 : 면접시간만 피하면… 
-* 역할 : 김준섭 (회의록 서기 ) , 문지훈 (CTO) , 김나혜 (인턴2) , 정다운 ( 인턴 )
-* Overall Plan : 
-<img width="891" alt="image" src="https://user-images.githubusercontent.com/81156500/201584006-b20030bc-b1f8-4326-9c9d-9afbd334b72a.png">
+## 💻 프로젝트 소개
+## SBT를 활용한 NFT 조각 투자 및 커뮤니티가 가능한 마켓플레이스입니다.
+<br />
 
+### 🚀 PoP 서비스는 SBT를 활용한 조각 투자 서비스 입니다.
 
-2022’Nov-14 ( 14:00 - )
-* FE / BE mock up 공유
-* BE 비중에 대한 추가 논의
-* SBT 컨트렉 논의
-    * 소울월렛 ( 가디언 ) 에 대한 검토
-    * SBT token 의 저장 방식 (?)
-* NTT(Non transferable token ) / ABT ( Acoount Bound Token)  공부 
+NFT를 여러 조각으로 나누고 양도, 판매할 수 없는 SBT(Soul Bound Token)의 형태로 투자자들에게 제공합니다.
 
-2022’Nov-16 
-( 10:00~ ) 
-* 멘토님과 논의 주제에 대한 논의
-    * DB 및 BE 의존도 에 대한 논의
-        * 무조건적인 DB 사용 보다는, 필요한 경우에 대해서 적용할 수 있도록 구현
-    * SBT 활용도 논의 
-    * FE 구현 하면서 -> SM / BE 단 구현 
+### 🧐 왜 PoP 서비스가 필요한가요?
 
+현재 NFT 조각투자 시장은 NFT의 본래 가치보다 투기의 목적으로 접근하는 사람들이 많습니다. 이는 조각의 무분별한 거래를 동반하며 조각 홀더 들의 불안함을 야기합니다. 해당 NFT의 가치를 믿는 투자자만을 모집하고, Paper-Hand를 배제하기 위해 PoP 서비스는 민팅받은 조각 NFT의 양도와 판매를 불가능하게 합니다. 
 
-(15:00~ )
-* 멘토님과의 1차 멘토링 진행
-    * 정책에 대한 검토 필요 ( 악의적 사용자, 기타 등등 )
-    * FE/BE/SM 의 적절한 배치에 대한 추천
-    * 대중적인 것이 좋을 수도 있다 -> 포트폴리오, 기업을 위해서도 ..
-    * 각 구현 요소마다 정당성 ( 왜? , 명분 ? ) 에 대한 검토 필요
-* 미팅
-    * 정책에 대해서 브레인스토밍 해보기 
-        * 악의적인 사용자
-        * 투표조작…. 
-    * SBT 토큰을 소유한 사람이 이용할 수 있는 서비스에 대한 검토
-        * 옥션…
-        * BE 구현 가능할거같고 
-        
- 2022’Nov-17
-(14:00-)
-* 다시 생각해보기
-    * NFT 마켓 플레이스
-        * NFT 판매
-            * 일반NFT 
-            * 조각투자하는 NFT
-        * 조각 투자용 ERC20 코인 판매
+### 😅 조각을 판매하고 싶다면 어떻게 해야 할까요 ?
 
-    * BE 비중이 생기면서, SBT 토큰활용하여 BE 별도 기능 구현하는 것에 대한 검토
-        * 
-* DB 와 block 간의 동기화에 대한 연구(확인필요)
-    * ex) A 마켓, B 마켓 에 모두 등록을 했을 때, 한쪽에서 팔린경우 어떻게 동기화 ? 
-* Planning
-    * 금주까지 기능 구현에 대한 플래닝 
-    * 차주 정도 구현 시작 
- 
- 2022’Nov-18
-(10:00- )
-* 전체적인구조
-    * 조각 NFT 구조
-        * 조각 NFT 발행 : ERC- 20 - SBT. / SBT 만들지 ( 판매를 가능 / 불가능 )
-        * 악용될 사례 ( 51% , 참여하지 않는경우 ) …. 지속적인 생각
-    * BE
-        * Opensea API 에서 개인 주소별 등록된 NFT list 를 끌어와서, sell 의 true/false 경우를 나누어서 DB update
-        * DB - create / update / delete
-        * DB - 안건 에 대한 저장
-* SBT 의 의미를 생각해보기 
-    
-  2022’Nov-23 
-  < 14:00~ >
-* FE ( css : 70% / 기능 : 구현중 )
-    * Mock up 대로 진행 
-* BE
-    * 일반 NFT 용 table
-        * 저장 : 최초 발행 시 저장
-        * Query - 판매등록이 true 경우 /  adress & 판매등록 true / address
-        * Update : 판매되면 주소 변경  / 판매등록 false -> true 
-      <img width="744" alt="image" src="https://user-images.githubusercontent.com/81156500/203484957-0fe21faa-8fb1-4618-99ca-0fa883b65f99.png">
-     * 조각 NFT 용 table
-       * 중개자 NFT/ SBT 민트 -> 지원자 받아서 -> soul drop
-       <img width="720" alt="image" src="https://user-images.githubusercontent.com/81156500/203485037-01b83e46-74c1-4ad2-8346-851e4e7338b1.png">
-     * DAO community 용 table
-       * 저장/ 업데이트
-       <img width="1090" alt="image" src="https://user-images.githubusercontent.com/81156500/203485142-7fe9d0ac-86fe-4984-833e-cfe293975eee.png">
-    * Event market 용 table ( advanced )
-* SM
-    * 일반 NFT -> 기존
-        * 등록 / 판매/ transfer
-    * 조각 NFT ->  ERC1155 ( ERC721 - ERC20 ( 판매 안되는거로  ) -> air drop
-        * NFT 발행 - ERC20 10개 발행
-        * 
-    * ERC- 20 : 투표 ( ) 
-    
-   < 15:00 ~ >
-   1. 다음주에는 준비된 페이지들 구현된거 보여주면서 발표 
-   2. dummydata 많이 만들어서 넣어두기 (1주일 간격보다는 10초 1분) 
-   3. 컨트랙트 잘 되는지 체크 예외처리 상황만들면서 구현하기 
-   4. 기획문서 준비 (ppt)만들어서 다음주에는 발표하기
-   5. 
- 2022’Nov’24 ( 16:30 ~ )
-* 일반 NFT 판매관련 논의 ( 두가지 안건 )
-    * NFT 민트 -> DB 저장 -> 판매 
-    * Opensea에 등록된 NFT중 필요한 것만 sorting 하여 DB 저장 -> 판매할 것만 따로 DB update -> 자체적으로 판맨
-        * 타사에서 발행한 SM 컨트롤 기능에 대한 검토 필요
-        * 불가능하다면, Opensea api 를 이용하여 판매 등록
-        
- 2022’Nov’29 ( 14:00~ )
-* 일반 NFT ( original : SM 으로 전부 컨트롤해주기, 타협 :web3 + DB ) 
-    * 권한 받고 ( SM 컨트롤(web3 , thirdweb3) -> SM 주인 발행자  ) -> web3
-    * 판매 listing ( 불러오기 ) -> 승인 받은것만 보여주는 거죠 -> web3 , DB  -> 온체인 저장 ( 수수료 엄청날텐데… )
-    * Transfer(판매) -> web3 컨트롤
-* 조각NFT
-    * NFT 발행 :  우리가 발행
-    * 조각 NFT 예시
-    <img width="725" alt="image" src="https://user-images.githubusercontent.com/81156500/204449291-ca7ce5da-849d-435e-ba6c-a93bbea5713a.png">
-    * SBT FMF 구매자 예시
-    <img width="547" alt="image" src="https://user-images.githubusercontent.com/81156500/204449369-be1e9a11-88ac-4371-bcd8-369639b8c5e4.png">
+민팅 받은 조각을 판매할 수는 없습니다. 다만 조각으로 나뉘어진 NFT 별로 DAO가 조직되고, 조각 홀더들의 합의를 통해 전체 NFT를 판매하거나, 스테이킹 할 수는 있습니다. 이때 NFT판매 와 스테이킹으로 인한 수익은 모든 홀더들이 나눠 받습니다.
+
+### ☹️ 판매할 수 없다는 제약이 너무 큰 것같은데.. 조각 홀더의 다른 이점이 있을 까요 ?
+
+SBT 홀더는 PoP 이벤트 마켓에 입장할 수 있습니다. 좋은 NFT를 값싼 가격에 구매할 수 있으며 이때 NFT는 스테이킹 등을 통해 얻은 PoP토큰으로 구매 가능합니다. 
+
+또한, NFT가 DAO 합의로 인해 판매 되더라도, SBT와 DAO 커뮤니티는 사라지지 않으며, 홀더들이 계속해서 커뮤니티를 운영하고 참여할 수 있습니다.
+
+추후 서비스로 De-Fi 대출 프로토콜로 연계할 예정입니다. SBT를 담보로 대출을 해주고, 원리금 변제가 불가능할 경우 SBT를 소각할 수 있습니다.
+<br />
+<br />
+
+## 🕰 개발 기간
+22.11.13일 ~ 22.12.07일
+
+### 👩‍👩‍👧‍👦 멤버구성
+- 문지훈 (Front-end) : 기획, metamask연결, token claim, token staking, Event market
+- 김나혜 (Front-end) : css, SBT minting, Voting, Mypage(nft, sbt)
+- 김준섭 (Smart contract) : 전반적인 smart contract (erc-1155)
+- 정다운 (Back-end): Dao, Mypage, Minting 
+<br />
+
+### 🛠 개발 환경
+<img src="https://img.shields.io/badge/Html5-E34F26?style=for-the-badge&logo=Html5&logoColor=white"> <img src="https://img.shields.io/badge/Css3-1572B6?style=for-the-badge&logo=Css3&logoColor=white">
+<img src="https://img.shields.io/badge/Javascript-F7DF1E?style=for-the-badge&logo=Javascript&logoColor=white">
+<img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=white">
+
+<img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=Node.js&logoColor=white"> <img src="https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=ExpressL&logoColor=white">
+ <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=MySQL&logoColor=white">
 
 
+<img src="https://img.shields.io/badge/Solidity-363636?style=for-the-badge&logo=Solidity&logoColor=white"> <img src="https://img.shields.io/badge/Remix-000000?style=for-the-badge&logo=Remix&logoColor=white"> <img src="https://img.shields.io/badge/Web3.js-F16822?style=for-the-badge&logo=Web3.js&logoColor=white">
+
+
+<img src="https://img.shields.io/badge/Github-181717?style=for-the-badge&logo=Github&logoColor=white"> <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=Git&logoColor=white">
+<br />
+<br />
+
+### ⛏ 주요기능
+#### - 지갑 연결
+#### - SBT minting
+#### - Token Staking
+#### - Event market
+#### - Dao
+#### - Mypage
+<br />
+<br />
+
+### 🧩 Flow Chart
+<br />
+<br />
+
+![스크린샷 2022-12-07 오전 11 30 47](https://user-images.githubusercontent.com/108771794/206087073-a0826629-4c56-4f71-b621-a60fff8ea9af.jpg)
+<br />
+<br /> 
+
+### 🧩 Scheme
+![diagram](https://user-images.githubusercontent.com/108771794/206087364-470c8935-c808-4bd2-b443-ce5cbccb6eab.png)
+
+
+### 🧩 Wire Frame
+![스크린샷 2022-12-07 오전 11 39 37](https://user-images.githubusercontent.com/108771794/206087207-02d0c851-e729-4c5e-b283-7b340ab479af.jpg)
 
